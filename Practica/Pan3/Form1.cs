@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace Pan3
         private string idproveedor;
         private string idcliente;
         private string idautorizado;
+        private string idproducto;
+        private string idcategoria;
         private bool editarse = false;
         E_Proveedor objEProveedor = new E_Proveedor();
         NegProveedores objNegProveedor = new NegProveedores();
@@ -31,12 +34,19 @@ namespace Pan3
         NegCliente objNegCliente = new NegCliente();
         E_Autorizados objEAutorizado = new E_Autorizados();
         NegAutorizados objNegAutorizado = new NegAutorizados();
+        E_Categoria objECategoria = new E_Categoria();
+        NegCategoria objNegCategoria = new NegCategoria();
+        E_Producto objEProducto = new E_Producto();
+        NegProducto objNegProducto = new NegProducto();
 
         public Form1()
         {
             InitializeComponent();
 
             CrearColumnas();
+            CrearColumnasAut();
+            CrearColumnasProd();
+            CrearColumnasCat();
             lbltime.Text = DateTime.Now.ToString();
             NUDCantidad.Maximum = decimal.MaxValue;
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
@@ -206,6 +216,9 @@ namespace Pan3
             accionestabla();
             LlenarDGV();
             LlenarDGVAut();
+            LlenarDGVCat();
+            LlenarDGVProd();
+            LlenarCbCat();      
         }
 
         #region proveedor
@@ -264,7 +277,7 @@ namespace Pan3
                 txtdom.Text = dgvProv.CurrentRow.Cells[6].Value.ToString();
                 txtcuil.Text = dgvProv.CurrentRow.Cells[7].Value.ToString();
             }
-            else
+            else if (dgvProv.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Seleccione el proveedor que desea editar");
             }
@@ -450,7 +463,7 @@ namespace Pan3
                 TxtTelCliente.Text = dgvCliente.CurrentRow.Cells[5].Value.ToString();
 
             }
-            else
+            else if (dgvCliente.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Seleccione el proveedor que desea editar");
             }
@@ -496,6 +509,8 @@ namespace Pan3
             dgvAutorizados.Columns[3].HeaderText = "Usuario";
             dgvAutorizados.Columns[4].HeaderText = "Clave";
             dgvAutorizados.Columns[5].HeaderText = "Estado";
+
+            dgvAutorizados.Columns[0].Visible = false;
         }
         private void LlenarDGVAut()
         {
@@ -509,11 +524,7 @@ namespace Pan3
                     dgvAutorizados.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
                 }
             }
-            else
-                MessageBox.Show("No hay autorizados cargados en el sistema");
         }     
-
-        #endregion
 
         private void BtnGAut_Click(object sender, EventArgs e)
         {
@@ -562,8 +573,6 @@ namespace Pan3
                 }
             }
         }
-
-
         private void LimpiarTxtA()
         {
             txtNomAut.Text = "";
@@ -587,7 +596,7 @@ namespace Pan3
                 txtUsAut.Text = dgvAutorizados.CurrentRow.Cells[3].Value.ToString();
                 txtClaveAut.Text = dgvAutorizados.CurrentRow.Cells[4].Value.ToString();
             }
-            else
+            else if (dgvAutorizados.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Seleccione el autorizado que desea editar");
             }
@@ -614,5 +623,274 @@ namespace Pan3
                 MessageBox.Show("Seleccione el autorizado que desea eliminar");
             }
         }
+        #endregion
+
+        #region producto
+
+        private void CrearColumnasProd()
+        {
+            dgvProductos.ColumnCount = 8;
+            dgvProductos.Columns[0].HeaderText = "Id";
+            dgvProductos.Columns[1].HeaderText = "Codigo";
+            dgvProductos.Columns[2].HeaderText = "Nombre";
+            dgvProductos.Columns[3].HeaderText = "Stock";
+            dgvProductos.Columns[4].HeaderText = "Precio de compra";
+            dgvProductos.Columns[5].HeaderText = "Precio de venta";
+            dgvProductos.Columns[6].HeaderText = "Unidad de medida";
+            dgvProductos.Columns[7].HeaderText = "Categoría";
+
+            dgvProductos.Columns[0].Visible = false;
+
+        }
+
+        private void LlenarDGVProd()
+        {
+            dgvProductos.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvProductos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                }
+            }
+        }
+
+        private void LimpiarTxtProd()
+        {
+            txtCodProd.Text = "";
+            txtNomProd.Text = "";
+            txtStockP.Text = "";
+            txtPrecioCompra.Text = "";
+            txtPrecioVenta.Text = "";
+            cbUM.Text = "";
+        }
+
+        private void btnGProd_Click(object sender, EventArgs e)
+        {
+            if (editarse == false)
+            {
+                try
+                {
+                    objEProducto.Cod_prod = Convert.ToInt32(txtCodProd.Text);
+                    objEProducto.Nombre_prod = txtNomProd.Text;
+                    objEProducto.Stock_prod = Convert.ToInt32(txtStockP.Text);
+                    objEProducto.P_compra = Convert.ToDecimal(txtPrecioCompra.Text);
+                    objEProducto.P_venta = Convert.ToDecimal(txtPrecioVenta.Text);
+                    objEProducto.Um = cbUM.Text;
+                    objEProducto.Idcat = Convert.ToInt32(cbCategoria.SelectedIndex);
+
+                    objNegProducto.InsertandoProducto("Alta", objEProducto);
+                    MessageBox.Show("Producto guardado");
+                    LlenarDGVProd();
+                    LimpiarTxtProd();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("No se pudo guardar el producto" + ex);
+                }
+            }
+
+            if (editarse == true)
+            {
+                try
+                {
+                    objEProducto.Id = Convert.ToInt32(idproducto);
+                    objEProducto.Cod_prod = Convert.ToInt32(txtCodProd.Text);
+                    objEProducto.Nombre_prod = txtNomProd.Text;
+                    objEProducto.Stock_prod = Convert.ToInt32(txtStockP.Text);
+                    objEProducto.P_compra = Convert.ToDecimal(txtPrecioCompra.Text);
+                    objEProducto.P_venta = Convert.ToDecimal(txtPrecioVenta.Text);
+                    objEProducto.Um = cbUM.Text;
+                    objEProducto.Idcat = Convert.ToInt32(cbCategoria.SelectedIndex);
+
+
+                    objNegProducto.EditandoProducto("Modificar", objEProducto);
+
+                    MessageBox.Show("Producto editado");
+                    LimpiarTxtProd();
+                    LlenarDGVProd();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("No se pudo editar el producto" + ex);
+                }
+            }
+        }
+
+        private void btnEdProd_Click(object sender, EventArgs e)
+        {
+            editarse = true;
+
+            if (dgvProductos.SelectedRows.Count > 0)
+            {
+                idproducto = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                txtCodProd.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                txtNomProd.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                txtStockP.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+                txtPrecioCompra.Text = dgvProductos.CurrentRow.Cells[4].Value.ToString();
+                txtPrecioVenta.Text = dgvProductos.CurrentRow.Cells[5].Value.ToString();
+                cbUM.Text = dgvProductos.CurrentRow.Cells[6].Value.ToString();
+                cbCategoria.Text = dgvProductos.CurrentRow.Cells[7].Value.ToString();
+
+            }
+            else if (dgvProductos.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Seleccione el producto que desea editar");
+            }
+        }
+
+        private void btnElProd_Click(object sender, EventArgs e)
+        {
+            if (dgvProductos.SelectedRows.Count > 0)
+            {
+                objEProducto.Id = Convert.ToInt32(dgvProductos.CurrentRow.Cells[0].Value.ToString());
+                objNegProducto.EditandoProducto("Eliminar", objEProducto);
+
+                MessageBox.Show("Se eliminó el producto correctamente");
+                LlenarDGVProd();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione el producto que desea eliminar");
+            }
+        }
+
+        #endregion
+
+        #region categorias
+
+        private void CrearColumnasCat()
+        {
+            dgvCategorias.ColumnCount = 3;
+            dgvCategorias.Columns[0].HeaderText = "Id";
+            dgvCategorias.Columns[1].HeaderText = "Nombre";
+            dgvCategorias.Columns[2].HeaderText = "Código";
+
+            dgvCategorias.Columns[0].Visible = false;
+        }
+
+        private void LimpiarTxtCat()
+        {
+            txtCodCat.Text = "";
+            txtNomCat.Text = "";
+
+            txtCodCat.Focus();
+        }
+
+        private void LlenarDGVCat()
+        {
+            dgvCategorias.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegCategoria.ListandoCategorias("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvCategorias.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                }
+            }
+            else
+                MessageBox.Show("No hay categorias cargadas en el sistema");
+        }
+
+        private void LlenarCbCat()
+        
+        {
+            cbCategoria.Items.Clear();
+            Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
+            datosConexionDB.AbrirConexion();
+            SqlCommand cmd = new SqlCommand("select * from categoria", datosConexionDB.Conexion);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cbCategoria.Items.Add(dr[1].ToString());
+                cbCategoria.ValueMember = dr[0].ToString(); ;
+            }
+            datosConexionDB.CerrarConexion();
+            cbCategoria.Items.Insert(0, "");
+            cbCategoria.SelectedIndex = 0;
+        }
+
+        private void btnGCat_Click(object sender, EventArgs e)
+        {
+            if (editarse == false)
+            {
+                try
+                {
+                    objECategoria.Cod = txtCodCat.Text;
+                    objECategoria.Name = txtNomCat.Text;
+
+                    objNegCategoria.InsertandoCategoria("Alta", objECategoria);
+                    MessageBox.Show("Categoría guardada");
+                    LlenarDGVCat();
+                    LimpiarTxtCat();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("No se pudo guardar la categoría" + ex);
+                }
+            }
+
+            if (editarse == true)
+            {
+                try
+                {
+                    objECategoria.Id = Convert.ToInt32(ID);
+                    objECategoria.Cod = txtCodCat.Text;
+                    objECategoria.Name = txtNomCat.Text;
+
+                    objNegCategoria.EditandoCategoria("Modificar", objECategoria);
+
+                    MessageBox.Show("Categoría editada");
+                    LimpiarTxtCat();
+                    LlenarDGVCat();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("No se pudo editar la categoria" + ex);
+                }
+            }
+        }
+
+        private void btnEdCat_Click(object sender, EventArgs e)
+        {
+            editarse = true;
+
+            if (dgvCategorias.SelectedRows.Count > 0)
+            {
+                idcategoria = dgvCategorias.CurrentRow.Cells[0].Value.ToString();
+                txtCodCat.Text = dgvAutorizados.CurrentRow.Cells[1].Value.ToString();
+                txtNomCat.Text = dgvAutorizados.CurrentRow.Cells[2].Value.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione la categoría que desea editar");
+            }
+        }
+
+        private void btnElCat_Click(object sender, EventArgs e)
+        {
+            if (dgvCategorias.SelectedRows.Count > 0)
+            {
+                objECategoria.Id = Convert.ToInt32(dgvCategorias.CurrentRow.Cells[0].Value.ToString());
+                objNegCategoria.EliminandoCategoria("Eliminar", objECategoria);
+
+                MessageBox.Show("Se eliminó la categoría correctamente");
+                LlenarDGVCat();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione la categoría que desea eliminar");
+            }
+        }
+
+        #endregion
     }
 }

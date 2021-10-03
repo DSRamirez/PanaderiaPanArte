@@ -9,19 +9,24 @@ namespace Negocios
     {
         DatosCategoria objDatosCategoria = new DatosCategoria();
 
-        public DataSet ListadoCategorias(string cual)
+        public DataSet ListandoCategorias(string buscar)
         {
-            return objDatosCategoria.listadocategoria(cual);
+            return objDatosCategoria.listadocategoria(buscar);
+        }
+        public void InsertandoCategoria(string accion, E_Categoria objECategoria)
+        {
+            objDatosCategoria.abmCategoria("Alta", objECategoria);
         }
 
-        public DataSet InformacionCategorias(string cual)
+        public void EditandoCategoria(string accion, E_Categoria objECategoria)
         {
-            return objDatosCategoria.getcategoria(cual);
+            objDatosCategoria.abmCategoria(accion, objECategoria);
         }
 
-        public DataSet ABMCategorias(string accion, Categoria objcategoria)
+        public void EliminandoCategoria(string accion, E_Categoria objECategoria)
         {
-            return objDatosCategoria.crudcategoria(accion, objcategoria);
+            objDatosCategoria.abmCategoria(accion, objECategoria);
         }
+
     }
 }

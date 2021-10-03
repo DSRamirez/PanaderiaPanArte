@@ -7,25 +7,20 @@ using System.Data.SqlClient;
 
 namespace Datos
 {
-    public class DatosCategoria : DatosConexionDB
+    public class DatosProductos : DatosConexionDB
     {
-        public DataSet listadocategoria(string cual)
+        public DataSet listadoProducto(string cual)
         {
 
             string orden = string.Empty;
             if (cual != "Todos")
             {
-                orden = "select * from categoria where Id_categoria = " + int.Parse(cual) + ";";
+                orden = "select * from producto where Id_producto = " + int.Parse(cual) + ";";
             }
             else
             {
-                orden = "select * from categoria;";
+                orden = "select * from producto;";
             }
-
-            //if (cual == "NombreCat")
-            //{
-            //    orden = "SELECT Nombre_categoria from categoria;";
-            //}
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
@@ -39,7 +34,7 @@ namespace Datos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar categorias", e);
+                throw new Exception("Error al listar productos", e);
             }
             finally
             {
@@ -49,27 +44,37 @@ namespace Datos
             return ds;
         }
 
-        public int abmCategoria(string accion, E_Categoria objECategoria)
+        public int abmProducto(string accion, E_Producto objEProducto)
         {
             int resultado = -1;
             string orden = string.Empty;
 
             if (accion == "Alta")
             {
-                orden = "insert into categoria values ('" + objECategoria.Name +
-                    "','" + objECategoria.Cod + "');";
+                orden = "insert into producto values ('" + objEProducto.Cod_prod +
+                 "','" + objEProducto.Nombre_prod +
+                 "','" + objEProducto.Stock_prod +
+                 "','" + objEProducto.P_compra +
+                 "','" + objEProducto.P_venta +
+                 "','" + objEProducto.Um +
+                 "','" + objEProducto.Idcat + "');";
             }
 
             if (accion == "Modificar")
             {
-                orden = "update categoria set Nombre_categoria = '" + objECategoria.Name +
-                    "', Cod_cat = '" + objECategoria.Cod +
-                    "'where Id_categoria = " + objECategoria.Id + ";";
+                orden = "update producto set Cod_producto = '" + objEProducto.Cod_prod +
+                    "', Nombre_producto = '" + objEProducto.Nombre_prod +
+                    "', Stock_producto = '" + objEProducto.Stock_prod +
+                    "', Preciouc_producto = '" + objEProducto.P_compra +
+                    "', Preciouv_producto = '" + objEProducto.P_venta +
+                    "', Unidad_Medida = '" + objEProducto.Um +
+                    "', Id_categoria = '" + objEProducto.Idcat +
+                    "'where Id_producto = " + objEProducto.Id + ";";
             }
 
             if (accion == "Eliminar")
             {
-                orden = "delete from categoria where cod_categoria = '" + objECategoria.Cod + "';";
+                orden = "delete from producto where Id_producto = '" + objEProducto.Id + "';";
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -82,7 +87,7 @@ namespace Datos
             catch (Exception e)
             {
 
-                throw new Exception("Error al tratar de guardar cliente", e);
+                throw new Exception("Error al tratar de guardar producto", e);
             }
             finally
             {

@@ -17,11 +17,6 @@ namespace Pan3
 {
     public partial class Form1 : Form
     {
-        string cstock;
-        string cppu;
-        string ccode;
-        string ccategoria;
-        string cnombre;
         private string idproveedor;
         private string idcliente;
         private string idautorizado;
@@ -38,6 +33,8 @@ namespace Pan3
         NegCategoria objNegCategoria = new NegCategoria();
         E_Producto objEProducto = new E_Producto();
         NegProducto objNegProducto = new NegProducto();
+        NegVenta objNegVenta = new NegVenta();
+        E_Ventas objEVenta = new E_Ventas();
 
         public Form1()
         {
@@ -48,13 +45,15 @@ namespace Pan3
             CrearColumnasProd();
             CrearColumnasCat();
             lbltime.Text = DateTime.Now.ToString();
-            NUDCantidad.Maximum = decimal.MaxValue;
+            Cantidad.Maximum = decimal.MaxValue;
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
             BTMasuno.BackgroundImageLayout = ImageLayout.Stretch;
             BTMenosuno.BackgroundImageLayout = ImageLayout.Stretch;
             BTCancelar.BackgroundImageLayout = ImageLayout.Stretch;
             CBProducto.AutoCompleteMode = AutoCompleteMode.Suggest;
+
+            #region ToolTip
 
             ToolTip TTventa = new ToolTip();
             TTventa.ShowAlways = true;
@@ -86,125 +85,8 @@ namespace Pan3
             TTcancelar.IsBalloon = true;
             TTcancelar.AutoPopDelay = 15000;
 
+            #endregion
         }
-
-        #region venta
-        private void CBProducto_TextChanged(object sender, EventArgs e)
-        {
-            if (CBProducto.Text == "001 - Facturas")
-            {
-                cstock = "-";
-                cppu = "30";
-                ccode = "001";
-                ccategoria = "Panadería";
-                cnombre = "Facturas";
-                lbluom.Text = "Unidades";
-            }
-
-            if (CBProducto.Text == "005 - Criollitos de Hojaldre")
-            {
-                cstock = "-";
-                cppu = "0,25";
-                ccode = "005";
-                ccategoria = "Panadería";
-                cnombre = "Criollitos de Hojaldre";
-                lbluom.Text = "Gramos";
-            }
-
-            if (CBProducto.Text == "103 - Coca - Gaseosa 2L")
-            {
-                cstock = "16";
-                cppu = "180";
-                ccode = "103";
-                ccategoria = "Gaseosas y Bebidas";
-                cnombre = "Coca - 2L";
-                lbluom.Text = "Unidades";
-            }
-
-            if (CBProducto.Text == "212 - Cerealitas - Galletas Arroz 250g")
-            {
-                cstock = "8";
-                cppu = "120";
-                ccode = "212";
-                ccategoria = "Galletas";
-                cnombre = "Cerealitas - Galletas Arroz 250g";
-                lbluom.Text = "Unidades";
-            }
-
-            select_item();
-        }
-
-        private void BTAgregar_Click(object sender, EventArgs e)
-        {
-            Decimal preciodouble = NUDCantidad.Value * Convert.ToDecimal(cppu);
-            string precioxcantidad = preciodouble.ToString();
-            string cantidad = NUDCantidad.Value.ToString();
-
-            DGVListaVenta.Rows.Add(cantidad, cnombre, cppu, precioxcantidad);
-
-            decimal preciototal = 0;
-            for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
-            {
-                preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[3].Value);
-            }
-            lbltotal.Text = "Total: $" + preciototal.ToString();
-
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (TVProductos.SelectedNode.Text == "Facturas")
-            {
-                cstock = "-";
-                cppu = "30";
-                ccode = "001";
-                ccategoria = "Panadería";
-                lbluom.Text = "Unidades";
-            }
-
-            if (TVProductos.SelectedNode.Text == "Criollitos de Hojaldre")
-            {
-                cstock = "-";
-                cppu = "0,25";
-                ccode = "005";
-                ccategoria = "Panadería";
-                lbluom.Text = "Gramos";
-            }
-
-            if (TVProductos.SelectedNode.Text == "Coca - 2L")
-            {
-                cstock = "16";
-                cppu = "180";
-                ccode = "103";
-                ccategoria = "Gaseosas y Bebidas";
-                lbluom.Text = "Unidades";
-            }
-
-            if (TVProductos.SelectedNode.Text == "Cerealitas - Galletas Arroz 250g")
-            {
-                cstock = "8";
-                cppu = "120";
-                ccode = "212";
-                ccategoria = "Galletas";
-                lbluom.Text = "Unidades";
-            }
-            cnombre = TVProductos.SelectedNode.Text;
-            select_item();
-            NUDCantidad.Focus();
-            NUDCantidad.Select(0, NUDCantidad.Text.Length);
-        }
-
-
-        private void select_item()
-        {
-            TBStock.Text = cstock;
-            TBCategoría.Text = ccategoria;
-            TBCode.Text = ccode;
-            TBPrecioU.Text = cppu;
-            NUDCantidad.Value = 1;
-        }
-
-        #endregion
         private void TimerHora_Tick(object sender, EventArgs e)
         {
             lbltime.Text = DateTime.Now.ToString("HH:mm\r\ndd/MM/yyyy");
@@ -218,10 +100,11 @@ namespace Pan3
             LlenarDGVAut();
             LlenarDGVCat();
             LlenarDGVProd();
-            LlenarCbCat();      
+            LlenarCbCat();
+            LlenarCbProductos();
         }
 
-        #region proveedor
+        #region Proveedor
 
         public void mostrarBuscarTablaP(string buscar)
         {
@@ -625,19 +508,18 @@ namespace Pan3
         }
         #endregion
 
-        #region producto
+        #region Producto
 
         private void CrearColumnasProd()
         {
-            dgvProductos.ColumnCount = 8;
+            dgvProductos.ColumnCount = 7;
             dgvProductos.Columns[0].HeaderText = "Id";
             dgvProductos.Columns[1].HeaderText = "Codigo";
             dgvProductos.Columns[2].HeaderText = "Nombre";
             dgvProductos.Columns[3].HeaderText = "Stock";
             dgvProductos.Columns[4].HeaderText = "Precio de compra";
             dgvProductos.Columns[5].HeaderText = "Precio de venta";
-            dgvProductos.Columns[6].HeaderText = "Unidad de medida";
-            dgvProductos.Columns[7].HeaderText = "Categoría";
+            dgvProductos.Columns[6].HeaderText = "Categoría";
 
             dgvProductos.Columns[0].Visible = false;
 
@@ -652,7 +534,7 @@ namespace Pan3
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    dgvProductos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                    dgvProductos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
                 }
             }
         }
@@ -664,7 +546,6 @@ namespace Pan3
             txtStockP.Text = "";
             txtPrecioCompra.Text = "";
             txtPrecioVenta.Text = "";
-            cbUM.Text = "";
         }
 
         private void btnGProd_Click(object sender, EventArgs e)
@@ -678,7 +559,6 @@ namespace Pan3
                     objEProducto.Stock_prod = Convert.ToInt32(txtStockP.Text);
                     objEProducto.P_compra = Convert.ToDecimal(txtPrecioCompra.Text);
                     objEProducto.P_venta = Convert.ToDecimal(txtPrecioVenta.Text);
-                    objEProducto.Um = cbUM.Text;
                     objEProducto.Idcat = Convert.ToInt32(cbCategoria.SelectedIndex);
 
                     objNegProducto.InsertandoProducto("Alta", objEProducto);
@@ -703,7 +583,6 @@ namespace Pan3
                     objEProducto.Stock_prod = Convert.ToInt32(txtStockP.Text);
                     objEProducto.P_compra = Convert.ToDecimal(txtPrecioCompra.Text);
                     objEProducto.P_venta = Convert.ToDecimal(txtPrecioVenta.Text);
-                    objEProducto.Um = cbUM.Text;
                     objEProducto.Idcat = Convert.ToInt32(cbCategoria.SelectedIndex);
 
 
@@ -733,8 +612,7 @@ namespace Pan3
                 txtStockP.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
                 txtPrecioCompra.Text = dgvProductos.CurrentRow.Cells[4].Value.ToString();
                 txtPrecioVenta.Text = dgvProductos.CurrentRow.Cells[5].Value.ToString();
-                cbUM.Text = dgvProductos.CurrentRow.Cells[6].Value.ToString();
-                cbCategoria.Text = dgvProductos.CurrentRow.Cells[7].Value.ToString();
+                cbCategoria.Text = dgvProductos.CurrentRow.Cells[6].Value.ToString();
 
             }
             else if (dgvProductos.SelectedRows.Count <= 0)
@@ -761,7 +639,7 @@ namespace Pan3
 
         #endregion
 
-        #region categorias
+        #region Categorias
 
         private void CrearColumnasCat()
         {
@@ -891,6 +769,79 @@ namespace Pan3
             }
         }
 
+        #endregion
+
+        #region Venta
+        private void BTVenta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LlenarCbProductos()
+        {
+            CBProducto.Items.Clear();
+            Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
+            datosConexionDB.AbrirConexion();
+            SqlCommand cmd = new SqlCommand("select Nombre_producto from producto", datosConexionDB.Conexion);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //CBProducto.Items.Add(dr[2].ToString());
+                //CBProducto.ValueMember = dr[0].ToString();
+                CBProducto.Items.Add(dr["Nombre_producto"].ToString());
+            }
+            CBProducto.SelectedItem = 0;
+            datosConexionDB.CerrarConexion();
+            //CBProducto.Items.Insert(0, "");
+            //CBProducto.SelectedIndex = 0;
+            
+        }
+
+        //private void CrearColumnasVentas()
+        //{
+        //    DGVListaVenta.ColumnCount= 4;
+        //    DGVListaVenta.Columns [0].HeaderText = "Cantidad";
+        //    DGVListaVenta.Columns [1].HeaderText = "Producto";
+        //    DGVListaVenta.Columns [2].HeaderText = "Precio Unitario";
+        //    DGVListaVenta.Columns [3].HeaderText = "Total";
+
+        //}
+
+        private void BTAgregar_Click(object sender, EventArgs e)
+        {
+            //CrearColumnasVentas();
+
+            //int cant = Convert.ToInt32(Cantidad.Value);
+            //Double prec = Convert.ToDouble(TBPrecioU.Text);
+            //double total = prec * cant;
+
+            //Cantidad.Text = DGVListaVenta.CurrentRow.Cells[0].Value.ToString();
+            //CBProducto.Text = DGVListaVenta.CurrentRow.Cells[1].Value.ToString();
+            //TBPrecioU.Text = DGVListaVenta.CurrentRow.Cells[2].Value.ToString();
+            //total = (double)DGVListaVenta.CurrentRow.Cells[4].Value;
+
+        }
+
+        private void CBProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
+            string consulta = "Select * from producto where Nombre_producto = '" + CBProducto.Text + "'";
+            SqlCommand cm = new SqlCommand(consulta, datosConexionDB.Conexion);
+            datosConexionDB.AbrirConexion();
+
+            SqlDataReader leer = cm.ExecuteReader();
+
+            if (leer.Read() == true)
+            {
+                TBStock.Text = leer["Stock_producto"].ToString();
+                TBPrecioU.Text = leer["Preciouv_producto"].ToString();
+                TBCode.Text = leer["Cod_producto"].ToString();
+                TBCategoría.Text = leer["Id_categoria"].ToString();
+            }
+
+            datosConexionDB.CerrarConexion();
+        }
         #endregion
     }
 }

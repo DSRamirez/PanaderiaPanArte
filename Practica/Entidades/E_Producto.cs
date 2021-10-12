@@ -12,7 +12,6 @@ namespace Entidades
         private int stock_prod;
         private decimal p_compra;
         private decimal p_venta;
-        private string um;
         private int idcat;
 
         public E_Producto()
@@ -20,7 +19,7 @@ namespace Entidades
 
         }
 
-        public E_Producto( int id, int codp, string nombre_p, int stock, decimal pc, decimal pv, string um, int idc)
+        public E_Producto( int id, int codp, string nombre_p, int stock, decimal pc, decimal pv, int idc)
         {
             Id = id;
             Cod_prod = codp;
@@ -28,7 +27,6 @@ namespace Entidades
             Stock_prod = stock;
             P_compra = pc;
             P_venta = pv;
-            Um = um;
             Idcat = idc;
         }
 
@@ -39,7 +37,6 @@ namespace Entidades
         public int Stock_prod { get => stock_prod; set => stock_prod = value; }
         public decimal P_compra { get => p_compra; set => p_compra = value; }
         public decimal P_venta { get => p_venta; set => p_venta = value; }
-        public string Um { get => um; set => um = value; }
         public int Idcat { get => idcat; set => idcat = value; }
     }
 }

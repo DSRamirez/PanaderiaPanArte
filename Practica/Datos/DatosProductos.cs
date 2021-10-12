@@ -56,7 +56,6 @@ namespace Datos
                  "','" + objEProducto.Stock_prod +
                  "','" + objEProducto.P_compra +
                  "','" + objEProducto.P_venta +
-                 "','" + objEProducto.Um +
                  "','" + objEProducto.Idcat + "');";
             }
 
@@ -67,7 +66,6 @@ namespace Datos
                     "', Stock_producto = '" + objEProducto.Stock_prod +
                     "', Preciouc_producto = '" + objEProducto.P_compra +
                     "', Preciouv_producto = '" + objEProducto.P_venta +
-                    "', Unidad_Medida = '" + objEProducto.Um +
                     "', Id_categoria = '" + objEProducto.Idcat +
                     "'where Id_producto = " + objEProducto.Id + ";";
             }
@@ -97,5 +95,6 @@ namespace Datos
 
             return resultado;
         }
+
     }
 }

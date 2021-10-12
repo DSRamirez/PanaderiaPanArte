@@ -96,9 +96,6 @@ namespace Datos
 
     }
 
-    //AGREGAR ESTADO EN LA BAJA Y MOSTRAR QUE SE DIO DE BAJA(ACTIVO O NO)
-    //    UPDATE DEL ESTADO
-
 }
 
 

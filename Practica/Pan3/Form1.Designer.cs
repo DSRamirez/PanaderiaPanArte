@@ -30,17 +30,6 @@ namespace Pan3
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Facturas");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criollitos de Hojaldre");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Panaderia", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Coca - 2L");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Gaseosas", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Cerealitas - Galletas Arroz 250g");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Galletas", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
@@ -50,8 +39,7 @@ namespace Pan3
             this.BTDescuento = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.CBCliente = new System.Windows.Forms.ComboBox();
-            this.TVProductos = new System.Windows.Forms.TreeView();
-            this.NUDCantidad = new System.Windows.Forms.NumericUpDown();
+            this.Cantidad = new System.Windows.Forms.NumericUpDown();
             this.lbluom = new System.Windows.Forms.Label();
             this.TBCategoría = new System.Windows.Forms.TextBox();
             this.TBCode = new System.Windows.Forms.TextBox();
@@ -72,10 +60,6 @@ namespace Pan3
             this.BTRemover = new System.Windows.Forms.Button();
             this.BTVenta = new System.Windows.Forms.Button();
             this.DGVListaVenta = new System.Windows.Forms.DataGridView();
-            this.DGCCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGCNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGCPpU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGCPpP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabProductos = new System.Windows.Forms.TabPage();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -218,8 +202,6 @@ namespace Pan3
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.cbUM = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnEdProd = new System.Windows.Forms.Button();
@@ -242,7 +224,7 @@ namespace Pan3
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Cantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).BeginInit();
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -295,8 +277,7 @@ namespace Pan3
             this.TabVenta.Controls.Add(this.BTDescuento);
             this.TabVenta.Controls.Add(this.label7);
             this.TabVenta.Controls.Add(this.CBCliente);
-            this.TabVenta.Controls.Add(this.TVProductos);
-            this.TabVenta.Controls.Add(this.NUDCantidad);
+            this.TabVenta.Controls.Add(this.Cantidad);
             this.TabVenta.Controls.Add(this.lbluom);
             this.TabVenta.Controls.Add(this.TBCategoría);
             this.TabVenta.Controls.Add(this.TBCode);
@@ -389,42 +370,14 @@ namespace Pan3
             this.CBCliente.TabIndex = 23;
             this.CBCliente.Text = "00 - Regular";
             // 
-            // TVProductos
+            // Cantidad
             // 
-            this.TVProductos.Cursor = System.Windows.Forms.Cursors.Default;
-            this.TVProductos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TVProductos.Location = new System.Drawing.Point(4, 115);
-            this.TVProductos.Name = "TVProductos";
-            treeNode1.Name = "PFacturas";
-            treeNode1.Text = "Facturas";
-            treeNode2.Name = "NCriolloHoja";
-            treeNode2.Text = "Criollitos de Hojaldre";
-            treeNode3.Name = "NPanaderia";
-            treeNode3.Text = "Panaderia";
-            treeNode4.Name = "NCoca2L";
-            treeNode4.Text = "Coca - 2L";
-            treeNode5.Name = "NGaseosas";
-            treeNode5.Text = "Gaseosas";
-            treeNode6.Name = "NCerealitasGallArroz";
-            treeNode6.Text = "Cerealitas - Galletas Arroz 250g";
-            treeNode7.Name = "NGalletas";
-            treeNode7.Text = "Galletas";
-            this.TVProductos.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode5,
-            treeNode7});
-            this.TVProductos.Size = new System.Drawing.Size(367, 767);
-            this.TVProductos.TabIndex = 22;
-            this.TVProductos.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // NUDCantidad
-            // 
-            this.NUDCantidad.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.NUDCantidad.Location = new System.Drawing.Point(4, 76);
-            this.NUDCantidad.Name = "NUDCantidad";
-            this.NUDCantidad.Size = new System.Drawing.Size(80, 33);
-            this.NUDCantidad.TabIndex = 21;
-            this.NUDCantidad.Value = new decimal(new int[] {
+            this.Cantidad.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Cantidad.Location = new System.Drawing.Point(4, 76);
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Size = new System.Drawing.Size(80, 33);
+            this.Cantidad.TabIndex = 21;
+            this.Cantidad.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -568,17 +521,15 @@ namespace Pan3
             // 
             // CBProducto
             // 
+            this.CBProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CBProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CBProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBProducto.FormattingEnabled = true;
-            this.CBProducto.Items.AddRange(new object[] {
-            "001 - Facturas",
-            "103 - Coca - Gaseosa 2L",
-            "212 - Cerealitas - Galletas Arroz 250g",
-            "005 - Criollitos de Hojaldre"});
             this.CBProducto.Location = new System.Drawing.Point(3, 32);
             this.CBProducto.Name = "CBProducto";
             this.CBProducto.Size = new System.Drawing.Size(368, 23);
             this.CBProducto.TabIndex = 4;
-            this.CBProducto.TextChanged += new System.EventHandler(this.CBProducto_TextChanged);
+            this.CBProducto.SelectedIndexChanged += new System.EventHandler(this.CBProducto_SelectedIndexChanged);
             // 
             // lbltotal
             // 
@@ -610,43 +561,16 @@ namespace Pan3
             this.BTVenta.Size = new System.Drawing.Size(100, 100);
             this.BTVenta.TabIndex = 1;
             this.BTVenta.UseVisualStyleBackColor = true;
+            this.BTVenta.Click += new System.EventHandler(this.BTVenta_Click);
             // 
             // DGVListaVenta
             // 
             this.DGVListaVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVListaVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DGCCantidad,
-            this.DGCNombre,
-            this.DGCPpU,
-            this.DGCPpP});
             this.DGVListaVenta.Location = new System.Drawing.Point(501, 115);
             this.DGVListaVenta.Name = "DGVListaVenta";
             this.DGVListaVenta.RowTemplate.Height = 25;
             this.DGVListaVenta.Size = new System.Drawing.Size(1175, 660);
             this.DGVListaVenta.TabIndex = 0;
-            // 
-            // DGCCantidad
-            // 
-            this.DGCCantidad.HeaderText = "Cantidad";
-            this.DGCCantidad.Name = "DGCCantidad";
-            this.DGCCantidad.Width = 65;
-            // 
-            // DGCNombre
-            // 
-            this.DGCNombre.HeaderText = "Nombre";
-            this.DGCNombre.Name = "DGCNombre";
-            this.DGCNombre.Width = 350;
-            // 
-            // DGCPpU
-            // 
-            this.DGCPpU.HeaderText = "Precio";
-            this.DGCPpU.Name = "DGCPpU";
-            this.DGCPpU.Width = 65;
-            // 
-            // DGCPpP
-            // 
-            this.DGCPpP.HeaderText = "Total Producto";
-            this.DGCPpP.Name = "DGCPpP";
             // 
             // TabProductos
             // 
@@ -1992,7 +1916,7 @@ namespace Pan3
             this.groupBox9.Controls.Add(this.label40);
             this.groupBox9.Controls.Add(this.txtNomCat);
             this.groupBox9.Controls.Add(this.label13);
-            this.groupBox9.Location = new System.Drawing.Point(33, 629);
+            this.groupBox9.Location = new System.Drawing.Point(33, 552);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(394, 256);
             this.groupBox9.TabIndex = 35;
@@ -2107,8 +2031,6 @@ namespace Pan3
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.cbUM);
-            this.groupBox7.Controls.Add(this.label25);
             this.groupBox7.Controls.Add(this.txtPrecioVenta);
             this.groupBox7.Controls.Add(this.label14);
             this.groupBox7.Controls.Add(this.btnEdProd);
@@ -2127,31 +2049,10 @@ namespace Pan3
             this.groupBox7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox7.Location = new System.Drawing.Point(33, 76);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(394, 500);
+            this.groupBox7.Size = new System.Drawing.Size(394, 427);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Datos del producto";
-            // 
-            // cbUM
-            // 
-            this.cbUM.FormattingEnabled = true;
-            this.cbUM.Items.AddRange(new object[] {
-            "UNIDAD",
-            "GRAMOS"});
-            this.cbUM.Location = new System.Drawing.Point(122, 261);
-            this.cbUM.Name = "cbUM";
-            this.cbUM.Size = new System.Drawing.Size(237, 25);
-            this.cbUM.TabIndex = 53;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label25.Location = new System.Drawing.Point(33, 266);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(85, 20);
-            this.label25.TabIndex = 52;
-            this.label25.Text = "Un Medida:";
             // 
             // txtPrecioVenta
             // 
@@ -2175,7 +2076,7 @@ namespace Pan3
             this.btnEdProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEdProd.Image = ((System.Drawing.Image)(resources.GetObject("btnEdProd.Image")));
             this.btnEdProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdProd.Location = new System.Drawing.Point(135, 385);
+            this.btnEdProd.Location = new System.Drawing.Point(135, 345);
             this.btnEdProd.Name = "btnEdProd";
             this.btnEdProd.Size = new System.Drawing.Size(104, 48);
             this.btnEdProd.TabIndex = 49;
@@ -2189,7 +2090,7 @@ namespace Pan3
             this.btnElProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnElProd.Image = ((System.Drawing.Image)(resources.GetObject("btnElProd.Image")));
             this.btnElProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnElProd.Location = new System.Drawing.Point(255, 385);
+            this.btnElProd.Location = new System.Drawing.Point(255, 345);
             this.btnElProd.Name = "btnElProd";
             this.btnElProd.Size = new System.Drawing.Size(104, 48);
             this.btnElProd.TabIndex = 47;
@@ -2203,7 +2104,7 @@ namespace Pan3
             this.btnGProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnGProd.Image = ((System.Drawing.Image)(resources.GetObject("btnGProd.Image")));
             this.btnGProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGProd.Location = new System.Drawing.Point(15, 385);
+            this.btnGProd.Location = new System.Drawing.Point(15, 345);
             this.btnGProd.Name = "btnGProd";
             this.btnGProd.Size = new System.Drawing.Size(104, 48);
             this.btnGProd.TabIndex = 45;
@@ -2266,7 +2167,7 @@ namespace Pan3
             // cbCategoria
             // 
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(122, 305);
+            this.cbCategoria.Location = new System.Drawing.Point(122, 265);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(237, 25);
             this.cbCategoria.TabIndex = 5;
@@ -2275,7 +2176,7 @@ namespace Pan3
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label41.Location = new System.Drawing.Point(33, 310);
+            this.label41.Location = new System.Drawing.Point(33, 270);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(77, 20);
             this.label41.TabIndex = 4;
@@ -2344,7 +2245,7 @@ namespace Pan3
             this.tabControl1.ResumeLayout(false);
             this.TabVenta.ResumeLayout(false);
             this.TabVenta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Cantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).EndInit();
             this.TabProductos.ResumeLayout(false);
             this.TabProductos.PerformLayout();
@@ -2409,15 +2310,10 @@ namespace Pan3
         private System.Windows.Forms.TextBox TBPrecioU;
         private System.Windows.Forms.TextBox TBStock;
         private System.Windows.Forms.Label lbluom;
-        private System.Windows.Forms.NumericUpDown NUDCantidad;
-        private System.Windows.Forms.TreeView TVProductos;
+        private System.Windows.Forms.NumericUpDown Cantidad;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CBCliente;
         private System.Windows.Forms.Button BTDescuento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGCCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGCNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGCPpU;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGCPpP;
         private System.Windows.Forms.Label lbltime;
         private System.Windows.Forms.Timer TimerHora;
         private System.Windows.Forms.TabPage TabProductos;
@@ -2583,8 +2479,6 @@ namespace Pan3
         private System.Windows.Forms.DataGridView dgvCategorias;
         private System.Windows.Forms.TextBox txtPrecioVenta;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cbUM;
-        private System.Windows.Forms.Label label25;
     }
 }
 

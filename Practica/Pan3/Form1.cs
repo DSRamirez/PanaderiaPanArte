@@ -23,6 +23,7 @@ namespace Pan3
         private string idproducto;
         private string idcategoria;
         private bool editarse = false;
+
         E_Proveedor objEProveedor = new E_Proveedor();
         NegProveedores objNegProveedor = new NegProveedores();
         E_Cliente objECliente = new E_Cliente();
@@ -787,39 +788,27 @@ namespace Pan3
 
             while (dr.Read())
             {
-                //CBProducto.Items.Add(dr[2].ToString());
-                //CBProducto.ValueMember = dr[0].ToString();
                 CBProducto.Items.Add(dr["Nombre_producto"].ToString());
             }
             CBProducto.SelectedItem = 0;
             datosConexionDB.CerrarConexion();
-            //CBProducto.Items.Insert(0, "");
-            //CBProducto.SelectedIndex = 0;
+
             
         }
 
-        //private void CrearColumnasVentas()
-        //{
-        //    DGVListaVenta.ColumnCount= 4;
-        //    DGVListaVenta.Columns [0].HeaderText = "Cantidad";
-        //    DGVListaVenta.Columns [1].HeaderText = "Producto";
-        //    DGVListaVenta.Columns [2].HeaderText = "Precio Unitario";
-        //    DGVListaVenta.Columns [3].HeaderText = "Total";
-
-        //}
-
         private void BTAgregar_Click(object sender, EventArgs e)
         {
-            //CrearColumnasVentas();
 
-            //int cant = Convert.ToInt32(Cantidad.Value);
-            //Double prec = Convert.ToDouble(TBPrecioU.Text);
-            //double total = prec * cant;
+            decimal precioxcantidad = Cantidad.Value * Convert.ToDecimal(TBPrecioU.Text);
 
-            //Cantidad.Text = DGVListaVenta.CurrentRow.Cells[0].Value.ToString();
-            //CBProducto.Text = DGVListaVenta.CurrentRow.Cells[1].Value.ToString();
-            //TBPrecioU.Text = DGVListaVenta.CurrentRow.Cells[2].Value.ToString();
-            //total = (double)DGVListaVenta.CurrentRow.Cells[4].Value;
+            DGVListaVenta.Rows.Add(Cantidad.Value.ToString(), CBProducto.Text, TBPrecioU.Text, precioxcantidad);
+
+            decimal preciototal = 0;
+            for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
+            {
+                preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[3].Value);
+            }
+            lbltotal.Text = "Total: $" + preciototal.ToString();
 
         }
 

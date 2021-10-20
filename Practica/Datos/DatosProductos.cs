@@ -96,5 +96,37 @@ namespace Datos
             return resultado;
         }
 
+        public int ActualizarStock(string accion, E_ProductoVenta objEProductoVenta)
+        {
+            int resultado = -1;
+            string orden = string.Empty;
+
+            if (accion == "RestaStock")
+            {
+                orden = "UPDATE producto SET Stock_producto = Stock_producto - "+ objEProductoVenta.Cantidad + " WHERE Id_producto = " + objEProductoVenta.Id_producto;
+            }
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+
+            try
+            {
+                AbrirConexion();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Error al actualizar stock", e);
+            }
+            finally
+            {
+                CerrarConexion();
+                cmd.Dispose();
+            }
+
+            return resultado;
+        }
+
+
     }
 }

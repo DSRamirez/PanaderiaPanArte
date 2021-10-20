@@ -28,5 +28,10 @@ namespace Negocios
             objDatosProductos.abmProducto(accion, objEProducto);
         }
 
+        public void ActualizarStock(string accion, E_ProductoVenta objEProductoVenta)
+        {
+            objDatosProductos.ActualizarStock(accion, objEProductoVenta);
+        }
+
     }
 }

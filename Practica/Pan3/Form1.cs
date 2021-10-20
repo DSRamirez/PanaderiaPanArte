@@ -36,6 +36,8 @@ namespace Pan3
         NegProducto objNegProducto = new NegProducto();
         NegVenta objNegVenta = new NegVenta();
         E_Ventas objEVenta = new E_Ventas();
+        E_ProductoVenta objEProductoVenta = new E_ProductoVenta();
+        NegProductoVenta objNegProductoVenta = new NegProductoVenta();
 
         public Form1()
         {
@@ -46,7 +48,6 @@ namespace Pan3
             CrearColumnasProd();
             CrearColumnasCat();
             lbltime.Text = DateTime.Now.ToString();
-            Cantidad.Maximum = decimal.MaxValue;
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
             BTMasuno.BackgroundImageLayout = ImageLayout.Stretch;
@@ -103,6 +104,7 @@ namespace Pan3
             LlenarDGVProd();
             LlenarCbCat();
             LlenarCbProductos();
+            MostarAut();
         }
 
         #region Proveedor
@@ -395,6 +397,11 @@ namespace Pan3
             dgvAutorizados.Columns[5].HeaderText = "Estado";
 
             dgvAutorizados.Columns[0].Visible = false;
+        }
+
+        private void MostarAut()
+        {
+            objEAutorizado.Nombre_aut = lblAut.Text;            
         }
         private void LlenarDGVAut()
         {
@@ -775,7 +782,30 @@ namespace Pan3
         #region Venta
         private void BTVenta_Click(object sender, EventArgs e)
         {
+            try
+            {
+                objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
+                objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
+                objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
+                objNegVenta.InsertandoVenta("Alta", objEVenta);
 
+
+                MessageBox.Show("Venta realizada con éxito");
+                DGVListaVenta.Rows.Clear();
+                lbltotal.Text = "";
+                TBStock.Text = "";
+                TBPrecioU.Text = "";
+                TBCode.Text = "";
+                TBCategoría.Text = "";
+                CBProducto.Items.Clear();
+                TxtCantidad.Text = "";
+                LlenarDGVProd();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show ("La venta no se pudo realizar");
+            }
         }
 
         private void LlenarCbProductos()
@@ -783,25 +813,33 @@ namespace Pan3
             CBProducto.Items.Clear();
             Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
             datosConexionDB.AbrirConexion();
-            SqlCommand cmd = new SqlCommand("select Nombre_producto from producto", datosConexionDB.Conexion);
+            SqlCommand cmd = new SqlCommand("select * from producto", datosConexionDB.Conexion);
+            //SqlCommand cmd = new SqlCommand("select Nombre_producto from producto", datosConexionDB.Conexion);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                //CBProducto.Items.Add(dr[1].ToString());
+                //CBProducto.ValueMember = dr[0].ToString(); 
                 CBProducto.Items.Add(dr["Nombre_producto"].ToString());
+                CBProducto.ValueMember = dr[0].ToString();
             }
-            CBProducto.SelectedItem = 0;
-            datosConexionDB.CerrarConexion();
 
-            
+            datosConexionDB.CerrarConexion();
+            cbCategoria.Items.Insert(0, "");
+            cbCategoria.SelectedIndex = 0;
+
+            //CBProducto.SelectedItem = 0;
+            //datosConexionDB.CerrarConexion();
+
         }
 
         private void BTAgregar_Click(object sender, EventArgs e)
         {
 
-            decimal precioxcantidad = Cantidad.Value * Convert.ToDecimal(TBPrecioU.Text);
+            decimal precioxcantidad = Convert.ToInt32(TxtCantidad.Text) * Convert.ToInt32(TBPrecioU.Text);
 
-            DGVListaVenta.Rows.Add(Cantidad.Value.ToString(), CBProducto.Text, TBPrecioU.Text, precioxcantidad);
+            DGVListaVenta.Rows.Add(TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
 
             decimal preciototal = 0;
             for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
@@ -827,10 +865,18 @@ namespace Pan3
                 TBPrecioU.Text = leer["Preciouv_producto"].ToString();
                 TBCode.Text = leer["Cod_producto"].ToString();
                 TBCategoría.Text = leer["Id_categoria"].ToString();
+                lblIdP.Text = leer["Id_producto"].ToString();
             }
 
             datosConexionDB.CerrarConexion();
         }
+
         #endregion
+
+        private void LlenarDgvCaja()
+        {
+
+        }
+
     }
 }

@@ -33,13 +33,14 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
+            this.lblIdP = new System.Windows.Forms.Label();
+            this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label42 = new System.Windows.Forms.Label();
             this.BTDescuento = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.CBCliente = new System.Windows.Forms.ComboBox();
-            this.Cantidad = new System.Windows.Forms.NumericUpDown();
             this.lbluom = new System.Windows.Forms.Label();
             this.TBCategoría = new System.Windows.Forms.TextBox();
             this.TBCode = new System.Windows.Forms.TextBox();
@@ -60,6 +61,10 @@ namespace Pan3
             this.BTRemover = new System.Windows.Forms.Button();
             this.BTVenta = new System.Windows.Forms.Button();
             this.DGVListaVenta = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabProductos = new System.Windows.Forms.TabPage();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -111,7 +116,7 @@ namespace Pan3
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.DgvCaja = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -222,13 +227,9 @@ namespace Pan3
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblAut = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).BeginInit();
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -236,7 +237,7 @@ namespace Pan3
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizados)).BeginInit();
@@ -275,13 +276,14 @@ namespace Pan3
             // 
             // TabVenta
             // 
+            this.TabVenta.Controls.Add(this.lblIdP);
+            this.TabVenta.Controls.Add(this.TxtCantidad);
             this.TabVenta.Controls.Add(this.checkBox2);
             this.TabVenta.Controls.Add(this.checkBox1);
             this.TabVenta.Controls.Add(this.label42);
             this.TabVenta.Controls.Add(this.BTDescuento);
             this.TabVenta.Controls.Add(this.label7);
             this.TabVenta.Controls.Add(this.CBCliente);
-            this.TabVenta.Controls.Add(this.Cantidad);
             this.TabVenta.Controls.Add(this.lbluom);
             this.TabVenta.Controls.Add(this.TBCategoría);
             this.TabVenta.Controls.Add(this.TBCode);
@@ -309,6 +311,22 @@ namespace Pan3
             this.TabVenta.TabIndex = 0;
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
+            // 
+            // lblIdP
+            // 
+            this.lblIdP.AutoSize = true;
+            this.lblIdP.Location = new System.Drawing.Point(418, 32);
+            this.lblIdP.Name = "lblIdP";
+            this.lblIdP.Size = new System.Drawing.Size(0, 15);
+            this.lblIdP.TabIndex = 30;
+            this.lblIdP.Visible = false;
+            // 
+            // TxtCantidad
+            // 
+            this.TxtCantidad.Location = new System.Drawing.Point(6, 83);
+            this.TxtCantidad.Name = "TxtCantidad";
+            this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
+            this.TxtCantidad.TabIndex = 29;
             // 
             // checkBox2
             // 
@@ -344,7 +362,7 @@ namespace Pan3
             // 
             // BTDescuento
             // 
-            this.BTDescuento.Location = new System.Drawing.Point(794, 66);
+            this.BTDescuento.Location = new System.Drawing.Point(788, 66);
             this.BTDescuento.Name = "BTDescuento";
             this.BTDescuento.Size = new System.Drawing.Size(151, 37);
             this.BTDescuento.TabIndex = 25;
@@ -354,7 +372,7 @@ namespace Pan3
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(794, 14);
+            this.label7.Location = new System.Drawing.Point(788, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 15);
             this.label7.TabIndex = 24;
@@ -368,24 +386,11 @@ namespace Pan3
             "01 - Kiosco \"Las Cincos Esquinas\"",
             "02 - Bar \"El Atelier\"",
             "03 - Bar \"Locomotora\""});
-            this.CBCliente.Location = new System.Drawing.Point(794, 32);
+            this.CBCliente.Location = new System.Drawing.Point(788, 32);
             this.CBCliente.Name = "CBCliente";
             this.CBCliente.Size = new System.Drawing.Size(151, 23);
             this.CBCliente.TabIndex = 23;
             this.CBCliente.Text = "00 - Regular";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Cantidad.Location = new System.Drawing.Point(4, 76);
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Size = new System.Drawing.Size(80, 33);
-            this.Cantidad.TabIndex = 21;
-            this.Cantidad.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // lbluom
             // 
@@ -580,6 +585,26 @@ namespace Pan3
             this.DGVListaVenta.RowTemplate.Height = 25;
             this.DGVListaVenta.Size = new System.Drawing.Size(1175, 660);
             this.DGVListaVenta.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Producto";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Precio unitario";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
             // 
             // TabProductos
             // 
@@ -948,7 +973,7 @@ namespace Pan3
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.DgvCaja);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.button2);
@@ -1067,10 +1092,10 @@ namespace Pan3
             this.label16.TabIndex = 5;
             this.label16.Text = "Registro de movimientos:";
             // 
-            // dataGridView2
+            // DgvCaja
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DgvCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
@@ -1079,11 +1104,11 @@ namespace Pan3
             this.Column6,
             this.Column7,
             this.Column8});
-            this.dataGridView2.Location = new System.Drawing.Point(43, 156);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(1774, 715);
-            this.dataGridView2.TabIndex = 4;
+            this.DgvCaja.Location = new System.Drawing.Point(43, 156);
+            this.DgvCaja.Name = "DgvCaja";
+            this.DgvCaja.RowTemplate.Height = 25;
+            this.DgvCaja.Size = new System.Drawing.Size(1774, 715);
+            this.DgvCaja.TabIndex = 4;
             // 
             // Column1
             // 
@@ -2240,25 +2265,15 @@ namespace Pan3
             this.dataGridViewTextBoxColumn2.HeaderText = "ID";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // dataGridViewTextBoxColumn3
+            // lblAut
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Producto";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Precio unitario";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
+            this.lblAut.AutoSize = true;
+            this.lblAut.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblAut.Location = new System.Drawing.Point(26, 25);
+            this.lblAut.Name = "lblAut";
+            this.lblAut.Size = new System.Drawing.Size(52, 21);
+            this.lblAut.TabIndex = 2;
+            this.lblAut.Text = "Hola: ";
             // 
             // Form1
             // 
@@ -2266,6 +2281,7 @@ namespace Pan3
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.lblAut);
             this.Controls.Add(this.lbltime);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
@@ -2274,7 +2290,6 @@ namespace Pan3
             this.tabControl1.ResumeLayout(false);
             this.TabVenta.ResumeLayout(false);
             this.TabVenta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).EndInit();
             this.TabProductos.ResumeLayout(false);
             this.TabProductos.PerformLayout();
@@ -2284,7 +2299,7 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizados)).EndInit();
@@ -2339,7 +2354,6 @@ namespace Pan3
         private System.Windows.Forms.TextBox TBPrecioU;
         private System.Windows.Forms.TextBox TBStock;
         private System.Windows.Forms.Label lbluom;
-        private System.Windows.Forms.NumericUpDown Cantidad;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CBCliente;
         private System.Windows.Forms.Button BTDescuento;
@@ -2398,7 +2412,7 @@ namespace Pan3
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView DgvCaja;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -2512,6 +2526,9 @@ namespace Pan3
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.TextBox TxtCantidad;
+        private System.Windows.Forms.Label lblIdP;
+        private System.Windows.Forms.Label lblAut;
     }
 }
 

@@ -24,6 +24,9 @@ namespace Pan3
         private string idcategoria;
         private bool editarse = false;
 
+        public string NombreAutorizado = "";
+        public int IdAutorizado = 0;
+
         E_Proveedor objEProveedor = new E_Proveedor();
         NegProveedores objNegProveedor = new NegProveedores();
         E_Cliente objECliente = new E_Cliente();
@@ -105,6 +108,7 @@ namespace Pan3
             LlenarCbCat();
             LlenarCbProductos();
             MostarAut();
+            LlenarCbClientes();
         }
 
         #region Proveedor
@@ -401,7 +405,7 @@ namespace Pan3
 
         private void MostarAut()
         {
-            objEAutorizado.Nombre_aut = lblAut.Text;            
+            lblAut.Text = lblAut.Text + NombreAutorizado;          
         }
         private void LlenarDGVAut()
         {
@@ -780,14 +784,24 @@ namespace Pan3
         #endregion
 
         #region Venta
+
         private void BTVenta_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
                 objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
                 objNegVenta.InsertandoVenta("Alta", objEVenta);
+
+                objEVenta.Id_autorizado1 = IdAutorizado;
+                objEVenta.Id_cliente1 = 0;
+                objEVenta.Id_fpago1 = 0;
+                objEVenta.Fecha_compra1 = (DateTime.Now).ToString();
+                objEVenta.Hora_venta1 = "";
+                objEVenta.Estado_trans1 = "";
+                objEVenta.Num_Factura1 = "";
 
 
                 MessageBox.Show("Venta realizada con éxito");
@@ -810,28 +824,16 @@ namespace Pan3
 
         private void LlenarCbProductos()
         {
-            CBProducto.Items.Clear();
-            Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
-            datosConexionDB.AbrirConexion();
-            SqlCommand cmd = new SqlCommand("select * from producto", datosConexionDB.Conexion);
-            //SqlCommand cmd = new SqlCommand("select Nombre_producto from producto", datosConexionDB.Conexion);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                //CBProducto.Items.Add(dr[1].ToString());
-                //CBProducto.ValueMember = dr[0].ToString(); 
-                CBProducto.Items.Add(dr["Nombre_producto"].ToString());
-                CBProducto.ValueMember = dr[0].ToString();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    CBProducto.Items.Add(dr["Nombre_producto"].ToString());
+                    CBProducto.ValueMember = dr[0].ToString();
+                }
             }
-
-            datosConexionDB.CerrarConexion();
-            cbCategoria.Items.Insert(0, "");
-            cbCategoria.SelectedIndex = 0;
-
-            //CBProducto.SelectedItem = 0;
-            //datosConexionDB.CerrarConexion();
-
         }
 
         private void BTAgregar_Click(object sender, EventArgs e)
@@ -869,14 +871,23 @@ namespace Pan3
             }
 
             datosConexionDB.CerrarConexion();
+
         }
 
         #endregion
 
-        private void LlenarDgvCaja()
+        private void LlenarCbClientes()
         {
-
+            DataSet ds = new DataSet();
+            ds = objNegCliente.ListandoClientes("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    CBCliente.Items.Add(dr["nombre_cliente"].ToString());
+                    CBProducto.ValueMember = dr[0].ToString();
+                }
+            }
         }
-
     }
 }

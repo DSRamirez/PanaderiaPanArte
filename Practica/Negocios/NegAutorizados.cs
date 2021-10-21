@@ -19,17 +19,24 @@ namespace Negocios
 
         public void InsertandoAutorizados(string accion, E_Autorizados objEAutorizado)
         {
-            objDatoAutorizado.abmAutorizados("Alta", objEAutorizado);
+            objDatoAutorizado.AbmAutorizados("Alta", objEAutorizado);
         }
 
         public void EditandoAutorizados(string accion, E_Autorizados objEAutorizado)
         {
-            objDatoAutorizado.abmAutorizados(accion, objEAutorizado);
+            objDatoAutorizado.AbmAutorizados(accion, objEAutorizado);
         }
 
         public void EliminandoAutorizados(string accion, E_Autorizados objEAutorizado)
         {
-            objDatoAutorizado.abmAutorizados(accion, objEAutorizado);
+            objDatoAutorizado.AbmAutorizados(accion, objEAutorizado);
+        }
+
+        public DataSet Login(string usuario, string password , E_Autorizados objEAutorizado)
+        {
+            objEAutorizado.Usuario_aut = usuario;
+            objEAutorizado.Clave_aut = password;
+            return objDatoAutorizado.Login(objEAutorizado);
         }
     }
 }

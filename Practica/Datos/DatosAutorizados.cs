@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
 using Entidades;
 
@@ -12,7 +9,7 @@ namespace Datos
     {
         public DataSet listadoAutorizados(string cual)
         {
-            string orden = string.Empty;
+            string orden;
             if (cual != "Todos")
 
                 orden = "select * from Autorizado where Id_autorizado = " + int.Parse(cual) + ";";
@@ -41,7 +38,7 @@ namespace Datos
         }
 
 
-        public int abmAutorizados(string accion, E_Autorizados objEAutorizado)
+        public int AbmAutorizados(string accion, E_Autorizados objEAutorizado)
         {
             int resultado = -1;
             string orden = string.Empty;
@@ -91,5 +88,29 @@ namespace Datos
             return resultado;
         }
 
+        public DataSet Login(E_Autorizados objEAutorizado)
+        {
+            string orden = "SELECT Usuario_autorizado, Clave_autorizado FROM Autorizado WHERE Usuario_autorizado = '" + objEAutorizado.Usuario_aut + "'AND Clave_autorizado ='" + objEAutorizado.Clave_aut + "' ";
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Usuario no encontrado", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
     }
 }

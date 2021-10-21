@@ -35,8 +35,8 @@ namespace Pan3
             this.TabVenta = new System.Windows.Forms.TabPage();
             this.lblIdP = new System.Windows.Forms.Label();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxT = new System.Windows.Forms.CheckBox();
+            this.checkBoxEf = new System.Windows.Forms.CheckBox();
             this.label42 = new System.Windows.Forms.Label();
             this.BTDescuento = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -278,8 +278,8 @@ namespace Pan3
             // 
             this.TabVenta.Controls.Add(this.lblIdP);
             this.TabVenta.Controls.Add(this.TxtCantidad);
-            this.TabVenta.Controls.Add(this.checkBox2);
-            this.TabVenta.Controls.Add(this.checkBox1);
+            this.TabVenta.Controls.Add(this.checkBoxT);
+            this.TabVenta.Controls.Add(this.checkBoxEf);
             this.TabVenta.Controls.Add(this.label42);
             this.TabVenta.Controls.Add(this.BTDescuento);
             this.TabVenta.Controls.Add(this.label7);
@@ -328,27 +328,27 @@ namespace Pan3
             this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
             this.TxtCantidad.TabIndex = 29;
             // 
-            // checkBox2
+            // checkBoxT
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox2.Location = new System.Drawing.Point(1172, 798);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 24);
-            this.checkBox2.TabIndex = 28;
-            this.checkBox2.Text = "Tarjeta";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxT.AutoSize = true;
+            this.checkBoxT.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxT.Location = new System.Drawing.Point(1172, 798);
+            this.checkBoxT.Name = "checkBoxT";
+            this.checkBoxT.Size = new System.Drawing.Size(72, 24);
+            this.checkBoxT.TabIndex = 28;
+            this.checkBoxT.Text = "Tarjeta";
+            this.checkBoxT.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxEf
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(1039, 798);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(81, 24);
-            this.checkBox1.TabIndex = 27;
-            this.checkBox1.Text = "Efectivo";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxEf.AutoSize = true;
+            this.checkBoxEf.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxEf.Location = new System.Drawing.Point(1039, 798);
+            this.checkBoxEf.Name = "checkBoxEf";
+            this.checkBoxEf.Size = new System.Drawing.Size(81, 24);
+            this.checkBoxEf.TabIndex = 27;
+            this.checkBoxEf.Text = "Efectivo";
+            this.checkBoxEf.UseVisualStyleBackColor = true;
             // 
             // label42
             // 
@@ -381,16 +381,10 @@ namespace Pan3
             // CBCliente
             // 
             this.CBCliente.FormattingEnabled = true;
-            this.CBCliente.Items.AddRange(new object[] {
-            "00 - Regular",
-            "01 - Kiosco \"Las Cincos Esquinas\"",
-            "02 - Bar \"El Atelier\"",
-            "03 - Bar \"Locomotora\""});
             this.CBCliente.Location = new System.Drawing.Point(788, 32);
             this.CBCliente.Name = "CBCliente";
             this.CBCliente.Size = new System.Drawing.Size(151, 23);
             this.CBCliente.TabIndex = 23;
-            this.CBCliente.Text = "00 - Regular";
             // 
             // lbluom
             // 
@@ -2449,8 +2443,8 @@ namespace Pan3
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.TextBox txtNomProd;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxT;
+        private System.Windows.Forms.CheckBox checkBoxEf;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox txtCodCat;

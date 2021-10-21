@@ -12,7 +12,7 @@ namespace Datos
     {
         public DataSet listadoClientes(string cual)
         {
-            string orden = string.Empty;
+            string orden;
             if (cual != "Todos")
                 
                 orden = "select * from cliente where id_cliente = " + int.Parse(cual) + ";";             
@@ -92,7 +92,6 @@ namespace Datos
 
             return resultado;
         }
-
 
     }
 

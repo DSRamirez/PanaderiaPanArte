@@ -19,6 +19,7 @@ namespace Pan3
     {
         private string idproveedor;
         private string idcliente;
+        private string idfpago;
         private string idautorizado;
         private string idproducto;
         private string idcategoria;
@@ -41,6 +42,8 @@ namespace Pan3
         E_Ventas objEVenta = new E_Ventas();
         E_ProductoVenta objEProductoVenta = new E_ProductoVenta();
         NegProductoVenta objNegProductoVenta = new NegProductoVenta();
+        E_FormaDePago objEFormaDePago = new E_FormaDePago();
+        NegFormaDePago objNegFormaDePago = new NegFormaDePago();
 
         public Form1()
         {
@@ -109,6 +112,7 @@ namespace Pan3
             LlenarCbProductos();
             MostarAut();
             LlenarCbClientes();
+            FormaDePago();
         }
 
         #region Proveedor
@@ -405,7 +409,7 @@ namespace Pan3
 
         private void MostarAut()
         {
-            lblAut.Text = lblAut.Text + NombreAutorizado;          
+            lblAut.Text = lblAut.Text + NombreAutorizado;
         }
         private void LlenarDGVAut()
         {
@@ -419,7 +423,7 @@ namespace Pan3
                     dgvAutorizados.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
                 }
             }
-        }     
+        }
 
         private void BtnGAut_Click(object sender, EventArgs e)
         {
@@ -688,7 +692,7 @@ namespace Pan3
         }
 
         private void LlenarCbCat()
-        
+
         {
             cbCategoria.Items.Clear();
             Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
@@ -787,22 +791,22 @@ namespace Pan3
 
         private void BTVenta_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
-                objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
-                objNegVenta.InsertandoVenta("Alta", objEVenta);
 
+                objEVenta.Id_cliente1 = Convert.ToInt32(lblcliente.Text);
                 objEVenta.Id_autorizado1 = IdAutorizado;
-                objEVenta.Id_cliente1 = 0;
-                objEVenta.Id_fpago1 = 0;
-                objEVenta.Fecha_compra1 = (DateTime.Now).ToString();
-                objEVenta.Hora_venta1 = "";
+                objEVenta.Id_fpago1 = Convert.ToInt32(lblformap.Text);
+                objEVenta.Fecha_compra1 = DateTime.Now.ToString("d");
+                objEVenta.Hora_venta1 = DateTime.Now.ToString("hh:mm tt"); ;
                 objEVenta.Estado_trans1 = "";
                 objEVenta.Num_Factura1 = "";
 
+                objNegVenta.InsertandoVenta("Alta", objEVenta);
+                objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
 
                 MessageBox.Show("Venta realizada con éxito");
                 DGVListaVenta.Rows.Clear();
@@ -818,7 +822,7 @@ namespace Pan3
             catch (Exception)
             {
 
-                MessageBox.Show ("La venta no se pudo realizar");
+                MessageBox.Show("La venta no se pudo realizar");
             }
         }
 
@@ -874,20 +878,37 @@ namespace Pan3
 
         }
 
-        #endregion
-
         private void LlenarCbClientes()
         {
             DataSet ds = new DataSet();
             ds = objNegCliente.ListandoClientes("Todos");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    CBCliente.Items.Add(dr["nombre_cliente"].ToString());
-                    CBProducto.ValueMember = dr[0].ToString();
-                }
-            }
+            CBCliente.DisplayMember = "nombre_cliente";
+            CBCliente.ValueMember = "id_cliente";
+            CBCliente.DataSource = ds.Tables[0];
         }
+
+        private void CBCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblcliente.Text = CBCliente.SelectedValue.ToString();
+        }
+        #endregion
+
+        #region Forma de pago
+
+        private void FormaDePago()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegFormaDePago.ListandoFormaDePago("Todos");
+            CbFPago.DisplayMember = "Nombre_fpago";
+            CbFPago.ValueMember = "Id_fpago";
+            CbFPago.DataSource = ds.Tables[0];
+        }
+
+        private void CbFPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblformap.Text = CbFPago.SelectedValue.ToString();    
+        }
+
+        #endregion
     }
 }

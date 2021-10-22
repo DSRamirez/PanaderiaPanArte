@@ -93,6 +93,32 @@ namespace Datos
             return resultado;
         }
 
+        public DataTable listaC()
+        {
+            string query = "select id_cliente, nombre_cliente from cliente";
+            SqlCommand cmd = new SqlCommand(query, Conexion);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar clientes", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+
+        }
     }
 
 }

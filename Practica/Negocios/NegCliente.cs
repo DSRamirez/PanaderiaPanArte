@@ -34,5 +34,9 @@ namespace Negocios
             objDatoCliente.abmClientes(accion, objECliente);
         }
 
+        public DataTable ListaC()
+        {
+            return objDatoCliente.listaC();
+        }
     }
 }

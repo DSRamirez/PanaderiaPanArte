@@ -33,10 +33,11 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
+            this.lblcliente = new System.Windows.Forms.Label();
+            this.lblformap = new System.Windows.Forms.Label();
+            this.CbFPago = new System.Windows.Forms.ComboBox();
             this.lblIdP = new System.Windows.Forms.Label();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
-            this.checkBoxT = new System.Windows.Forms.CheckBox();
-            this.checkBoxEf = new System.Windows.Forms.CheckBox();
             this.label42 = new System.Windows.Forms.Label();
             this.BTDescuento = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -276,10 +277,11 @@ namespace Pan3
             // 
             // TabVenta
             // 
+            this.TabVenta.Controls.Add(this.lblcliente);
+            this.TabVenta.Controls.Add(this.lblformap);
+            this.TabVenta.Controls.Add(this.CbFPago);
             this.TabVenta.Controls.Add(this.lblIdP);
             this.TabVenta.Controls.Add(this.TxtCantidad);
-            this.TabVenta.Controls.Add(this.checkBoxT);
-            this.TabVenta.Controls.Add(this.checkBoxEf);
             this.TabVenta.Controls.Add(this.label42);
             this.TabVenta.Controls.Add(this.BTDescuento);
             this.TabVenta.Controls.Add(this.label7);
@@ -312,6 +314,33 @@ namespace Pan3
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
             // 
+            // lblcliente
+            // 
+            this.lblcliente.AutoSize = true;
+            this.lblcliente.Location = new System.Drawing.Point(65, 231);
+            this.lblcliente.Name = "lblcliente";
+            this.lblcliente.Size = new System.Drawing.Size(44, 15);
+            this.lblcliente.TabIndex = 33;
+            this.lblcliente.Text = "label43";
+            // 
+            // lblformap
+            // 
+            this.lblformap.AutoSize = true;
+            this.lblformap.Location = new System.Drawing.Point(65, 287);
+            this.lblformap.Name = "lblformap";
+            this.lblformap.Size = new System.Drawing.Size(44, 15);
+            this.lblformap.TabIndex = 32;
+            this.lblformap.Text = "label25";
+            // 
+            // CbFPago
+            // 
+            this.CbFPago.FormattingEnabled = true;
+            this.CbFPago.Location = new System.Drawing.Point(1151, 51);
+            this.CbFPago.Name = "CbFPago";
+            this.CbFPago.Size = new System.Drawing.Size(121, 23);
+            this.CbFPago.TabIndex = 31;
+            this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
+            // 
             // lblIdP
             // 
             this.lblIdP.AutoSize = true;
@@ -328,33 +357,11 @@ namespace Pan3
             this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
             this.TxtCantidad.TabIndex = 29;
             // 
-            // checkBoxT
-            // 
-            this.checkBoxT.AutoSize = true;
-            this.checkBoxT.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxT.Location = new System.Drawing.Point(1172, 798);
-            this.checkBoxT.Name = "checkBoxT";
-            this.checkBoxT.Size = new System.Drawing.Size(72, 24);
-            this.checkBoxT.TabIndex = 28;
-            this.checkBoxT.Text = "Tarjeta";
-            this.checkBoxT.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxEf
-            // 
-            this.checkBoxEf.AutoSize = true;
-            this.checkBoxEf.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxEf.Location = new System.Drawing.Point(1039, 798);
-            this.checkBoxEf.Name = "checkBoxEf";
-            this.checkBoxEf.Size = new System.Drawing.Size(81, 24);
-            this.checkBoxEf.TabIndex = 27;
-            this.checkBoxEf.Text = "Efectivo";
-            this.checkBoxEf.UseVisualStyleBackColor = true;
-            // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(891, 798);
+            this.label42.Location = new System.Drawing.Point(1015, 49);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(120, 21);
             this.label42.TabIndex = 26;
@@ -385,6 +392,7 @@ namespace Pan3
             this.CBCliente.Name = "CBCliente";
             this.CBCliente.Size = new System.Drawing.Size(151, 23);
             this.CBCliente.TabIndex = 23;
+            this.CBCliente.SelectedIndexChanged += new System.EventHandler(this.CBCliente_SelectedIndexChanged);
             // 
             // lbluom
             // 
@@ -2328,10 +2336,8 @@ namespace Pan3
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage TabVenta;
-        private System.Windows.Forms.Label lbltotal;
         private System.Windows.Forms.Button BTRemover;
         private System.Windows.Forms.Button BTVenta;
-        private System.Windows.Forms.DataGridView DGVListaVenta;
         private System.Windows.Forms.ComboBox CBProducto;
         private System.Windows.Forms.Button BTAgregar;
         private System.Windows.Forms.Button BTCancelar;
@@ -2443,8 +2449,6 @@ namespace Pan3
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.TextBox txtNomProd;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.CheckBox checkBoxT;
-        private System.Windows.Forms.CheckBox checkBoxEf;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox txtCodCat;
@@ -2516,13 +2520,18 @@ namespace Pan3
         private System.Windows.Forms.DataGridView dgvCategorias;
         private System.Windows.Forms.TextBox txtPrecioVenta;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox TxtCantidad;
+        private System.Windows.Forms.Label lblIdP;
+        private System.Windows.Forms.Label lblAut;
+        private System.Windows.Forms.ComboBox CbFPago;
+        private System.Windows.Forms.Label lbltotal;
+        private System.Windows.Forms.DataGridView DGVListaVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.TextBox TxtCantidad;
-        private System.Windows.Forms.Label lblIdP;
-        private System.Windows.Forms.Label lblAut;
+        private System.Windows.Forms.Label lblcliente;
+        private System.Windows.Forms.Label lblformap;
     }
 }
 

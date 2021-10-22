@@ -38,7 +38,7 @@ namespace Pan3
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            DataSet datos = objNegAutorizado.Login(this.txtusuario.Text, this.txtpass.Text, objEAutorizado);
+            DataSet datos = objNegAutorizado.Login(txtusuario.Text, txtpass.Text, objEAutorizado);
             if (datos.Tables[0].Rows.Count <= 0)
             {
                 MessageBox.Show("El usuario " + txtusuario.Text +" no existe" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);               
@@ -47,10 +47,9 @@ namespace Pan3
             {
                 Form1 frm = new();
                 frm.NombreAutorizado = txtusuario.Text;
-                //frm.IdAutorizado = Convert.ToInt32(datos.Tables[0]);
-                this.Hide();
+                frm.IdAutorizado = datos.Tables[0].Rows.Count;
+                Hide();
                 frm.Show();
-                
             }
         }
 

@@ -126,7 +126,5 @@ namespace Datos
 
             return resultado;
         }
-
-
     }
 }

@@ -344,11 +344,10 @@ namespace Pan3
             // lblIdP
             // 
             this.lblIdP.AutoSize = true;
-            this.lblIdP.Location = new System.Drawing.Point(418, 32);
+            this.lblIdP.Location = new System.Drawing.Point(75, 320);
             this.lblIdP.Name = "lblIdP";
             this.lblIdP.Size = new System.Drawing.Size(0, 15);
             this.lblIdP.TabIndex = 30;
-            this.lblIdP.Visible = false;
             // 
             // TxtCantidad
             // 

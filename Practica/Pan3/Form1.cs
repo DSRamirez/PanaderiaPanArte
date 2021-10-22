@@ -791,7 +791,6 @@ namespace Pan3
 
         private void BTVenta_Click(object sender, EventArgs e)
         {
-
             try
             {
                 objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
@@ -815,7 +814,6 @@ namespace Pan3
                 TBPrecioU.Text = "";
                 TBCode.Text = "";
                 TBCategoría.Text = "";
-                CBProducto.Items.Clear();
                 TxtCantidad.Text = "";
                 LlenarDGVProd();
             }
@@ -825,21 +823,6 @@ namespace Pan3
                 MessageBox.Show("La venta no se pudo realizar");
             }
         }
-
-        private void LlenarCbProductos()
-        {
-            DataSet ds = new DataSet();
-            ds = objNegProducto.ListandoProductos("Todos");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    CBProducto.Items.Add(dr["Nombre_producto"].ToString());
-                    CBProducto.ValueMember = dr[0].ToString();
-                }
-            }
-        }
-
         private void BTAgregar_Click(object sender, EventArgs e)
         {
 
@@ -856,26 +839,32 @@ namespace Pan3
 
         }
 
+        private void LlenarCbProductos()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos("Todos");
+            CBProducto.DisplayMember ="Nombre_producto";
+            CBProducto.ValueMember = "Id_producto";
+            CBProducto.DataSource = ds.Tables[0];
+        }
+
         private void CBProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Datos.DatosConexionDB datosConexionDB = new Datos.DatosConexionDB();
-            string consulta = "Select * from producto where Nombre_producto = '" + CBProducto.Text + "'";
-            SqlCommand cm = new SqlCommand(consulta, datosConexionDB.Conexion);
-            datosConexionDB.AbrirConexion();
+            lblIdP.Text = CBProducto.SelectedValue.ToString();
 
-            SqlDataReader leer = cm.ExecuteReader();
-
-            if (leer.Read() == true)
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos(lblIdP.Text);
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                TBStock.Text = leer["Stock_producto"].ToString();
-                TBPrecioU.Text = leer["Preciouv_producto"].ToString();
-                TBCode.Text = leer["Cod_producto"].ToString();
-                TBCategoría.Text = leer["Id_categoria"].ToString();
-                lblIdP.Text = leer["Id_producto"].ToString();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    CBProducto.SelectedValue.ToString();
+                    TBStock.Text = (dr["Stock_producto"].ToString());
+                    TBPrecioU.Text = (dr["Preciouv_producto"].ToString());
+                    TBCode.Text = (dr["Cod_producto"].ToString());
+                    TBCategoría.Text = (dr["Id_categoria"].ToString());
+                }
             }
-
-            datosConexionDB.CerrarConexion();
-
         }
 
         private void LlenarCbClientes()

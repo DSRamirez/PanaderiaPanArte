@@ -268,7 +268,7 @@ namespace Pan3
             this.tabControl1.Location = new System.Drawing.Point(26, 74);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1844, 931);
+            this.tabControl1.Size = new System.Drawing.Size(1346, 729);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -303,7 +303,7 @@ namespace Pan3
             this.TabVenta.Location = new System.Drawing.Point(4, 24);
             this.TabVenta.Name = "TabVenta";
             this.TabVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.TabVenta.Size = new System.Drawing.Size(1836, 903);
+            this.TabVenta.Size = new System.Drawing.Size(1338, 701);
             this.TabVenta.TabIndex = 0;
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
@@ -311,7 +311,7 @@ namespace Pan3
             // CbFPago
             // 
             this.CbFPago.FormattingEnabled = true;
-            this.CbFPago.Location = new System.Drawing.Point(1151, 51);
+            this.CbFPago.Location = new System.Drawing.Point(765, 178);
             this.CbFPago.Name = "CbFPago";
             this.CbFPago.Size = new System.Drawing.Size(121, 23);
             this.CbFPago.TabIndex = 31;
@@ -319,7 +319,7 @@ namespace Pan3
             // 
             // TxtCantidad
             // 
-            this.TxtCantidad.Location = new System.Drawing.Point(6, 83);
+            this.TxtCantidad.Location = new System.Drawing.Point(118, 94);
             this.TxtCantidad.Name = "TxtCantidad";
             this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
             this.TxtCantidad.TabIndex = 29;
@@ -328,7 +328,7 @@ namespace Pan3
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(1015, 49);
+            this.label42.Location = new System.Drawing.Point(629, 176);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(120, 21);
             this.label42.TabIndex = 26;
@@ -336,7 +336,7 @@ namespace Pan3
             // 
             // BTDescuento
             // 
-            this.BTDescuento.Location = new System.Drawing.Point(788, 66);
+            this.BTDescuento.Location = new System.Drawing.Point(402, 193);
             this.BTDescuento.Name = "BTDescuento";
             this.BTDescuento.Size = new System.Drawing.Size(151, 37);
             this.BTDescuento.TabIndex = 25;
@@ -346,7 +346,7 @@ namespace Pan3
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(788, 14);
+            this.label7.Location = new System.Drawing.Point(402, 141);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 15);
             this.label7.TabIndex = 24;
@@ -355,7 +355,7 @@ namespace Pan3
             // CBCliente
             // 
             this.CBCliente.FormattingEnabled = true;
-            this.CBCliente.Location = new System.Drawing.Point(788, 32);
+            this.CBCliente.Location = new System.Drawing.Point(402, 159);
             this.CBCliente.Name = "CBCliente";
             this.CBCliente.Size = new System.Drawing.Size(151, 23);
             this.CBCliente.TabIndex = 23;
@@ -365,7 +365,7 @@ namespace Pan3
             // 
             this.lbluom.AutoSize = true;
             this.lbluom.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbluom.Location = new System.Drawing.Point(90, 78);
+            this.lbluom.Location = new System.Drawing.Point(202, 89);
             this.lbluom.Name = "lbluom";
             this.lbluom.Size = new System.Drawing.Size(20, 25);
             this.lbluom.TabIndex = 20;
@@ -373,7 +373,7 @@ namespace Pan3
             // 
             // TBCategoría
             // 
-            this.TBCategoría.Location = new System.Drawing.Point(613, 78);
+            this.TBCategoría.Location = new System.Drawing.Point(227, 205);
             this.TBCategoría.Name = "TBCategoría";
             this.TBCategoría.ReadOnly = true;
             this.TBCategoría.Size = new System.Drawing.Size(134, 23);
@@ -381,7 +381,7 @@ namespace Pan3
             // 
             // TBCode
             // 
-            this.TBCode.Location = new System.Drawing.Point(613, 32);
+            this.TBCode.Location = new System.Drawing.Point(227, 159);
             this.TBCode.Name = "TBCode";
             this.TBCode.ReadOnly = true;
             this.TBCode.Size = new System.Drawing.Size(90, 23);
@@ -389,7 +389,7 @@ namespace Pan3
             // 
             // TBPrecioU
             // 
-            this.TBPrecioU.Location = new System.Drawing.Point(502, 80);
+            this.TBPrecioU.Location = new System.Drawing.Point(116, 207);
             this.TBPrecioU.Name = "TBPrecioU";
             this.TBPrecioU.ReadOnly = true;
             this.TBPrecioU.Size = new System.Drawing.Size(100, 23);
@@ -397,7 +397,7 @@ namespace Pan3
             // 
             // TBStock
             // 
-            this.TBStock.Location = new System.Drawing.Point(502, 32);
+            this.TBStock.Location = new System.Drawing.Point(116, 159);
             this.TBStock.Name = "TBStock";
             this.TBStock.ReadOnly = true;
             this.TBStock.Size = new System.Drawing.Size(100, 23);
@@ -407,7 +407,7 @@ namespace Pan3
             // 
             this.BTMenosuno.BackColor = System.Drawing.Color.Transparent;
             this.BTMenosuno.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTMenosuno.BackgroundImage")));
-            this.BTMenosuno.Location = new System.Drawing.Point(415, 201);
+            this.BTMenosuno.Location = new System.Drawing.Point(29, 328);
             this.BTMenosuno.Name = "BTMenosuno";
             this.BTMenosuno.Size = new System.Drawing.Size(80, 80);
             this.BTMenosuno.TabIndex = 15;
@@ -417,7 +417,7 @@ namespace Pan3
             // 
             this.BTCancelar.BackColor = System.Drawing.Color.Transparent;
             this.BTCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTCancelar.BackgroundImage")));
-            this.BTCancelar.Location = new System.Drawing.Point(415, 644);
+            this.BTCancelar.Location = new System.Drawing.Point(29, 551);
             this.BTCancelar.Name = "BTCancelar";
             this.BTCancelar.Size = new System.Drawing.Size(80, 80);
             this.BTCancelar.TabIndex = 14;
@@ -427,7 +427,7 @@ namespace Pan3
             // 
             this.BTMasuno.BackColor = System.Drawing.Color.Transparent;
             this.BTMasuno.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTMasuno.BackgroundImage")));
-            this.BTMasuno.Location = new System.Drawing.Point(415, 115);
+            this.BTMasuno.Location = new System.Drawing.Point(29, 242);
             this.BTMasuno.Name = "BTMasuno";
             this.BTMasuno.Size = new System.Drawing.Size(80, 80);
             this.BTMasuno.TabIndex = 13;
@@ -436,7 +436,7 @@ namespace Pan3
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(613, 14);
+            this.label6.Location = new System.Drawing.Point(227, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 15);
             this.label6.TabIndex = 12;
@@ -445,7 +445,7 @@ namespace Pan3
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(613, 60);
+            this.label5.Location = new System.Drawing.Point(227, 187);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 11;
@@ -454,7 +454,7 @@ namespace Pan3
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(502, 60);
+            this.label4.Location = new System.Drawing.Point(116, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 15);
             this.label4.TabIndex = 10;
@@ -463,7 +463,7 @@ namespace Pan3
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(502, 14);
+            this.label3.Location = new System.Drawing.Point(116, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 9;
@@ -472,7 +472,7 @@ namespace Pan3
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 58);
+            this.label2.Location = new System.Drawing.Point(116, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 15);
             this.label2.TabIndex = 8;
@@ -481,7 +481,7 @@ namespace Pan3
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 11);
+            this.label1.Location = new System.Drawing.Point(116, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(165, 15);
             this.label1.TabIndex = 7;
@@ -489,7 +489,7 @@ namespace Pan3
             // 
             // BTAgregar
             // 
-            this.BTAgregar.Location = new System.Drawing.Point(234, 64);
+            this.BTAgregar.Location = new System.Drawing.Point(346, 75);
             this.BTAgregar.Name = "BTAgregar";
             this.BTAgregar.Size = new System.Drawing.Size(137, 45);
             this.BTAgregar.TabIndex = 6;
@@ -503,7 +503,7 @@ namespace Pan3
             this.CBProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBProducto.FormattingEnabled = true;
-            this.CBProducto.Location = new System.Drawing.Point(3, 32);
+            this.CBProducto.Location = new System.Drawing.Point(115, 43);
             this.CBProducto.Name = "CBProducto";
             this.CBProducto.Size = new System.Drawing.Size(368, 23);
             this.CBProducto.TabIndex = 4;
@@ -512,11 +512,11 @@ namespace Pan3
             // lbltotal
             // 
             this.lbltotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbltotal.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbltotal.Location = new System.Drawing.Point(418, 694);
+            this.lbltotal.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbltotal.Location = new System.Drawing.Point(29, 579);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbltotal.Size = new System.Drawing.Size(1258, 47);
+            this.lbltotal.Size = new System.Drawing.Size(1261, 52);
             this.lbltotal.TabIndex = 3;
             this.lbltotal.Text = "Total: XX";
             this.lbltotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -525,7 +525,7 @@ namespace Pan3
             // 
             this.BTRemover.BackColor = System.Drawing.Color.Transparent;
             this.BTRemover.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTRemover.BackgroundImage")));
-            this.BTRemover.Location = new System.Drawing.Point(415, 287);
+            this.BTRemover.Location = new System.Drawing.Point(29, 414);
             this.BTRemover.Name = "BTRemover";
             this.BTRemover.Size = new System.Drawing.Size(80, 80);
             this.BTRemover.TabIndex = 2;
@@ -534,7 +534,7 @@ namespace Pan3
             // BTVenta
             // 
             this.BTVenta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTVenta.BackgroundImage")));
-            this.BTVenta.Location = new System.Drawing.Point(1576, 11);
+            this.BTVenta.Location = new System.Drawing.Point(1190, 138);
             this.BTVenta.Name = "BTVenta";
             this.BTVenta.Size = new System.Drawing.Size(100, 100);
             this.BTVenta.TabIndex = 1;
@@ -549,10 +549,10 @@ namespace Pan3
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.Total});
-            this.DGVListaVenta.Location = new System.Drawing.Point(501, 115);
+            this.DGVListaVenta.Location = new System.Drawing.Point(115, 242);
             this.DGVListaVenta.Name = "DGVListaVenta";
             this.DGVListaVenta.RowTemplate.Height = 25;
-            this.DGVListaVenta.Size = new System.Drawing.Size(1175, 660);
+            this.DGVListaVenta.Size = new System.Drawing.Size(1175, 414);
             this.DGVListaVenta.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn3
@@ -2249,7 +2249,7 @@ namespace Pan3
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1401, 823);
             this.Controls.Add(this.lblAut);
             this.Controls.Add(this.lbltime);
             this.Controls.Add(this.tabControl1);

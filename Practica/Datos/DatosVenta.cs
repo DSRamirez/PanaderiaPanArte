@@ -69,11 +69,6 @@ namespace Datos
                     "'where venta = " + objEVentas.Id_venta1 + ";";
             }
 
-            if (accion == "Eliminar")
-            {
-                orden = "Update venta set Estado_trans = '" + objEVentas.Estado_trans1 + "' where Id_venta = " + objEVentas.Id_venta1 + ";";
-            }
-
             SqlCommand cmd = new SqlCommand(orden, Conexion);
 
             try

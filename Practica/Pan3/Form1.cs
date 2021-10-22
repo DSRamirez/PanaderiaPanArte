@@ -796,9 +796,9 @@ namespace Pan3
                 objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
 
-                objEVenta.Id_cliente1 = Convert.ToInt32(lblcliente.Text);
+                objEVenta.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
                 objEVenta.Id_autorizado1 = IdAutorizado;
-                objEVenta.Id_fpago1 = Convert.ToInt32(lblformap.Text);
+                objEVenta.Id_fpago1 = Convert.ToInt32(CbFPago.SelectedValue.ToString());
                 objEVenta.Fecha_compra1 = DateTime.Now.ToString("d");
                 objEVenta.Hora_venta1 = DateTime.Now.ToString("hh:mm tt"); ;
                 objEVenta.Estado_trans1 = "";
@@ -850,10 +850,10 @@ namespace Pan3
 
         private void CBProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblIdP.Text = CBProducto.SelectedValue.ToString();
+            CBProducto.SelectedValue.ToString();
 
             DataSet ds = new DataSet();
-            ds = objNegProducto.ListandoProductos(lblIdP.Text);
+            ds = objNegProducto.ListandoProductos(CBProducto.SelectedValue.ToString());
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -878,7 +878,7 @@ namespace Pan3
 
         private void CBCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblcliente.Text = CBCliente.SelectedValue.ToString();
+            CBCliente.SelectedValue.ToString();
         }
         #endregion
 
@@ -895,7 +895,7 @@ namespace Pan3
 
         private void CbFPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblformap.Text = CbFPago.SelectedValue.ToString();    
+            CbFPago.SelectedValue.ToString();    
         }
 
         #endregion

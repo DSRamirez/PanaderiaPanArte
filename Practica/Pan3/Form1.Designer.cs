@@ -33,10 +33,7 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
-            this.lblcliente = new System.Windows.Forms.Label();
-            this.lblformap = new System.Windows.Forms.Label();
             this.CbFPago = new System.Windows.Forms.ComboBox();
-            this.lblIdP = new System.Windows.Forms.Label();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.BTDescuento = new System.Windows.Forms.Button();
@@ -277,10 +274,7 @@ namespace Pan3
             // 
             // TabVenta
             // 
-            this.TabVenta.Controls.Add(this.lblcliente);
-            this.TabVenta.Controls.Add(this.lblformap);
             this.TabVenta.Controls.Add(this.CbFPago);
-            this.TabVenta.Controls.Add(this.lblIdP);
             this.TabVenta.Controls.Add(this.TxtCantidad);
             this.TabVenta.Controls.Add(this.label42);
             this.TabVenta.Controls.Add(this.BTDescuento);
@@ -314,24 +308,6 @@ namespace Pan3
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
             // 
-            // lblcliente
-            // 
-            this.lblcliente.AutoSize = true;
-            this.lblcliente.Location = new System.Drawing.Point(65, 231);
-            this.lblcliente.Name = "lblcliente";
-            this.lblcliente.Size = new System.Drawing.Size(44, 15);
-            this.lblcliente.TabIndex = 33;
-            this.lblcliente.Text = "label43";
-            // 
-            // lblformap
-            // 
-            this.lblformap.AutoSize = true;
-            this.lblformap.Location = new System.Drawing.Point(65, 287);
-            this.lblformap.Name = "lblformap";
-            this.lblformap.Size = new System.Drawing.Size(44, 15);
-            this.lblformap.TabIndex = 32;
-            this.lblformap.Text = "label25";
-            // 
             // CbFPago
             // 
             this.CbFPago.FormattingEnabled = true;
@@ -340,14 +316,6 @@ namespace Pan3
             this.CbFPago.Size = new System.Drawing.Size(121, 23);
             this.CbFPago.TabIndex = 31;
             this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
-            // 
-            // lblIdP
-            // 
-            this.lblIdP.AutoSize = true;
-            this.lblIdP.Location = new System.Drawing.Point(75, 320);
-            this.lblIdP.Name = "lblIdP";
-            this.lblIdP.Size = new System.Drawing.Size(0, 15);
-            this.lblIdP.TabIndex = 30;
             // 
             // TxtCantidad
             // 

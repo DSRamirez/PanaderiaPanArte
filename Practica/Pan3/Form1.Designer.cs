@@ -33,20 +33,30 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.lblSaldoPend = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
+            this.lblVuelto = new System.Windows.Forms.Label();
+            this.lblTotalPagado = new System.Windows.Forms.Label();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.btnAceptarMdePagos = new System.Windows.Forms.Button();
+            this.DGVmdp = new System.Windows.Forms.DataGridView();
             this.CbFPago = new System.Windows.Forms.ComboBox();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.BTDescuento = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.CBCliente = new System.Windows.Forms.ComboBox();
-            this.lbluom = new System.Windows.Forms.Label();
             this.TBCategoría = new System.Windows.Forms.TextBox();
             this.TBCode = new System.Windows.Forms.TextBox();
             this.TBPrecioU = new System.Windows.Forms.TextBox();
             this.TBStock = new System.Windows.Forms.TextBox();
-            this.BTMenosuno = new System.Windows.Forms.Button();
             this.BTCancelar = new System.Windows.Forms.Button();
-            this.BTMasuno = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -228,6 +238,7 @@ namespace Pan3
             this.lblAut = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).BeginInit();
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -265,29 +276,39 @@ namespace Pan3
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tpProv);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(26, 74);
+            this.tabControl1.Location = new System.Drawing.Point(26, 63);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1346, 729);
+            this.tabControl1.Size = new System.Drawing.Size(1810, 922);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
             // TabVenta
             // 
+            this.TabVenta.Controls.Add(this.label57);
+            this.TabVenta.Controls.Add(this.label55);
+            this.TabVenta.Controls.Add(this.label54);
+            this.TabVenta.Controls.Add(this.label53);
+            this.TabVenta.Controls.Add(this.label47);
+            this.TabVenta.Controls.Add(this.lblSaldoPend);
+            this.TabVenta.Controls.Add(this.labelTotal);
+            this.TabVenta.Controls.Add(this.lblVuelto);
+            this.TabVenta.Controls.Add(this.lblTotalPagado);
+            this.TabVenta.Controls.Add(this.txtMonto);
+            this.TabVenta.Controls.Add(this.label25);
+            this.TabVenta.Controls.Add(this.btnAceptarMdePagos);
+            this.TabVenta.Controls.Add(this.DGVmdp);
             this.TabVenta.Controls.Add(this.CbFPago);
             this.TabVenta.Controls.Add(this.TxtCantidad);
             this.TabVenta.Controls.Add(this.label42);
             this.TabVenta.Controls.Add(this.BTDescuento);
             this.TabVenta.Controls.Add(this.label7);
             this.TabVenta.Controls.Add(this.CBCliente);
-            this.TabVenta.Controls.Add(this.lbluom);
             this.TabVenta.Controls.Add(this.TBCategoría);
             this.TabVenta.Controls.Add(this.TBCode);
             this.TabVenta.Controls.Add(this.TBPrecioU);
             this.TabVenta.Controls.Add(this.TBStock);
-            this.TabVenta.Controls.Add(this.BTMenosuno);
             this.TabVenta.Controls.Add(this.BTCancelar);
-            this.TabVenta.Controls.Add(this.BTMasuno);
             this.TabVenta.Controls.Add(this.label6);
             this.TabVenta.Controls.Add(this.label5);
             this.TabVenta.Controls.Add(this.label4);
@@ -303,17 +324,133 @@ namespace Pan3
             this.TabVenta.Location = new System.Drawing.Point(4, 24);
             this.TabVenta.Name = "TabVenta";
             this.TabVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.TabVenta.Size = new System.Drawing.Size(1338, 701);
+            this.TabVenta.Size = new System.Drawing.Size(1802, 894);
             this.TabVenta.TabIndex = 0;
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
             // 
+            // label57
+            // 
+            this.label57.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label57.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label57.Location = new System.Drawing.Point(115, 586);
+            this.label57.Name = "label57";
+            this.label57.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label57.Size = new System.Drawing.Size(1093, 52);
+            this.label57.TabIndex = 45;
+            this.label57.Text = "Total: $ ";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(1004, 215);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(53, 15);
+            this.label55.TabIndex = 43;
+            this.label55.Text = "Vuelto: $";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(1004, 187);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(104, 15);
+            this.label54.TabIndex = 42;
+            this.label54.Text = "Saldo pendiente: $";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(1004, 159);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(87, 15);
+            this.label53.TabIndex = 41;
+            this.label53.Text = "Total pagado: $";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(1004, 127);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(44, 15);
+            this.label47.TabIndex = 40;
+            this.label47.Text = "Total: $";
+            // 
+            // lblSaldoPend
+            // 
+            this.lblSaldoPend.AutoSize = true;
+            this.lblSaldoPend.Location = new System.Drawing.Point(1125, 187);
+            this.lblSaldoPend.Name = "lblSaldoPend";
+            this.lblSaldoPend.Size = new System.Drawing.Size(0, 15);
+            this.lblSaldoPend.TabIndex = 39;
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(1057, 127);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(0, 15);
+            this.labelTotal.TabIndex = 38;
+            // 
+            // lblVuelto
+            // 
+            this.lblVuelto.AutoSize = true;
+            this.lblVuelto.Location = new System.Drawing.Point(1080, 215);
+            this.lblVuelto.Name = "lblVuelto";
+            this.lblVuelto.Size = new System.Drawing.Size(0, 15);
+            this.lblVuelto.TabIndex = 37;
+            // 
+            // lblTotalPagado
+            // 
+            this.lblTotalPagado.AutoSize = true;
+            this.lblTotalPagado.Location = new System.Drawing.Point(1098, 159);
+            this.lblTotalPagado.Name = "lblTotalPagado";
+            this.lblTotalPagado.Size = new System.Drawing.Size(0, 15);
+            this.lblTotalPagado.TabIndex = 36;
+            // 
+            // txtMonto
+            // 
+            this.txtMonto.Location = new System.Drawing.Point(779, 79);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(113, 23);
+            this.txtMonto.TabIndex = 35;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label25.Location = new System.Drawing.Point(650, 77);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(58, 21);
+            this.label25.TabIndex = 34;
+            this.label25.Text = "Monto:";
+            // 
+            // btnAceptarMdePagos
+            // 
+            this.btnAceptarMdePagos.Location = new System.Drawing.Point(923, 65);
+            this.btnAceptarMdePagos.Name = "btnAceptarMdePagos";
+            this.btnAceptarMdePagos.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarMdePagos.TabIndex = 33;
+            this.btnAceptarMdePagos.Text = "Aceptar";
+            this.btnAceptarMdePagos.UseVisualStyleBackColor = true;
+            this.btnAceptarMdePagos.Click += new System.EventHandler(this.btnAceptarMdePagos_Click);
+            // 
+            // DGVmdp
+            // 
+            this.DGVmdp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVmdp.Location = new System.Drawing.Point(650, 110);
+            this.DGVmdp.Name = "DGVmdp";
+            this.DGVmdp.RowTemplate.Height = 25;
+            this.DGVmdp.Size = new System.Drawing.Size(348, 120);
+            this.DGVmdp.TabIndex = 32;
+            // 
             // CbFPago
             // 
             this.CbFPago.FormattingEnabled = true;
-            this.CbFPago.Location = new System.Drawing.Point(765, 178);
+            this.CbFPago.Location = new System.Drawing.Point(779, 43);
             this.CbFPago.Name = "CbFPago";
-            this.CbFPago.Size = new System.Drawing.Size(121, 23);
+            this.CbFPago.Size = new System.Drawing.Size(113, 23);
             this.CbFPago.TabIndex = 31;
             this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
             // 
@@ -328,7 +465,7 @@ namespace Pan3
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(629, 176);
+            this.label42.Location = new System.Drawing.Point(650, 45);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(120, 21);
             this.label42.TabIndex = 26;
@@ -360,16 +497,6 @@ namespace Pan3
             this.CBCliente.Size = new System.Drawing.Size(151, 23);
             this.CBCliente.TabIndex = 23;
             this.CBCliente.SelectedIndexChanged += new System.EventHandler(this.CBCliente_SelectedIndexChanged);
-            // 
-            // lbluom
-            // 
-            this.lbluom.AutoSize = true;
-            this.lbluom.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbluom.Location = new System.Drawing.Point(202, 89);
-            this.lbluom.Name = "lbluom";
-            this.lbluom.Size = new System.Drawing.Size(20, 25);
-            this.lbluom.TabIndex = 20;
-            this.lbluom.Text = "-";
             // 
             // TBCategoría
             // 
@@ -403,35 +530,15 @@ namespace Pan3
             this.TBStock.Size = new System.Drawing.Size(100, 23);
             this.TBStock.TabIndex = 16;
             // 
-            // BTMenosuno
-            // 
-            this.BTMenosuno.BackColor = System.Drawing.Color.Transparent;
-            this.BTMenosuno.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTMenosuno.BackgroundImage")));
-            this.BTMenosuno.Location = new System.Drawing.Point(29, 328);
-            this.BTMenosuno.Name = "BTMenosuno";
-            this.BTMenosuno.Size = new System.Drawing.Size(80, 80);
-            this.BTMenosuno.TabIndex = 15;
-            this.BTMenosuno.UseVisualStyleBackColor = false;
-            // 
             // BTCancelar
             // 
             this.BTCancelar.BackColor = System.Drawing.Color.Transparent;
             this.BTCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTCancelar.BackgroundImage")));
-            this.BTCancelar.Location = new System.Drawing.Point(29, 551);
+            this.BTCancelar.Location = new System.Drawing.Point(29, 576);
             this.BTCancelar.Name = "BTCancelar";
             this.BTCancelar.Size = new System.Drawing.Size(80, 80);
             this.BTCancelar.TabIndex = 14;
             this.BTCancelar.UseVisualStyleBackColor = false;
-            // 
-            // BTMasuno
-            // 
-            this.BTMasuno.BackColor = System.Drawing.Color.Transparent;
-            this.BTMasuno.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTMasuno.BackgroundImage")));
-            this.BTMasuno.Location = new System.Drawing.Point(29, 242);
-            this.BTMasuno.Name = "BTMasuno";
-            this.BTMasuno.Size = new System.Drawing.Size(80, 80);
-            this.BTMasuno.TabIndex = 13;
-            this.BTMasuno.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -513,19 +620,18 @@ namespace Pan3
             // 
             this.lbltotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbltotal.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbltotal.Location = new System.Drawing.Point(29, 579);
+            this.lbltotal.Location = new System.Drawing.Point(1194, 586);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbltotal.Size = new System.Drawing.Size(1261, 52);
+            this.lbltotal.Size = new System.Drawing.Size(96, 52);
             this.lbltotal.TabIndex = 3;
-            this.lbltotal.Text = "Total: XX";
             this.lbltotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // BTRemover
             // 
             this.BTRemover.BackColor = System.Drawing.Color.Transparent;
             this.BTRemover.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTRemover.BackgroundImage")));
-            this.BTRemover.Location = new System.Drawing.Point(29, 414);
+            this.BTRemover.Location = new System.Drawing.Point(29, 242);
             this.BTRemover.Name = "BTRemover";
             this.BTRemover.Size = new System.Drawing.Size(80, 80);
             this.BTRemover.TabIndex = 2;
@@ -534,7 +640,7 @@ namespace Pan3
             // BTVenta
             // 
             this.BTVenta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTVenta.BackgroundImage")));
-            this.BTVenta.Location = new System.Drawing.Point(1190, 138);
+            this.BTVenta.Location = new System.Drawing.Point(1190, 130);
             this.BTVenta.Name = "BTVenta";
             this.BTVenta.Size = new System.Drawing.Size(100, 100);
             this.BTVenta.TabIndex = 1;
@@ -601,7 +707,7 @@ namespace Pan3
             this.TabProductos.Location = new System.Drawing.Point(4, 24);
             this.TabProductos.Name = "TabProductos";
             this.TabProductos.Padding = new System.Windows.Forms.Padding(3);
-            this.TabProductos.Size = new System.Drawing.Size(1836, 903);
+            this.TabProductos.Size = new System.Drawing.Size(1802, 894);
             this.TabProductos.TabIndex = 1;
             this.TabProductos.Text = "Compra";
             this.TabProductos.UseVisualStyleBackColor = true;
@@ -950,7 +1056,7 @@ namespace Pan3
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1836, 903);
+            this.tabPage2.Size = new System.Drawing.Size(1802, 894);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Caja";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1175,7 +1281,7 @@ namespace Pan3
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1836, 903);
+            this.tabPage1.Size = new System.Drawing.Size(1802, 894);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Autorizados";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1379,7 +1485,7 @@ namespace Pan3
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1836, 903);
+            this.tabPage3.Size = new System.Drawing.Size(1802, 894);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Clientes";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1609,7 +1715,7 @@ namespace Pan3
             this.tpProv.Location = new System.Drawing.Point(4, 24);
             this.tpProv.Name = "tpProv";
             this.tpProv.Padding = new System.Windows.Forms.Padding(3);
-            this.tpProv.Size = new System.Drawing.Size(1836, 903);
+            this.tpProv.Size = new System.Drawing.Size(1802, 894);
             this.tpProv.TabIndex = 6;
             this.tpProv.Text = "Proveedores";
             this.tpProv.UseVisualStyleBackColor = true;
@@ -1905,7 +2011,7 @@ namespace Pan3
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1836, 903);
+            this.tabPage5.Size = new System.Drawing.Size(1802, 894);
             this.tabPage5.TabIndex = 7;
             this.tabPage5.Text = "Productos";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2249,7 +2355,7 @@ namespace Pan3
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1401, 823);
+            this.ClientSize = new System.Drawing.Size(1869, 1018);
             this.Controls.Add(this.lblAut);
             this.Controls.Add(this.lbltime);
             this.Controls.Add(this.tabControl1);
@@ -2259,6 +2365,7 @@ namespace Pan3
             this.tabControl1.ResumeLayout(false);
             this.TabVenta.ResumeLayout(false);
             this.TabVenta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).EndInit();
             this.TabProductos.ResumeLayout(false);
             this.TabProductos.PerformLayout();
@@ -2308,19 +2415,16 @@ namespace Pan3
         private System.Windows.Forms.ComboBox CBProducto;
         private System.Windows.Forms.Button BTAgregar;
         private System.Windows.Forms.Button BTCancelar;
-        private System.Windows.Forms.Button BTMasuno;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BTMenosuno;
         private System.Windows.Forms.TextBox TBCategoría;
         private System.Windows.Forms.TextBox TBCode;
         private System.Windows.Forms.TextBox TBPrecioU;
         private System.Windows.Forms.TextBox TBStock;
-        private System.Windows.Forms.Label lbluom;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CBCliente;
         private System.Windows.Forms.Button BTDescuento;
@@ -2499,6 +2603,20 @@ namespace Pan3
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.Label lblcliente;
         private System.Windows.Forms.Label lblformap;
+        private System.Windows.Forms.TextBox txtMonto;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnAceptarMdePagos;
+        private System.Windows.Forms.DataGridView DGVmdp;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label lblVuelto;
+        private System.Windows.Forms.Label lblTotalPagado;
+        private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label lblSaldoPend;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label57;
     }
 }
 

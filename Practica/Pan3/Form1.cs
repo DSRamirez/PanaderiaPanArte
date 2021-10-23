@@ -25,6 +25,8 @@ namespace Pan3
         private string idcategoria;
         private bool editarse = false;
 
+        decimal preciototal = 0;
+
         public string NombreAutorizado = "";
         public int IdAutorizado = 0;
 
@@ -53,11 +55,10 @@ namespace Pan3
             CrearColumnasAut();
             CrearColumnasProd();
             CrearColumnasCat();
+            CrearColumnasPago();
             lbltime.Text = DateTime.Now.ToString();
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
-            BTMasuno.BackgroundImageLayout = ImageLayout.Stretch;
-            BTMenosuno.BackgroundImageLayout = ImageLayout.Stretch;
             BTCancelar.BackgroundImageLayout = ImageLayout.Stretch;
             CBProducto.AutoCompleteMode = AutoCompleteMode.Suggest;
 
@@ -74,18 +75,6 @@ namespace Pan3
             TTremover.SetToolTip(BTRemover, "Remover Producto.\r\nRemueve todas las unidades del producto seleccionado de la lista de venta.");
             TTremover.IsBalloon = true;
             TTremover.AutoPopDelay = 15000;
-
-            ToolTip TTmasuno = new ToolTip();
-            TTmasuno.ShowAlways = true;
-            TTmasuno.SetToolTip(BTMasuno, "Agregar Unidad.\r\nAgrega una unidad al producto seleccionado de la lista de venta.");
-            TTmasuno.IsBalloon = true;
-            TTmasuno.AutoPopDelay = 15000;
-
-            ToolTip TTmenosuno = new ToolTip();
-            TTmenosuno.ShowAlways = true;
-            TTmenosuno.SetToolTip(BTMenosuno, "Restar Unidad.\r\nResta una unidad al producto seleccionado de la lista de venta.");
-            TTmenosuno.IsBalloon = true;
-            TTmenosuno.AutoPopDelay = 15000;
 
             ToolTip TTcancelar = new ToolTip();
             TTcancelar.ShowAlways = true;
@@ -793,7 +782,7 @@ namespace Pan3
         {
             try
             {
-                objEProductoVenta.Id_producto = Convert.ToInt32(lblIdP.Text);
+                objEProductoVenta.Id_producto = Convert.ToInt32(CBProducto.SelectedValue.ToString());
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
 
                 objEVenta.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
@@ -808,6 +797,7 @@ namespace Pan3
                 objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
 
                 MessageBox.Show("Venta realizada con éxito");
+
                 DGVListaVenta.Rows.Clear();
                 lbltotal.Text = "";
                 TBStock.Text = "";
@@ -816,6 +806,7 @@ namespace Pan3
                 TBCategoría.Text = "";
                 TxtCantidad.Text = "";
                 LlenarDGVProd();
+
             }
             catch (Exception)
             {
@@ -830,13 +821,12 @@ namespace Pan3
 
             DGVListaVenta.Rows.Add(TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
 
-            decimal preciototal = 0;
             for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
             {
                 preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[3].Value);
             }
-            lbltotal.Text = "Total: $" + preciototal.ToString();
-
+            lbltotal.Text = preciototal.ToString();
+            labelTotal.Text = lbltotal.Text;
         }
 
         private void LlenarCbProductos()
@@ -895,9 +885,48 @@ namespace Pan3
 
         private void CbFPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CbFPago.SelectedValue.ToString();    
+            CbFPago.SelectedValue.ToString();
         }
 
         #endregion
+        private void CrearColumnasPago()
+        {
+            DGVmdp.ColumnCount = 3;
+            DGVmdp.Columns[0].HeaderText = "Id";
+            DGVmdp.Columns[1].HeaderText = "Forma de pago";
+            DGVmdp.Columns[2].HeaderText = "Monto";
+
+            DGVmdp.Columns[0].Visible = false;
+
+        }
+
+        private void btnAceptarMdePagos_Click(object sender, EventArgs e)
+        {
+            decimal total = 0;
+
+            DGVmdp.Rows.Add(CbFPago.SelectedValue, CbFPago.Text, txtMonto.Text);
+
+            foreach (DataGridViewRow row in DGVmdp.Rows)
+            {
+                total += Convert.ToDecimal(row.Cells[2].Value);
+            }
+
+            lblTotalPagado.Text = total.ToString();
+            CalcularSaldo();
+            CalcularVuelto();
+        }
+
+        private void CalcularSaldo()
+        {
+            decimal saldo = preciototal - Convert.ToDecimal(lblTotalPagado.Text);
+            lblSaldoPend.Text = saldo.ToString();
+        }
+
+        private void CalcularVuelto()
+        {
+            decimal vuelto = Convert.ToDecimal(lblTotalPagado.Text) - Convert.ToDecimal(labelTotal.Text);
+            lblVuelto.Text = vuelto.ToString();
+        }
+
     }
 }

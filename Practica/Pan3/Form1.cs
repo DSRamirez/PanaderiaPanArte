@@ -919,12 +919,30 @@ namespace Pan3
         private void CalcularSaldo()
         {
             decimal saldo = preciototal - Convert.ToDecimal(lblTotalPagado.Text);
-            lblSaldoPend.Text = saldo.ToString();
+            if (saldo <= 0)
+            {
+                lblSaldoPend.Text = "0";
+                CalcularVuelto();
+            }
+            else
+            {
+                lblSaldoPend.Text = saldo.ToString();
+            }
         }
 
         private void CalcularVuelto()
         {
             decimal vuelto = Convert.ToDecimal(lblTotalPagado.Text) - Convert.ToDecimal(labelTotal.Text);
+
+            if (vuelto <= 0)
+            {
+                lblVuelto.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblVuelto.ForeColor = Color.Green;
+            }
+
             lblVuelto.Text = vuelto.ToString();
         }
 

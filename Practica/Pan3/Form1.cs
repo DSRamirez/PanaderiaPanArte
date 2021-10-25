@@ -888,7 +888,6 @@ namespace Pan3
             CbFPago.SelectedValue.ToString();
         }
 
-        #endregion
         private void CrearColumnasPago()
         {
             DGVmdp.ColumnCount = 3;
@@ -945,6 +944,14 @@ namespace Pan3
 
             lblVuelto.Text = vuelto.ToString();
         }
+
+        #endregion
+
+        #region ProductoVenta
+
+
+
+        #endregion
 
     }
 }

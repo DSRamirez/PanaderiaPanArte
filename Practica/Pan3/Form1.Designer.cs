@@ -236,6 +236,15 @@ namespace Pan3
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).BeginInit();
@@ -265,6 +274,7 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox7.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1272,6 +1282,8 @@ namespace Pan3
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this.label56);
             this.tabPage1.Controls.Add(this.BtnNAut);
             this.tabPage1.Controls.Add(this.BtnElAut);
             this.tabPage1.Controls.Add(this.BtnEdAut);
@@ -1346,9 +1358,9 @@ namespace Pan3
             // 
             this.groupBox2.Controls.Add(this.dgvAutorizados);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(392, 28);
+            this.groupBox2.Location = new System.Drawing.Point(392, 103);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1446, 849);
+            this.groupBox2.Size = new System.Drawing.Size(1446, 774);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado de personas autorizadas";
@@ -1474,6 +1486,8 @@ namespace Pan3
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label43);
+            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Controls.Add(this.label26);
             this.tabPage3.Controls.Add(this.btncancelarC);
             this.tabPage3.Controls.Add(this.btnnuevocliente);
@@ -1545,9 +1559,9 @@ namespace Pan3
             // 
             this.groupBox4.Controls.Add(this.dgvCliente);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(447, 57);
+            this.groupBox4.Location = new System.Drawing.Point(447, 120);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1393, 841);
+            this.groupBox4.Size = new System.Drawing.Size(1393, 778);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Clientes";
@@ -2005,6 +2019,11 @@ namespace Pan3
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.textBox6);
+            this.tabPage5.Controls.Add(this.label59);
+            this.tabPage5.Controls.Add(this.groupBox12);
+            this.tabPage5.Controls.Add(this.textBox5);
+            this.tabPage5.Controls.Add(this.label58);
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.groupBox8);
             this.tabPage5.Controls.Add(this.groupBox7);
@@ -2025,7 +2044,7 @@ namespace Pan3
             this.groupBox9.Controls.Add(this.label40);
             this.groupBox9.Controls.Add(this.txtNomCat);
             this.groupBox9.Controls.Add(this.label13);
-            this.groupBox9.Location = new System.Drawing.Point(33, 552);
+            this.groupBox9.Location = new System.Drawing.Point(33, 500);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(394, 256);
             this.groupBox9.TabIndex = 35;
@@ -2110,12 +2129,11 @@ namespace Pan3
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.dgvCategorias);
             this.groupBox8.Controls.Add(this.dgvProductos);
             this.groupBox8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox8.Location = new System.Drawing.Point(464, 76);
+            this.groupBox8.Location = new System.Drawing.Point(464, 122);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(1350, 809);
+            this.groupBox8.Size = new System.Drawing.Size(1350, 344);
             this.groupBox8.TabIndex = 34;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Lista de productos";
@@ -2123,10 +2141,10 @@ namespace Pan3
             // dgvCategorias
             // 
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategorias.Location = new System.Drawing.Point(37, 418);
+            this.dgvCategorias.Location = new System.Drawing.Point(17, 27);
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.RowTemplate.Height = 25;
-            this.dgvCategorias.Size = new System.Drawing.Size(1282, 338);
+            this.dgvCategorias.Size = new System.Drawing.Size(1282, 262);
             this.dgvCategorias.TabIndex = 1;
             // 
             // dgvProductos
@@ -2135,7 +2153,7 @@ namespace Pan3
             this.dgvProductos.Location = new System.Drawing.Point(37, 41);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowTemplate.Height = 25;
-            this.dgvProductos.Size = new System.Drawing.Size(1282, 349);
+            this.dgvProductos.Size = new System.Drawing.Size(1282, 280);
             this.dgvProductos.TabIndex = 0;
             // 
             // groupBox7
@@ -2158,7 +2176,7 @@ namespace Pan3
             this.groupBox7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox7.Location = new System.Drawing.Point(33, 76);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(394, 427);
+            this.groupBox7.Size = new System.Drawing.Size(394, 390);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Datos del producto";
@@ -2185,7 +2203,7 @@ namespace Pan3
             this.btnEdProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEdProd.Image = ((System.Drawing.Image)(resources.GetObject("btnEdProd.Image")));
             this.btnEdProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdProd.Location = new System.Drawing.Point(135, 345);
+            this.btnEdProd.Location = new System.Drawing.Point(135, 319);
             this.btnEdProd.Name = "btnEdProd";
             this.btnEdProd.Size = new System.Drawing.Size(104, 48);
             this.btnEdProd.TabIndex = 49;
@@ -2199,7 +2217,7 @@ namespace Pan3
             this.btnElProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnElProd.Image = ((System.Drawing.Image)(resources.GetObject("btnElProd.Image")));
             this.btnElProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnElProd.Location = new System.Drawing.Point(255, 345);
+            this.btnElProd.Location = new System.Drawing.Point(255, 319);
             this.btnElProd.Name = "btnElProd";
             this.btnElProd.Size = new System.Drawing.Size(104, 48);
             this.btnElProd.TabIndex = 47;
@@ -2213,7 +2231,7 @@ namespace Pan3
             this.btnGProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnGProd.Image = ((System.Drawing.Image)(resources.GetObject("btnGProd.Image")));
             this.btnGProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGProd.Location = new System.Drawing.Point(15, 345);
+            this.btnGProd.Location = new System.Drawing.Point(15, 319);
             this.btnGProd.Name = "btnGProd";
             this.btnGProd.Size = new System.Drawing.Size(104, 48);
             this.btnGProd.TabIndex = 45;
@@ -2350,6 +2368,80 @@ namespace Pan3
             this.lblAut.TabIndex = 2;
             this.lblAut.Text = "Hola: ";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(532, 56);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(283, 23);
+            this.textBox1.TabIndex = 55;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(464, 64);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(45, 15);
+            this.label43.TabIndex = 56;
+            this.label43.Text = "Buscar:";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(417, 42);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(48, 15);
+            this.label56.TabIndex = 56;
+            this.label56.Text = "Buscar: ";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(502, 34);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(243, 23);
+            this.textBox4.TabIndex = 57;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(464, 89);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(45, 15);
+            this.label58.TabIndex = 36;
+            this.label58.Text = "Buscar:";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(543, 81);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(347, 23);
+            this.textBox5.TabIndex = 37;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.dgvCategorias);
+            this.groupBox12.Location = new System.Drawing.Point(464, 560);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(1319, 303);
+            this.groupBox12.TabIndex = 38;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Lista de categorías";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(543, 515);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(347, 23);
+            this.textBox6.TabIndex = 40;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(464, 523);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(45, 15);
+            this.label59.TabIndex = 39;
+            this.label59.Text = "Buscar:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2377,6 +2469,7 @@ namespace Pan3
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizados)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -2394,6 +2487,7 @@ namespace Pan3
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -2401,6 +2495,7 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2617,6 +2712,14 @@ namespace Pan3
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label58;
     }
 }
 

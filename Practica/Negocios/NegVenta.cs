@@ -30,5 +30,9 @@ namespace Negocios
             objDatosVenta.abmVenta(accion, objEVentas);
         }
 
+        public DataSet UltimoRegistroVenta()
+        {
+            return objDatosVenta.UltimoRegistroVenta();
+        }      
     }
 }

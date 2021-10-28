@@ -53,7 +53,8 @@ namespace Datos
                     "','" + objEProductoVenta.Id_venta +
                     "','" + objEProductoVenta.Id_producto +
                     "','" + objEProductoVenta.Cantidad +
-                    "','" + objEProductoVenta.Preciou_historico + "');";
+                    "','" + objEProductoVenta.Preciou_historico +
+                    "','" + objEProductoVenta.Monto + "');";
             }
 
             if (accion == "Modificar")
@@ -62,6 +63,7 @@ namespace Datos
                     "','" + objEProductoVenta.Id_producto +
                     "','" + objEProductoVenta.Cantidad +
                     "','" + objEProductoVenta.Preciou_historico +
+                    "','" + objEProductoVenta.Monto +
                     "'where producto_venta = " + objEProductoVenta.Id_producto_venta + ";";
             }
 

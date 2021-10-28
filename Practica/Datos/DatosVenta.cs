@@ -89,5 +89,33 @@ namespace Datos
 
             return resultado;
         }
+
+
+        public DataSet UltimoRegistroVenta()
+        {
+            string orden = string.Empty;
+                orden = "Select TOP 1 Id_venta from venta order by Id_venta desc";
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer ultimo registro", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
     }
 }

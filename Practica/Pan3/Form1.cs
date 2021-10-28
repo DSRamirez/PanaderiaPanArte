@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Negocios;
+using Microsoft.VisualBasic;
 
 
 
@@ -24,6 +25,8 @@ namespace Pan3
         private string idproducto;
         private string idcategoria;
         private bool editarse = false;
+        private int montoPP;
+        private string detallePP;
 
         decimal preciototal = 0;
 
@@ -46,6 +49,8 @@ namespace Pan3
         NegProductoVenta objNegProductoVenta = new NegProductoVenta();
         E_FormaDePago objEFormaDePago = new E_FormaDePago();
         NegFormaDePago objNegFormaDePago = new NegFormaDePago();
+        E_Deuda objEDeuda = new E_Deuda();
+        NegDeuda objNegDeuda = new NegDeuda();
 
         public Form1()
         {
@@ -101,7 +106,7 @@ namespace Pan3
             LlenarCbProductos();
             MostarAut();
             LlenarCbClientes();
-            FormaDePago();
+            FormaDePago();          
         }
 
         #region Proveedor
@@ -267,7 +272,7 @@ namespace Pan3
                 }
             }
             else
-                MessageBox.Show("No hay profesionales cargados en el sistema");
+                MessageBox.Show("No hay clientes cargados en el sistema");
         }
 
         private void BtnG_Click(object sender, EventArgs e)
@@ -780,20 +785,32 @@ namespace Pan3
 
         private void BTVenta_Click(object sender, EventArgs e)
         {
+            GuardarVenta();
+        }
+
+        private void GuardarVenta()
+        {
             try
             {
+                if (objEProductoVenta.Id_producto == 0)
+                {
+                    GuardarProductoVenta();
+                }
+
                 objEProductoVenta.Id_producto = Convert.ToInt32(CBProducto.SelectedValue.ToString());
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
 
                 objEVenta.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
                 objEVenta.Id_autorizado1 = IdAutorizado;
                 objEVenta.Id_fpago1 = Convert.ToInt32(CbFPago.SelectedValue.ToString());
+                objEVenta.Monto1 = Convert.ToDecimal(lblTotalPagado.Text);
                 objEVenta.Fecha_compra1 = DateTime.Now.ToString("d");
                 objEVenta.Hora_venta1 = DateTime.Now.ToString("hh:mm tt"); ;
                 objEVenta.Estado_trans1 = "";
                 objEVenta.Num_Factura1 = "";
 
                 objNegVenta.InsertandoVenta("Alta", objEVenta);
+                GuardarProductoVenta();
                 objNegProducto.ActualizarStock("RestaStock", objEProductoVenta);
 
                 MessageBox.Show("Venta realizada con éxito");
@@ -810,23 +827,29 @@ namespace Pan3
             }
             catch (Exception)
             {
-
                 MessageBox.Show("La venta no se pudo realizar");
             }
         }
+
         private void BTAgregar_Click(object sender, EventArgs e)
         {
 
             decimal precioxcantidad = Convert.ToInt32(TxtCantidad.Text) * Convert.ToInt32(TBPrecioU.Text);
 
-            DGVListaVenta.Rows.Add(TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
+            DGVListaVenta.Rows.Add(Convert.ToInt32(CBProducto.SelectedValue.ToString()),TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
 
-            for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
-            {
-                preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[3].Value);
-            }
+            preciototal = 0;
+            CalcularTotalVenta();
             lbltotal.Text = preciototal.ToString();
             labelTotal.Text = lbltotal.Text;
+        }
+
+        private void CalcularTotalVenta()
+        {
+            for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
+            {
+                preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[4].Value);
+            }
         }
 
         private void LlenarCbProductos()
@@ -868,8 +891,11 @@ namespace Pan3
 
         private void CBCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblDeuda.Text = "";
             CBCliente.SelectedValue.ToString();
+            MostrarDeuda();
         }
+
         #endregion
 
         #region Forma de pago
@@ -896,7 +922,6 @@ namespace Pan3
             DGVmdp.Columns[2].HeaderText = "Monto";
 
             DGVmdp.Columns[0].Visible = false;
-
         }
 
         private void btnAceptarMdePagos_Click(object sender, EventArgs e)
@@ -949,7 +974,103 @@ namespace Pan3
 
         #region ProductoVenta
 
+        private void GuardarProductoVenta()
+        {          
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = objNegVenta.UltimoRegistroVenta();
 
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        objEProductoVenta.Id_venta = Convert.ToInt32(dr["Id_venta"]);
+                    }
+                }
+
+                foreach (DataGridViewRow row in DGVListaVenta.Rows)
+                {
+                    objEProductoVenta.Id_producto = Convert.ToInt32(row.Cells["id_prod"].Value.ToString());
+                    objEProductoVenta.Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value.ToString());
+                    objEProductoVenta.Preciou_historico = Convert.ToInt32(row.Cells["preciounitario"].Value.ToString());
+                    objEProductoVenta.Monto = Convert.ToInt32(row.Cells["Total"].Value.ToString());
+                }
+                objNegProductoVenta.InsertandoProductoVenta("Alta", objEProductoVenta);
+                MessageBox.Show("ProductoVenta guardado");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo guardar el Producto Venta" + ex);
+            }
+        }
+
+        #endregion
+
+        #region Productos de Panaderia 
+        private void btnPP_Click(object sender, EventArgs e)
+        {
+            AgregarProdPanaderia();
+            preciototal = 0;
+            CalcularTotalVenta();
+            lbltotal.Text = preciototal.ToString();
+            labelTotal.Text = lbltotal.Text;
+        }
+
+        private void AgregarProdPanaderia()
+        {
+            detallePP = Interaction.InputBox("Detalle del producto", "Productos de panadería");
+            montoPP = Convert.ToInt32(Interaction.InputBox("Monto", "Productos de panadería"));
+            DGVListaVenta.Rows.Add(0, 1, detallePP, montoPP, montoPP);
+        }
+        #endregion
+
+        #region Deuda
+        private void MostrarDeuda()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegDeuda.ListandoDeudasPorCliente(CBCliente.SelectedValue.ToString());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    CBProducto.SelectedValue.ToString();
+                    lblDeuda.Text = (dr["Importe"].ToString());
+                }
+            }
+        }
+
+        private void BtnCobrarDeuda_Click(object sender, EventArgs e)
+        {
+            decimal diferencia = 0;
+
+            if (Convert.ToDecimal(lblVuelto.Text) >= 0)
+            {
+                diferencia = Convert.ToDecimal(lblDeuda.Text) - Convert.ToDecimal(lblVuelto.Text);
+
+                if (diferencia >= 0)
+                {
+                    lblVuelto.Text = diferencia.ToString();
+                    diferencia = 0;
+                }
+            }
+            try
+            {
+                objEDeuda.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
+                objEDeuda.Importe1 = Convert.ToInt32(diferencia);
+
+                objNegDeuda.EditandoDeuda("Modificar", objEDeuda);
+
+                MessageBox.Show("Deuda actualizada");
+                MostrarDeuda();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo actualizar la deuda" + ex);
+            }
+        }
 
         #endregion
 

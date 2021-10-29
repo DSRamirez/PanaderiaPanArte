@@ -49,8 +49,7 @@ namespace Datos
 
             if (accion == "Alta")
             {
-                orden = "insert into producto_venta values ('" + objEProductoVenta.Id_producto_venta +
-                    "','" + objEProductoVenta.Id_venta +
+                orden = "insert into producto_venta values ('" + objEProductoVenta.Id_venta +
                     "','" + objEProductoVenta.Id_producto +
                     "','" + objEProductoVenta.Cantidad +
                     "','" + objEProductoVenta.Preciou_historico +

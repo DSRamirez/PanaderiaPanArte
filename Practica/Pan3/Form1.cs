@@ -792,21 +792,20 @@ namespace Pan3
         {
             try
             {
+                objEProductoVenta.Id_producto = Convert.ToInt32(CBProducto.SelectedValue.ToString());
                 if (objEProductoVenta.Id_producto == 0)
                 {
+                    ProdPan();
                     GuardarProductoVenta();
                 }
-
-                objEProductoVenta.Id_producto = Convert.ToInt32(CBProducto.SelectedValue.ToString());
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
-
                 objEVenta.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
                 objEVenta.Id_autorizado1 = IdAutorizado;
                 objEVenta.Id_fpago1 = Convert.ToInt32(CbFPago.SelectedValue.ToString());
                 objEVenta.Monto1 = Convert.ToDecimal(lblTotalPagado.Text);
                 objEVenta.Fecha_compra1 = DateTime.Now.ToString("d");
                 objEVenta.Hora_venta1 = DateTime.Now.ToString("hh:mm tt"); ;
-                objEVenta.Estado_trans1 = "";
+                objEVenta.Estado_trans1 = "cancelada";
                 objEVenta.Num_Factura1 = "";
 
                 objNegVenta.InsertandoVenta("Alta", objEVenta);
@@ -989,14 +988,14 @@ namespace Pan3
                     }
                 }
 
-                foreach (DataGridViewRow row in DGVListaVenta.Rows)
+                for (int i = 0; i < DGVListaVenta.Rows.Count - 1; i++)
                 {
-                    objEProductoVenta.Id_producto = Convert.ToInt32(row.Cells["id_prod"].Value.ToString());
-                    objEProductoVenta.Cantidad = Convert.ToInt32(row.Cells["cantidad"].Value.ToString());
-                    objEProductoVenta.Preciou_historico = Convert.ToInt32(row.Cells["preciounitario"].Value.ToString());
-                    objEProductoVenta.Monto = Convert.ToInt32(row.Cells["Total"].Value.ToString());
+                    objEProductoVenta.Preciou_historico = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[3].Value);
+                    objEProductoVenta.Monto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[4].Value);
+
+                    objNegProductoVenta.InsertandoProductoVenta("Alta", objEProductoVenta);
                 }
-                objNegProductoVenta.InsertandoProductoVenta("Alta", objEProductoVenta);
+
                 MessageBox.Show("ProductoVenta guardado");
 
             }
@@ -1004,6 +1003,17 @@ namespace Pan3
             {
 
                 MessageBox.Show("No se pudo guardar el Producto Venta" + ex);
+            }
+        }
+
+        private void ProdPan()
+        {
+            for (int i = 0; i < DGVListaVenta.Rows.Count - 1; i++)
+            {
+                objEProductoVenta.Id_producto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[0].Value);
+                objEProductoVenta.Cantidad = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[1].Value);
+                objEProductoVenta.Preciou_historico = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[3].Value);
+                objEProductoVenta.Monto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[4].Value);
             }
         }
 
@@ -1023,7 +1033,7 @@ namespace Pan3
         {
             detallePP = Interaction.InputBox("Detalle del producto", "Productos de panadería");
             montoPP = Convert.ToInt32(Interaction.InputBox("Monto", "Productos de panadería"));
-            DGVListaVenta.Rows.Add(0, 1, detallePP, montoPP, montoPP);
+            DGVListaVenta.Rows.Add(999, 1, detallePP, montoPP, montoPP);
         }
         #endregion
 

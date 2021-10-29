@@ -133,14 +133,6 @@ namespace Pan3
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.DgvCaja = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -1263,68 +1255,11 @@ namespace Pan3
             // DgvCaja
             // 
             this.DgvCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8});
             this.DgvCaja.Location = new System.Drawing.Point(43, 156);
             this.DgvCaja.Name = "DgvCaja";
             this.DgvCaja.RowTemplate.Height = 25;
             this.DgvCaja.Size = new System.Drawing.Size(1774, 715);
             this.DgvCaja.TabIndex = 4;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Cliente";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Encargado";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Fecha";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Monto";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 200;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Hora";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 200;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Factura";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 200;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Estado";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 200;
             // 
             // textBox2
             // 
@@ -2664,14 +2599,6 @@ namespace Pan3
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView DgvCaja;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.TextBox txttel;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox txtrs;

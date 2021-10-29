@@ -14,7 +14,7 @@ namespace Datos
 
                 orden = "select * from venta where Id_venta = " + int.Parse(cual) + ";";
             else
-                orden = "select * from venta;";
+                orden = "select * from venta";
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();

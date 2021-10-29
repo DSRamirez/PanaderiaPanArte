@@ -61,6 +61,7 @@ namespace Pan3
             CrearColumnasProd();
             CrearColumnasCat();
             CrearColumnasPago();
+            CrearColumnasCaja();
             lbltime.Text = DateTime.Now.ToString();
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
@@ -102,6 +103,7 @@ namespace Pan3
             LlenarDGVAut();
             LlenarDGVCat();
             LlenarDGVProd();
+            LlenarDGVCaja();
             LlenarCbCat();
             LlenarCbProductos();
             MostarAut();
@@ -1084,5 +1086,38 @@ namespace Pan3
 
         #endregion
 
+        #region Caja
+
+        private void CrearColumnasCaja()
+        {
+            DgvCaja.ColumnCount = 9;
+            DgvCaja.Columns[0].HeaderText = "Id";
+            DgvCaja.Columns[1].HeaderText = "Cliente";
+            DgvCaja.Columns[2].HeaderText = "Autorizado";
+            DgvCaja.Columns[3].HeaderText = "Forma de pago";
+            DgvCaja.Columns[4].HeaderText = "Monto";
+            DgvCaja.Columns[5].HeaderText = "Fecha";
+            DgvCaja.Columns[6].HeaderText = "Hora";
+            DgvCaja.Columns[7].HeaderText = "Estado";
+            DgvCaja.Columns[8].HeaderText = "N° de Factura";
+        }
+        private void LlenarDGVCaja()
+        {
+            DgvCaja.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegVenta.ListandoVentas("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    DgvCaja.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                }
+            }
+            else
+                MessageBox.Show("No hay ventas cargados en el sistema");
+        }
+
+
+        #endregion
     }
 }

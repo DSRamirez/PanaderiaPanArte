@@ -112,5 +112,40 @@ namespace Datos
             }
             return ds;
         }
+
+        public DataSet ListadoAutorizadoRapido(string cual)
+        {
+            string orden = string.Empty;
+            if (cual != "Todos")
+            {
+                orden = "select * from Autorizado where Nombre_autorizado like '%" + cual + "%' or Apellido_autorizado like '" + cual + "%';";
+            }
+            else
+            {
+                orden = "select * from Autorizado;";
+            }
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Autorizados", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
     }
 }

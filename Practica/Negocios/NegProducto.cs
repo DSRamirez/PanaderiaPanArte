@@ -33,5 +33,9 @@ namespace Negocios
             objDatosProductos.ActualizarStock(accion, objEProductoVenta);
         }
 
+        public DataSet ListadoProductoRapido(string cual)
+        {
+            return objDatosProductos.ListadoProductoRapido(cual);
+        }
     }
 }

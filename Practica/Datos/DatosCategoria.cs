@@ -22,11 +22,6 @@ namespace Datos
                 orden = "select * from categoria;";
             }
 
-            //if (cual == "NombreCat")
-            //{
-            //    orden = "SELECT Nombre_categoria from categoria;";
-            //}
-
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -91,6 +86,41 @@ namespace Datos
             }
 
             return resultado;
+        }
+
+        public DataSet ListadoCategoriaRapido(string cual)
+        {
+            string orden = string.Empty;
+            if (cual != "Todos")
+            {
+                orden = "select * from categoria where Nombre_categoria like '%" + cual + "%' or Cod_cat like '" + cual + "%';";
+            }
+            else
+            {
+                orden = "select * from categoria;";
+            }
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar categoría", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
         }
     }
 }

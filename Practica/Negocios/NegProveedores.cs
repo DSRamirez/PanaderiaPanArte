@@ -11,24 +11,28 @@ namespace Negocios
     {
         DatosProveedor objDatoProveedor = new DatosProveedor();
 
-        public List<E_Proveedor>ListandoProveedores(string buscar)
+        public DataSet ListandoProveedor(string buscar)
         {
-            return objDatoProveedor.ListarProveedores(buscar);
+            return objDatoProveedor.listadoProveedor(buscar);
+        }
+        public void InsertandoPrroveedor(string accion, E_Proveedor objEProveedor)
+        {
+            objDatoProveedor.abmProveedor("Alta", objEProveedor);
         }
 
-        public void InsertandoProveedor(E_Proveedor proveedor)
+        public void EditandoProveedor(string accion, E_Proveedor objEProveedor)
         {
-            objDatoProveedor.InsertarProveedor(proveedor);
+            objDatoProveedor.abmProveedor(accion, objEProveedor);
         }
 
-        public void EditandoProveedor(E_Proveedor proveedor)
+        public void EliminandoProveedor(string accion, E_Proveedor objEProveedor)
         {
-            objDatoProveedor.EditarProveedor(proveedor);
+            objDatoProveedor.abmProveedor(accion, objEProveedor);
         }
 
-        public void EliminandoProveedor(E_Proveedor proveedor)
+        public DataSet ListadoProveedorRapido(string cual)
         {
-            objDatoProveedor.EliminarProveedor(proveedor);
+            return objDatoProveedor.ListadoProveedorRapido(cual);
         }
     }
 }

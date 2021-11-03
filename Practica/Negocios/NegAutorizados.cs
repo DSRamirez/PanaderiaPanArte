@@ -38,5 +38,10 @@ namespace Negocios
             objEAutorizado.Clave_aut = password;
             return objDatoAutorizado.Login(objEAutorizado);
         }
+
+        public DataSet ListadoAutorizadoRapido(string cual)
+        {
+            return objDatoAutorizado.ListadoAutorizadoRapido(cual);
+        }
     }
 }

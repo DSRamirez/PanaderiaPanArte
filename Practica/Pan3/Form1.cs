@@ -62,6 +62,7 @@ namespace Pan3
             CrearColumnasCat();
             CrearColumnasPago();
             CrearColumnasCaja();
+            CrearColumnasProveedores();
             lbltime.Text = DateTime.Now.ToString();
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
@@ -97,7 +98,7 @@ namespace Pan3
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            mostrarBuscarTablaP("");
+            //mostrarBuscarTablaP("");
             accionestabla();
             LlenarDGV();
             LlenarDGVAut();
@@ -108,26 +109,22 @@ namespace Pan3
             LlenarCbProductos();
             MostarAut();
             LlenarCbClientes();
-            FormaDePago();          
+            FormaDePago();
+            LlenarTablaProveedores();
         }
 
         #region Proveedor
 
-        public void mostrarBuscarTablaP(string buscar)
-        {
-            NegProveedores objNegocio = new NegProveedores();
-            dgvProv.DataSource = objNegocio.ListandoProveedores(buscar);
-        }
+        //public void mostrarBuscarTablaP(string buscar)
+        //{
+        //    NegProveedores objNegocio = new NegProveedores();
+        //    dgvProv.DataSource = objNegocio.ListandoProveedores(buscar);
+        //}
 
         public void accionestabla()
         {
             dgvProv.Columns[0].Visible = false;
             dgvProv.Columns[8].Visible = false;
-        }
-
-        private void txtbuscar_TextChanged(object sender, EventArgs e)
-        {
-            mostrarBuscarTablaP(txtbuscar.Text);
         }
 
         private void LimpiarTxt()
@@ -151,6 +148,36 @@ namespace Pan3
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             LimpiarTxt();
+        }
+
+        private void CrearColumnasProveedores()
+        {
+            dgvProv.ColumnCount = 9;
+            dgvProv.Columns[0].HeaderText = "Id";
+            dgvProv.Columns[1].HeaderText = "Nombre proveedor";
+            dgvProv.Columns[2].HeaderText = "Razon Social";
+            dgvProv.Columns[3].HeaderText = "E-mail";
+            dgvProv.Columns[4].HeaderText = "Tel proveedor";
+            dgvProv.Columns[5].HeaderText = "Tel repartidor";
+            dgvProv.Columns[6].HeaderText = "Domicilio";
+            dgvProv.Columns[7].HeaderText = "CUIL";
+            dgvProv.Columns[8].HeaderText = "Estado";
+        }
+
+        private void LlenarTablaProveedores()
+        {
+            dgvProv.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegProveedor.ListandoProveedor("Todos");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvProv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                }
+            }
+            else
+                MessageBox.Show("No hay clientes cargados en el sistema");
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -187,10 +214,11 @@ namespace Pan3
                     objEProveedor.Dom = txtdom.Text;
                     objEProveedor.Cuil = txtcuil.Text;
 
-                    objNegProveedor.InsertandoProveedor(objEProveedor);
+                    objNegProveedor.InsertandoPrroveedor("Alta", objEProveedor);
 
                     MessageBox.Show("Proveedor guardado");
-                    mostrarBuscarTablaP("");
+                    //mostrarBuscarTablaP("");
+                    LlenarTablaProveedores();
                     LimpiarTxt();
                 }
                 catch (Exception ex)
@@ -213,10 +241,11 @@ namespace Pan3
                     objEProveedor.Dom = txtdom.Text;
                     objEProveedor.Cuil = txtcuil.Text;
 
-                    objNegProveedor.EditandoProveedor(objEProveedor);
+                    objNegProveedor.EditandoProveedor("Modificar", objEProveedor);
 
                     MessageBox.Show("Proveedor editado");
-                    mostrarBuscarTablaP("");
+                    //mostrarBuscarTablaP("");
+                    LlenarTablaProveedores();
                     editarse = false;
                     LimpiarTxt();
 
@@ -235,10 +264,11 @@ namespace Pan3
             {
                 objEProveedor.Id = Convert.ToInt32(idproveedor);
                 objEProveedor.Estado = true;
-                objNegProveedor.EliminandoProveedor(objEProveedor);
+                objNegProveedor.EliminandoProveedor("Eliminar", objEProveedor);
 
                 MessageBox.Show("Se eliminó el proveedor correctamente");
-                mostrarBuscarTablaP("");
+                // mostrarBuscarTablaP("");
+                LlenarTablaProveedores();
             }
             else
             {
@@ -1137,6 +1167,66 @@ namespace Pan3
             DgvCaja.Rows.Clear();
             CrearColumnasCaja();
             LlenarDgvVentasPorFecha();
+        }
+
+        private void tbBuscarClientes_TextChanged(object sender, EventArgs e)
+        {
+            dgvCliente.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegCliente.ListadoClientesRapido(tbBuscarClientes.Text);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dgvCliente.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+            }
+        }
+
+        private void tbBuscarAutorizados_TextChanged(object sender, EventArgs e)
+        {
+            dgvAutorizados.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegAutorizado.ListadoAutorizadoRapido(tbBuscarAutorizados.Text);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dgvAutorizados.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString());
+            }
+        }
+
+        private void tbBuscarProductos_TextChanged(object sender, EventArgs e)
+        {
+            dgvProductos.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListadoProductoRapido(tbBuscarProductos.Text);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dgvProductos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+            }
+        }
+
+        private void tbBuscarCategorias_TextChanged(object sender, EventArgs e)
+        {
+            dgvCategorias.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegCategoria.ListadoCategoriaRapido(tbBuscarCategorias.Text);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dgvCategorias.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+            }
+        }
+
+        private void txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+            dgvProv.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegProveedor.ListadoProveedorRapido(txtbuscar.Text);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dgvProv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+            }
         }
     }
 }

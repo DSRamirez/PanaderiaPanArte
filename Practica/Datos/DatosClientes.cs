@@ -119,6 +119,41 @@ namespace Datos
             return dt;
 
         }
+
+        public DataSet ListadoClientesRapido(string cual)
+        {
+            string orden = string.Empty;
+            if (cual != "Todos")
+            {
+                orden = "select * from cliente where nombre_cliente like '%" + cual + "%' or nombre_neg like '" + cual + "%';";
+            }
+            else
+            {
+                orden = "select * from clientes;";
+            }
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Clientes", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
     }
 
 }

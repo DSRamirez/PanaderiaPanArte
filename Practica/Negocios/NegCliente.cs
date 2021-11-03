@@ -38,5 +38,9 @@ namespace Negocios
         {
             return objDatoCliente.listaC();
         }
+        public DataSet ListadoClientesRapido(string cual)
+        {
+            return objDatoCliente.ListadoClientesRapido(cual);
+        }
     }
 }

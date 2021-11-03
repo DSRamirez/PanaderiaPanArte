@@ -10,91 +10,130 @@ namespace Datos
 {
     public class DatosProveedor : DatosConexionDB
     {
-        public List<E_Proveedor> ListarProveedores(string buscar)
+        public DataSet listadoProveedor(string cual)
         {
-            SqlDataReader LeerFilas;
-            SqlCommand cmd = new SqlCommand("SP_BUSCARPROVEEDOR", Conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            Conexion.Open();
 
-            cmd.Parameters.AddWithValue("@BUSCAR", buscar);
-
-            LeerFilas = cmd.ExecuteReader();
-
-            List<E_Proveedor> Listar = new List<E_Proveedor>();
-
-            while (LeerFilas.Read())
+            string orden = string.Empty;
+            if (cual != "Todos")
             {
-                Listar.Add(new E_Proveedor
-                {
-                    Id = LeerFilas.GetInt32(0),
-                    Name = LeerFilas.GetString(1),
-                    Razonsocial = LeerFilas.GetString(2),
-                    Mail = LeerFilas.GetString(3),
-                    Tel = LeerFilas.GetString(4),
-                    Telrep = LeerFilas.GetString(5),
-                    Dom = LeerFilas.GetString(6),
-                    Cuil = LeerFilas.GetString(7),
-                    Estado = LeerFilas.GetBoolean(8)
-                }); 
+                orden = "select * from proveedor where id_prov = " + int.Parse(cual) + ";";
+            }
+            else
+            {
+                orden = "select * from proveedor;";
             }
 
-            Conexion.Close();
-            LeerFilas.Close();
-            return Listar;
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar proveedores", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
         }
 
-        public void InsertarProveedor(E_Proveedor proveedor)
+        public int abmProveedor(string accion, E_Proveedor objEProveedor)
         {
-            SqlCommand cmd = new SqlCommand("SP_INSERTARPROVEEDOR", Conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            Conexion.Open();
+            int resultado = -1;
+            string orden = string.Empty;
 
-            cmd.Parameters.AddWithValue("@nombre_prov", proveedor.Name);
-            cmd.Parameters.AddWithValue("@razonsocial_prov",proveedor.Razonsocial);
-            cmd.Parameters.AddWithValue("@mail_prov", proveedor.Mail);
-            cmd.Parameters.AddWithValue("@telefono_prov", proveedor.Tel);
-            cmd.Parameters.AddWithValue("@tel_rep", proveedor.Telrep);
-            cmd.Parameters.AddWithValue("@dom_prov", proveedor.Dom);
-            cmd.Parameters.AddWithValue("@cuil_prov", proveedor.Cuil);
-            cmd.Parameters.AddWithValue("@esta_cancelado", proveedor.Estado);
+            if (accion == "Alta")
+            {
+                orden = "insert into proveedor values ('" + objEProveedor.Name +
+                 "','" + objEProveedor.Razonsocial +
+                 "','" + objEProveedor.Mail +
+                 "','" + objEProveedor.Tel +
+                 "','" + objEProveedor.Telrep +
+                 "','" + objEProveedor.Dom +
+                 "','" + objEProveedor.Cuil +
+                 "','" + objEProveedor.Estado + "');";
+            }
 
-            cmd.ExecuteNonQuery();
-            Conexion.Close();
+            if (accion == "Modificar")
+            {
+                orden = "update proveedor set nombre_prov = '" + objEProveedor.Name +
+                    "', razonsocial_prov = '" + objEProveedor.Razonsocial +
+                    "', mail_prov = '" + objEProveedor.Mail +
+                    "', telefono_prov = '" + objEProveedor.Tel +
+                    "', tel_rep = '" + objEProveedor.Telrep +
+                    "', dom_prov = '" + objEProveedor.Dom +
+                    "', cuil_prov = '" + objEProveedor.Cuil +
+                    "', esta_cancelado = '" + objEProveedor.Estado +
+                    "'where id_prov = " + objEProveedor.Id + ";";
+            }
+
+            if (accion == "Eliminar")
+            {
+                orden = "Update proveedor set esta_cancelado = '" + objEProveedor.Estado + "' where id_prov = " + objEProveedor.Id + ";";
+            }
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+
+            try
+            {
+                AbrirConexion();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Error al tratar de guardar proveedor", e);
+            }
+            finally
+            {
+                CerrarConexion();
+                cmd.Dispose();
+            }
+
+            return resultado;
         }
 
-        public void EditarProveedor(E_Proveedor proveedor)
+        public DataSet ListadoProveedorRapido(string cual)
         {
-            SqlCommand cmd = new SqlCommand("SP_EDITARPROVEEDOR", Conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            Conexion.Open();
+            string orden = string.Empty;
+            if (cual != "Todos")
+            {
+                orden = "select * from proveedor where nombre_prov like '%" + cual + "%' or razonsocial_prov like '" + cual + "%';";
+            }
+            else
+            {
+                orden = "select * from proveedor;";
+            }
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
 
-            cmd.Parameters.AddWithValue("@id_prov", proveedor.Id);
-            cmd.Parameters.AddWithValue("@nombre_prov", proveedor.Name);
-            cmd.Parameters.AddWithValue("@razonsocial_prov", proveedor.Razonsocial);
-            cmd.Parameters.AddWithValue("@mail_prov", proveedor.Mail);
-            cmd.Parameters.AddWithValue("@telefono_prov", proveedor.Tel);
-            cmd.Parameters.AddWithValue("@tel_rep", proveedor.Telrep);
-            cmd.Parameters.AddWithValue("@dom_prov", proveedor.Dom);
-            cmd.Parameters.AddWithValue("@cuil_prov", proveedor.Cuil);
-            cmd.Parameters.AddWithValue("@esta_cancelado", proveedor.Estado);
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
 
-            cmd.ExecuteNonQuery();
-            Conexion.Close();
-        }
-
-        public void EliminarProveedor(E_Proveedor proveedor)
-        {
-            SqlCommand cmd = new SqlCommand("SP_ELIMINARPROVEEDOR", Conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            Conexion.Open();
-
-            cmd.Parameters.AddWithValue("@esta_cancelado", proveedor.Estado);
-            cmd.Parameters.AddWithValue("@id_prov", proveedor.Id);
-
-            cmd.ExecuteNonQuery();
-            Conexion.Close();
-
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar proveedor", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
         }
     }
 }

@@ -126,5 +126,40 @@ namespace Datos
 
             return resultado;
         }
+
+        public DataSet ListadoProductoRapido(string cual)
+        {
+            string orden = string.Empty;
+            if (cual != "Todos")
+            {
+                orden = "select * from producto where Nombre_producto like '%" + cual + "%' or Cod_producto like '" + cual + "%';";
+            }
+            else
+            {
+                orden = "select * from producto;";
+            }
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar producto", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
     }
 }

@@ -28,5 +28,9 @@ namespace Negocios
             objDatosCategoria.abmCategoria(accion, objECategoria);
         }
 
+        public DataSet ListadoCategoriaRapido(string cual)
+        {
+            return objDatosCategoria.ListadoCategoriaRapido(cual);
+        }
     }
 }

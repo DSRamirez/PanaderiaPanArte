@@ -121,6 +121,7 @@ namespace Pan3
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnBuscarPorFecha = new System.Windows.Forms.Button();
             this.label63 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.txtHasta = new System.Windows.Forms.TextBox();
@@ -139,7 +140,7 @@ namespace Pan3
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbBuscarAutorizados = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.BtnNAut = new System.Windows.Forms.Button();
             this.BtnElAut = new System.Windows.Forms.Button();
@@ -160,7 +161,7 @@ namespace Pan3
             this.label24 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label43 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbBuscarClientes = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btncancelarC = new System.Windows.Forms.Button();
             this.btnnuevocliente = new System.Windows.Forms.Button();
@@ -208,11 +209,11 @@ namespace Pan3
             this.txtcuil = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbBuscarCategorias = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbBuscarProductos = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.btnEdCat = new System.Windows.Forms.Button();
@@ -246,7 +247,6 @@ namespace Pan3
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
-            this.btnBuscarPorFecha = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -1150,6 +1150,16 @@ namespace Pan3
             this.tabPage2.Text = "Caja";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnBuscarPorFecha
+            // 
+            this.btnBuscarPorFecha.Location = new System.Drawing.Point(737, 124);
+            this.btnBuscarPorFecha.Name = "btnBuscarPorFecha";
+            this.btnBuscarPorFecha.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarPorFecha.TabIndex = 37;
+            this.btnBuscarPorFecha.Text = "Buscar";
+            this.btnBuscarPorFecha.UseVisualStyleBackColor = true;
+            this.btnBuscarPorFecha.Click += new System.EventHandler(this.btnBuscarPorFecha_Click);
+            // 
             // label63
             // 
             this.label63.AutoSize = true;
@@ -1303,7 +1313,7 @@ namespace Pan3
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this.tbBuscarAutorizados);
             this.tabPage1.Controls.Add(this.label56);
             this.tabPage1.Controls.Add(this.BtnNAut);
             this.tabPage1.Controls.Add(this.BtnElAut);
@@ -1319,12 +1329,13 @@ namespace Pan3
             this.tabPage1.Text = "Autorizados";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // tbBuscarAutorizados
             // 
-            this.textBox4.Location = new System.Drawing.Point(502, 34);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(243, 23);
-            this.textBox4.TabIndex = 57;
+            this.tbBuscarAutorizados.Location = new System.Drawing.Point(484, 39);
+            this.tbBuscarAutorizados.Name = "tbBuscarAutorizados";
+            this.tbBuscarAutorizados.Size = new System.Drawing.Size(243, 23);
+            this.tbBuscarAutorizados.TabIndex = 57;
+            this.tbBuscarAutorizados.TextChanged += new System.EventHandler(this.tbBuscarAutorizados_TextChanged);
             // 
             // label56
             // 
@@ -1524,7 +1535,7 @@ namespace Pan3
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label43);
-            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.tbBuscarClientes);
             this.tabPage3.Controls.Add(this.label26);
             this.tabPage3.Controls.Add(this.btncancelarC);
             this.tabPage3.Controls.Add(this.btnnuevocliente);
@@ -1550,12 +1561,13 @@ namespace Pan3
             this.label43.TabIndex = 56;
             this.label43.Text = "Buscar:";
             // 
-            // textBox1
+            // tbBuscarClientes
             // 
-            this.textBox1.Location = new System.Drawing.Point(532, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(283, 23);
-            this.textBox1.TabIndex = 55;
+            this.tbBuscarClientes.Location = new System.Drawing.Point(532, 56);
+            this.tbBuscarClientes.Name = "tbBuscarClientes";
+            this.tbBuscarClientes.Size = new System.Drawing.Size(283, 23);
+            this.tbBuscarClientes.TabIndex = 55;
+            this.tbBuscarClientes.TextChanged += new System.EventHandler(this.tbBuscarClientes_TextChanged);
             // 
             // label26
             // 
@@ -2072,10 +2084,10 @@ namespace Pan3
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.textBox6);
+            this.tabPage5.Controls.Add(this.tbBuscarCategorias);
             this.tabPage5.Controls.Add(this.label59);
             this.tabPage5.Controls.Add(this.groupBox12);
-            this.tabPage5.Controls.Add(this.textBox5);
+            this.tabPage5.Controls.Add(this.tbBuscarProductos);
             this.tabPage5.Controls.Add(this.label58);
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.groupBox8);
@@ -2088,12 +2100,13 @@ namespace Pan3
             this.tabPage5.Text = "Productos";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // tbBuscarCategorias
             // 
-            this.textBox6.Location = new System.Drawing.Point(543, 515);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(347, 23);
-            this.textBox6.TabIndex = 40;
+            this.tbBuscarCategorias.Location = new System.Drawing.Point(543, 515);
+            this.tbBuscarCategorias.Name = "tbBuscarCategorias";
+            this.tbBuscarCategorias.Size = new System.Drawing.Size(347, 23);
+            this.tbBuscarCategorias.TabIndex = 40;
+            this.tbBuscarCategorias.TextChanged += new System.EventHandler(this.tbBuscarCategorias_TextChanged);
             // 
             // label59
             // 
@@ -2123,12 +2136,13 @@ namespace Pan3
             this.dgvCategorias.Size = new System.Drawing.Size(1282, 262);
             this.dgvCategorias.TabIndex = 1;
             // 
-            // textBox5
+            // tbBuscarProductos
             // 
-            this.textBox5.Location = new System.Drawing.Point(543, 81);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(347, 23);
-            this.textBox5.TabIndex = 37;
+            this.tbBuscarProductos.Location = new System.Drawing.Point(543, 81);
+            this.tbBuscarProductos.Name = "tbBuscarProductos";
+            this.tbBuscarProductos.Size = new System.Drawing.Size(347, 23);
+            this.tbBuscarProductos.TabIndex = 37;
+            this.tbBuscarProductos.TextChanged += new System.EventHandler(this.tbBuscarProductos_TextChanged);
             // 
             // label58
             // 
@@ -2463,16 +2477,6 @@ namespace Pan3
             this.lblAut.TabIndex = 2;
             this.lblAut.Text = "Hola: ";
             // 
-            // btnBuscarPorFecha
-            // 
-            this.btnBuscarPorFecha.Location = new System.Drawing.Point(737, 124);
-            this.btnBuscarPorFecha.Name = "btnBuscarPorFecha";
-            this.btnBuscarPorFecha.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarPorFecha.TabIndex = 37;
-            this.btnBuscarPorFecha.Text = "Buscar";
-            this.btnBuscarPorFecha.UseVisualStyleBackColor = true;
-            this.btnBuscarPorFecha.Click += new System.EventHandler(this.btnBuscarPorFecha_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2730,13 +2734,13 @@ namespace Pan3
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbBuscarAutorizados;
         private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbBuscarClientes;
+        private System.Windows.Forms.TextBox tbBuscarCategorias;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbBuscarProductos;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label lblDeuda;
         private System.Windows.Forms.Label label61;

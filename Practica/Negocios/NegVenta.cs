@@ -33,6 +33,10 @@ namespace Negocios
         public DataSet UltimoRegistroVenta()
         {
             return objDatosVenta.UltimoRegistroVenta();
-        }      
+        }
+        public DataSet VentasEntre(string Desde, string Hasta)
+        {
+            return objDatosVenta.TraerRegistrosPorFechas(Desde, Hasta);
+        }
     }
 }

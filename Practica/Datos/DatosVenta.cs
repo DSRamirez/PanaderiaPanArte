@@ -117,5 +117,37 @@ namespace Datos
             }
             return ds;
         }
+
+        public DataSet TraerRegistrosPorFechas(string Desde, string Hasta)
+        {
+            string orden = "Select v.Id_venta, c.nombre_cliente, a.Nombre_autorizado, p.Nombre_fpago , v.Montofinal, v.Fecha_venta, v.Hora_venta, v.Estado_trans, v.N_Factura " +
+                "from venta v " +
+                "Inner join cliente c on c.id_cliente = v.Id_cliente " +
+                "Inner join Autorizado a on a.Id_autorizado = v.Id_autorizado " +
+                "Inner join fpago p on p.Id_fpago = v.Id_fpago where v.Fecha_venta between '" +Desde +"' and '"+ Hasta +"'";
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer ultimo registro", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+
     }
 }

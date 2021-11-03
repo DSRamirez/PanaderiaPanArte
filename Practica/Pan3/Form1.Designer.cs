@@ -121,14 +121,15 @@ namespace Pan3
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtHasta = new System.Windows.Forms.TextBox();
+            this.txtDesde = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -245,6 +246,7 @@ namespace Pan3
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
+            this.btnBuscarPorFecha = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -290,7 +292,7 @@ namespace Pan3
             this.tabControl1.Location = new System.Drawing.Point(26, 63);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1810, 922);
+            this.tabControl1.Size = new System.Drawing.Size(1810, 943);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -339,7 +341,7 @@ namespace Pan3
             this.TabVenta.Location = new System.Drawing.Point(4, 24);
             this.TabVenta.Name = "TabVenta";
             this.TabVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.TabVenta.Size = new System.Drawing.Size(1802, 894);
+            this.TabVenta.Size = new System.Drawing.Size(1802, 915);
             this.TabVenta.TabIndex = 0;
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
@@ -413,7 +415,7 @@ namespace Pan3
             // 
             this.label57.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label57.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label57.Location = new System.Drawing.Point(115, 586);
+            this.label57.Location = new System.Drawing.Point(115, 596);
             this.label57.Name = "label57";
             this.label57.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label57.Size = new System.Drawing.Size(1093, 52);
@@ -699,7 +701,7 @@ namespace Pan3
             // 
             this.lbltotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbltotal.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbltotal.Location = new System.Drawing.Point(1194, 586);
+            this.lbltotal.Location = new System.Drawing.Point(1194, 596);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbltotal.Size = new System.Drawing.Size(96, 52);
@@ -792,7 +794,7 @@ namespace Pan3
             this.TabProductos.Location = new System.Drawing.Point(4, 24);
             this.TabProductos.Name = "TabProductos";
             this.TabProductos.Padding = new System.Windows.Forms.Padding(3);
-            this.TabProductos.Size = new System.Drawing.Size(1802, 894);
+            this.TabProductos.Size = new System.Drawing.Size(1802, 915);
             this.TabProductos.TabIndex = 1;
             this.TabProductos.Text = "Compra";
             this.TabProductos.UseVisualStyleBackColor = true;
@@ -1122,14 +1124,16 @@ namespace Pan3
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnBuscarPorFecha);
+            this.tabPage2.Controls.Add(this.label63);
+            this.tabPage2.Controls.Add(this.label62);
+            this.tabPage2.Controls.Add(this.txtHasta);
+            this.tabPage2.Controls.Add(this.txtDesde);
             this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.label32);
             this.tabPage2.Controls.Add(this.button10);
             this.tabPage2.Controls.Add(this.button9);
             this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.radioButton5);
-            this.tabPage2.Controls.Add(this.radioButton4);
-            this.tabPage2.Controls.Add(this.radioButton3);
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.label16);
@@ -1141,10 +1145,42 @@ namespace Pan3
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1802, 894);
+            this.tabPage2.Size = new System.Drawing.Size(1802, 915);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Caja";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(528, 129);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(37, 15);
+            this.label63.TabIndex = 36;
+            this.label63.Text = "Hasta";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(267, 129);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(42, 15);
+            this.label62.TabIndex = 35;
+            this.label62.Text = "Desde:";
+            // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(571, 124);
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(91, 23);
+            this.txtHasta.TabIndex = 34;
+            // 
+            // txtDesde
+            // 
+            this.txtDesde.Location = new System.Drawing.Point(315, 124);
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(102, 23);
+            this.txtDesde.TabIndex = 33;
             // 
             // label33
             // 
@@ -1193,39 +1229,6 @@ namespace Pan3
             this.label18.Size = new System.Drawing.Size(263, 21);
             this.label18.TabIndex = 27;
             this.label18.Text = "Doble click para ver detalle de venta";
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(462, 125);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(70, 19);
-            this.radioButton5.TabIndex = 10;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Mensual";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(339, 125);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(70, 19);
-            this.radioButton4.TabIndex = 9;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Semanal";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(231, 125);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(56, 19);
-            this.radioButton3.TabIndex = 8;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Diario";
-            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
@@ -1311,7 +1314,7 @@ namespace Pan3
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1802, 894);
+            this.tabPage1.Size = new System.Drawing.Size(1802, 915);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Autorizados";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1533,7 +1536,7 @@ namespace Pan3
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1802, 894);
+            this.tabPage3.Size = new System.Drawing.Size(1802, 915);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Clientes";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1779,7 +1782,7 @@ namespace Pan3
             this.tpProv.Location = new System.Drawing.Point(4, 24);
             this.tpProv.Name = "tpProv";
             this.tpProv.Padding = new System.Windows.Forms.Padding(3);
-            this.tpProv.Size = new System.Drawing.Size(1802, 894);
+            this.tpProv.Size = new System.Drawing.Size(1802, 915);
             this.tpProv.TabIndex = 6;
             this.tpProv.Text = "Proveedores";
             this.tpProv.UseVisualStyleBackColor = true;
@@ -2080,7 +2083,7 @@ namespace Pan3
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1802, 894);
+            this.tabPage5.Size = new System.Drawing.Size(1802, 915);
             this.tabPage5.TabIndex = 7;
             this.tabPage5.Text = "Productos";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2460,6 +2463,16 @@ namespace Pan3
             this.lblAut.TabIndex = 2;
             this.lblAut.Text = "Hola: ";
             // 
+            // btnBuscarPorFecha
+            // 
+            this.btnBuscarPorFecha.Location = new System.Drawing.Point(737, 124);
+            this.btnBuscarPorFecha.Name = "btnBuscarPorFecha";
+            this.btnBuscarPorFecha.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarPorFecha.TabIndex = 37;
+            this.btnBuscarPorFecha.Text = "Buscar";
+            this.btnBuscarPorFecha.UseVisualStyleBackColor = true;
+            this.btnBuscarPorFecha.Click += new System.EventHandler(this.btnBuscarPorFecha_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2557,9 +2570,6 @@ namespace Pan3
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label15;
@@ -2740,6 +2750,11 @@ namespace Pan3
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn preciounitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtHasta;
+        private System.Windows.Forms.TextBox txtDesde;
+        private System.Windows.Forms.Button btnBuscarPorFecha;
     }
 }
 

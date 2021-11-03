@@ -1117,7 +1117,26 @@ namespace Pan3
                 MessageBox.Show("No hay ventas cargados en el sistema");
         }
 
+        private void LlenarDgvVentasPorFecha()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegVenta.VentasEntre(txtDesde.Text, txtHasta.Text);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    DgvCaja.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                }
+            }
+        }
 
         #endregion
+
+        private void btnBuscarPorFecha_Click(object sender, EventArgs e)
+        {
+            DgvCaja.Rows.Clear();
+            CrearColumnasCaja();
+            LlenarDgvVentasPorFecha();
+        }
     }
 }

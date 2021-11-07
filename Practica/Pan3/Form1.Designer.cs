@@ -33,45 +33,49 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.btnETodosMP = new System.Windows.Forms.Button();
+            this.btnEliminarPago = new System.Windows.Forms.Button();
+            this.txtVuelto = new System.Windows.Forms.TextBox();
+            this.txtADeuda = new System.Windows.Forms.TextBox();
+            this.txtPagado = new System.Windows.Forms.TextBox();
+            this.txtNOp = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.CbFPago = new System.Windows.Forms.ComboBox();
+            this.txtRecargo = new System.Windows.Forms.TextBox();
+            this.DGVmdp = new System.Windows.Forms.DataGridView();
+            this.lblRecargo = new System.Windows.Forms.Label();
+            this.btnAceptarMdePagos = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.CBCliente = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.BtnCobrarDeuda = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.lblDeuda = new System.Windows.Forms.Label();
-            this.btnPP = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.lblSaldoPend = new System.Windows.Forms.Label();
-            this.labelTotal = new System.Windows.Forms.Label();
-            this.lblVuelto = new System.Windows.Forms.Label();
-            this.lblTotalPagado = new System.Windows.Forms.Label();
-            this.txtMonto = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.btnAceptarMdePagos = new System.Windows.Forms.Button();
-            this.DGVmdp = new System.Windows.Forms.DataGridView();
-            this.CbFPago = new System.Windows.Forms.ComboBox();
-            this.TxtCantidad = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.BTDescuento = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.CBCliente = new System.Windows.Forms.ComboBox();
-            this.TBCategoría = new System.Windows.Forms.TextBox();
-            this.TBCode = new System.Windows.Forms.TextBox();
-            this.TBPrecioU = new System.Windows.Forms.TextBox();
-            this.TBStock = new System.Windows.Forms.TextBox();
-            this.BTCancelar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BTAgregar = new System.Windows.Forms.Button();
             this.CBProducto = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnPP = new System.Windows.Forms.Button();
+            this.TxtCantidad = new System.Windows.Forms.TextBox();
+            this.BTAgregar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TBStock = new System.Windows.Forms.TextBox();
+            this.TBPrecioU = new System.Windows.Forms.TextBox();
+            this.TBCode = new System.Windows.Forms.TextBox();
+            this.TBCategoría = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.BTCancelar = new System.Windows.Forms.Button();
             this.lbltotal = new System.Windows.Forms.Label();
             this.BTRemover = new System.Windows.Forms.Button();
             this.BTVenta = new System.Windows.Forms.Button();
@@ -249,8 +253,11 @@ namespace Pan3
             this.lblAut = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
-            this.groupBox13.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).BeginInit();
+            this.groupBox15.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).BeginInit();
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -298,42 +305,11 @@ namespace Pan3
             // 
             // TabVenta
             // 
-            this.TabVenta.Controls.Add(this.groupBox13);
-            this.TabVenta.Controls.Add(this.btnPP);
-            this.TabVenta.Controls.Add(this.textBox7);
-            this.TabVenta.Controls.Add(this.label60);
+            this.TabVenta.Controls.Add(this.groupBox16);
+            this.TabVenta.Controls.Add(this.groupBox15);
+            this.TabVenta.Controls.Add(this.groupBox14);
             this.TabVenta.Controls.Add(this.label57);
-            this.TabVenta.Controls.Add(this.label55);
-            this.TabVenta.Controls.Add(this.label54);
-            this.TabVenta.Controls.Add(this.label53);
-            this.TabVenta.Controls.Add(this.label47);
-            this.TabVenta.Controls.Add(this.lblSaldoPend);
-            this.TabVenta.Controls.Add(this.labelTotal);
-            this.TabVenta.Controls.Add(this.lblVuelto);
-            this.TabVenta.Controls.Add(this.lblTotalPagado);
-            this.TabVenta.Controls.Add(this.txtMonto);
-            this.TabVenta.Controls.Add(this.label25);
-            this.TabVenta.Controls.Add(this.btnAceptarMdePagos);
-            this.TabVenta.Controls.Add(this.DGVmdp);
-            this.TabVenta.Controls.Add(this.CbFPago);
-            this.TabVenta.Controls.Add(this.TxtCantidad);
-            this.TabVenta.Controls.Add(this.label42);
-            this.TabVenta.Controls.Add(this.BTDescuento);
-            this.TabVenta.Controls.Add(this.label7);
-            this.TabVenta.Controls.Add(this.CBCliente);
-            this.TabVenta.Controls.Add(this.TBCategoría);
-            this.TabVenta.Controls.Add(this.TBCode);
-            this.TabVenta.Controls.Add(this.TBPrecioU);
-            this.TabVenta.Controls.Add(this.TBStock);
             this.TabVenta.Controls.Add(this.BTCancelar);
-            this.TabVenta.Controls.Add(this.label6);
-            this.TabVenta.Controls.Add(this.label5);
-            this.TabVenta.Controls.Add(this.label4);
-            this.TabVenta.Controls.Add(this.label3);
-            this.TabVenta.Controls.Add(this.label2);
-            this.TabVenta.Controls.Add(this.label1);
-            this.TabVenta.Controls.Add(this.BTAgregar);
-            this.TabVenta.Controls.Add(this.CBProducto);
             this.TabVenta.Controls.Add(this.lbltotal);
             this.TabVenta.Controls.Add(this.BTRemover);
             this.TabVenta.Controls.Add(this.BTVenta);
@@ -346,12 +322,235 @@ namespace Pan3
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
             // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.btnETodosMP);
+            this.groupBox16.Controls.Add(this.btnEliminarPago);
+            this.groupBox16.Controls.Add(this.txtVuelto);
+            this.groupBox16.Controls.Add(this.txtADeuda);
+            this.groupBox16.Controls.Add(this.txtPagado);
+            this.groupBox16.Controls.Add(this.txtNOp);
+            this.groupBox16.Controls.Add(this.label60);
+            this.groupBox16.Controls.Add(this.label42);
+            this.groupBox16.Controls.Add(this.CbFPago);
+            this.groupBox16.Controls.Add(this.txtRecargo);
+            this.groupBox16.Controls.Add(this.DGVmdp);
+            this.groupBox16.Controls.Add(this.lblRecargo);
+            this.groupBox16.Controls.Add(this.btnAceptarMdePagos);
+            this.groupBox16.Controls.Add(this.label25);
+            this.groupBox16.Controls.Add(this.txtMonto);
+            this.groupBox16.Controls.Add(this.label55);
+            this.groupBox16.Controls.Add(this.label54);
+            this.groupBox16.Controls.Add(this.label53);
+            this.groupBox16.Location = new System.Drawing.Point(724, 31);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(594, 254);
+            this.groupBox16.TabIndex = 56;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "groupBox16";
+            // 
+            // btnETodosMP
+            // 
+            this.btnETodosMP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnETodosMP.Image = ((System.Drawing.Image)(resources.GetObject("btnETodosMP.Image")));
+            this.btnETodosMP.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnETodosMP.Location = new System.Drawing.Point(488, 189);
+            this.btnETodosMP.Name = "btnETodosMP";
+            this.btnETodosMP.Size = new System.Drawing.Size(100, 57);
+            this.btnETodosMP.TabIndex = 62;
+            this.btnETodosMP.Text = "Eliminar todos";
+            this.btnETodosMP.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnETodosMP.UseVisualStyleBackColor = true;
+            this.btnETodosMP.Click += new System.EventHandler(this.btnETodosMP_Click);
+            // 
+            // btnEliminarPago
+            // 
+            this.btnEliminarPago.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEliminarPago.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarPago.Image")));
+            this.btnEliminarPago.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEliminarPago.Location = new System.Drawing.Point(488, 131);
+            this.btnEliminarPago.Name = "btnEliminarPago";
+            this.btnEliminarPago.Size = new System.Drawing.Size(100, 57);
+            this.btnEliminarPago.TabIndex = 61;
+            this.btnEliminarPago.Text = "Eliminar pago";
+            this.btnEliminarPago.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEliminarPago.UseVisualStyleBackColor = true;
+            this.btnEliminarPago.Click += new System.EventHandler(this.btnEliminarPago_Click);
+            // 
+            // txtVuelto
+            // 
+            this.txtVuelto.Location = new System.Drawing.Point(382, 49);
+            this.txtVuelto.Name = "txtVuelto";
+            this.txtVuelto.Size = new System.Drawing.Size(100, 23);
+            this.txtVuelto.TabIndex = 60;
+            // 
+            // txtADeuda
+            // 
+            this.txtADeuda.Location = new System.Drawing.Point(382, 78);
+            this.txtADeuda.Name = "txtADeuda";
+            this.txtADeuda.Size = new System.Drawing.Size(100, 23);
+            this.txtADeuda.TabIndex = 59;
+            // 
+            // txtPagado
+            // 
+            this.txtPagado.Location = new System.Drawing.Point(382, 18);
+            this.txtPagado.Name = "txtPagado";
+            this.txtPagado.Size = new System.Drawing.Size(100, 23);
+            this.txtPagado.TabIndex = 58;
+            // 
+            // txtNOp
+            // 
+            this.txtNOp.Location = new System.Drawing.Point(117, 102);
+            this.txtNOp.Name = "txtNOp";
+            this.txtNOp.Size = new System.Drawing.Size(113, 23);
+            this.txtNOp.TabIndex = 56;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label60.Location = new System.Drawing.Point(13, 106);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(96, 15);
+            this.label60.TabIndex = 55;
+            this.label60.Text = "N° de operación:";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label42.Location = new System.Drawing.Point(13, 19);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(90, 15);
+            this.label42.TabIndex = 26;
+            this.label42.Text = "Forma de pago:";
+            // 
+            // CbFPago
+            // 
+            this.CbFPago.FormattingEnabled = true;
+            this.CbFPago.Location = new System.Drawing.Point(117, 16);
+            this.CbFPago.Name = "CbFPago";
+            this.CbFPago.Size = new System.Drawing.Size(113, 23);
+            this.CbFPago.TabIndex = 31;
+            this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
+            // 
+            // txtRecargo
+            // 
+            this.txtRecargo.Location = new System.Drawing.Point(117, 74);
+            this.txtRecargo.Name = "txtRecargo";
+            this.txtRecargo.Size = new System.Drawing.Size(113, 23);
+            this.txtRecargo.TabIndex = 54;
+            // 
+            // DGVmdp
+            // 
+            this.DGVmdp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVmdp.Location = new System.Drawing.Point(6, 131);
+            this.DGVmdp.Name = "DGVmdp";
+            this.DGVmdp.RowTemplate.Height = 25;
+            this.DGVmdp.Size = new System.Drawing.Size(476, 115);
+            this.DGVmdp.TabIndex = 32;
+            // 
+            // lblRecargo
+            // 
+            this.lblRecargo.AutoSize = true;
+            this.lblRecargo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRecargo.Location = new System.Drawing.Point(13, 78);
+            this.lblRecargo.Name = "lblRecargo";
+            this.lblRecargo.Size = new System.Drawing.Size(53, 15);
+            this.lblRecargo.TabIndex = 53;
+            this.lblRecargo.Text = "Recargo:";
+            // 
+            // btnAceptarMdePagos
+            // 
+            this.btnAceptarMdePagos.BackColor = System.Drawing.Color.White;
+            this.btnAceptarMdePagos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarMdePagos.Image")));
+            this.btnAceptarMdePagos.Location = new System.Drawing.Point(249, 49);
+            this.btnAceptarMdePagos.Name = "btnAceptarMdePagos";
+            this.btnAceptarMdePagos.Size = new System.Drawing.Size(46, 43);
+            this.btnAceptarMdePagos.TabIndex = 33;
+            this.btnAceptarMdePagos.UseVisualStyleBackColor = false;
+            this.btnAceptarMdePagos.Click += new System.EventHandler(this.btnAceptarMdePagos_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label25.Location = new System.Drawing.Point(13, 48);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(46, 15);
+            this.label25.TabIndex = 34;
+            this.label25.Text = "Monto:";
+            // 
+            // txtMonto
+            // 
+            this.txtMonto.Location = new System.Drawing.Point(117, 45);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(113, 23);
+            this.txtMonto.TabIndex = 35;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(318, 52);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(53, 15);
+            this.label55.TabIndex = 43;
+            this.label55.Text = "Vuelto: $";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(318, 81);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(53, 15);
+            this.label54.TabIndex = 42;
+            this.label54.Text = "Deuda: $";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(284, 21);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(87, 15);
+            this.label53.TabIndex = 41;
+            this.label53.Text = "Total pagado: $";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.CBCliente);
+            this.groupBox15.Controls.Add(this.label7);
+            this.groupBox15.Controls.Add(this.groupBox13);
+            this.groupBox15.Location = new System.Drawing.Point(51, 31);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(240, 254);
+            this.groupBox15.TabIndex = 55;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "groupBox15";
+            // 
+            // CBCliente
+            // 
+            this.CBCliente.FormattingEnabled = true;
+            this.CBCliente.Location = new System.Drawing.Point(15, 45);
+            this.CBCliente.Name = "CBCliente";
+            this.CBCliente.Size = new System.Drawing.Size(151, 23);
+            this.CBCliente.TabIndex = 23;
+            this.CBCliente.SelectedIndexChanged += new System.EventHandler(this.CBCliente_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 15);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Cliente";
+            // 
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.BtnCobrarDeuda);
             this.groupBox13.Controls.Add(this.label61);
             this.groupBox13.Controls.Add(this.lblDeuda);
-            this.groupBox13.Location = new System.Drawing.Point(1090, 17);
+            this.groupBox13.Location = new System.Drawing.Point(15, 101);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(200, 100);
             this.groupBox13.TabIndex = 51;
@@ -385,37 +584,162 @@ namespace Pan3
             this.lblDeuda.Size = new System.Drawing.Size(0, 15);
             this.lblDeuda.TabIndex = 49;
             // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label1);
+            this.groupBox14.Controls.Add(this.CBProducto);
+            this.groupBox14.Controls.Add(this.label2);
+            this.groupBox14.Controls.Add(this.btnPP);
+            this.groupBox14.Controls.Add(this.TxtCantidad);
+            this.groupBox14.Controls.Add(this.BTAgregar);
+            this.groupBox14.Controls.Add(this.label6);
+            this.groupBox14.Controls.Add(this.label3);
+            this.groupBox14.Controls.Add(this.label4);
+            this.groupBox14.Controls.Add(this.label5);
+            this.groupBox14.Controls.Add(this.TBStock);
+            this.groupBox14.Controls.Add(this.TBPrecioU);
+            this.groupBox14.Controls.Add(this.TBCode);
+            this.groupBox14.Controls.Add(this.TBCategoría);
+            this.groupBox14.Location = new System.Drawing.Point(328, 31);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(380, 254);
+            this.groupBox14.TabIndex = 52;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "groupBox14";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Buscar por Código / Producto";
+            // 
+            // CBProducto
+            // 
+            this.CBProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CBProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CBProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBProducto.FormattingEnabled = true;
+            this.CBProducto.Location = new System.Drawing.Point(6, 48);
+            this.CBProducto.Name = "CBProducto";
+            this.CBProducto.Size = new System.Drawing.Size(202, 23);
+            this.CBProducto.TabIndex = 4;
+            this.CBProducto.SelectedIndexChanged += new System.EventHandler(this.CBProducto_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(224, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Cantidad";
+            // 
             // btnPP
             // 
-            this.btnPP.Location = new System.Drawing.Point(346, 43);
+            this.btnPP.Image = ((System.Drawing.Image)(resources.GetObject("btnPP.Image")));
+            this.btnPP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPP.Location = new System.Drawing.Point(6, 182);
             this.btnPP.Name = "btnPP";
-            this.btnPP.Size = new System.Drawing.Size(137, 23);
+            this.btnPP.Size = new System.Drawing.Size(168, 66);
             this.btnPP.TabIndex = 50;
             this.btnPP.Text = "Productos varios ";
+            this.btnPP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPP.UseVisualStyleBackColor = true;
             this.btnPP.Click += new System.EventHandler(this.btnPP_Click);
             // 
-            // textBox7
+            // TxtCantidad
             // 
-            this.textBox7.Location = new System.Drawing.Point(227, 94);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(90, 23);
-            this.textBox7.TabIndex = 47;
+            this.TxtCantidad.Location = new System.Drawing.Point(224, 48);
+            this.TxtCantidad.Name = "TxtCantidad";
+            this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
+            this.TxtCantidad.TabIndex = 29;
             // 
-            // label60
+            // BTAgregar
             // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(227, 73);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(44, 15);
-            this.label60.TabIndex = 46;
-            this.label60.Text = "label60";
+            this.BTAgregar.BackColor = System.Drawing.Color.White;
+            this.BTAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BTAgregar.Image")));
+            this.BTAgregar.Location = new System.Drawing.Point(308, 38);
+            this.BTAgregar.Name = "BTAgregar";
+            this.BTAgregar.Size = new System.Drawing.Size(49, 43);
+            this.BTAgregar.TabIndex = 6;
+            this.BTAgregar.UseVisualStyleBackColor = false;
+            this.BTAgregar.Click += new System.EventHandler(this.BTAgregar_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(119, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Código:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Stock:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 15);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Precio por Unidad:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(119, 126);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 15);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Categoría:";
+            // 
+            // TBStock
+            // 
+            this.TBStock.Location = new System.Drawing.Point(8, 98);
+            this.TBStock.Name = "TBStock";
+            this.TBStock.ReadOnly = true;
+            this.TBStock.Size = new System.Drawing.Size(100, 23);
+            this.TBStock.TabIndex = 16;
+            // 
+            // TBPrecioU
+            // 
+            this.TBPrecioU.Location = new System.Drawing.Point(8, 146);
+            this.TBPrecioU.Name = "TBPrecioU";
+            this.TBPrecioU.Size = new System.Drawing.Size(100, 23);
+            this.TBPrecioU.TabIndex = 17;
+            // 
+            // TBCode
+            // 
+            this.TBCode.Location = new System.Drawing.Point(119, 98);
+            this.TBCode.Name = "TBCode";
+            this.TBCode.ReadOnly = true;
+            this.TBCode.Size = new System.Drawing.Size(90, 23);
+            this.TBCode.TabIndex = 18;
+            // 
+            // TBCategoría
+            // 
+            this.TBCategoría.Location = new System.Drawing.Point(119, 144);
+            this.TBCategoría.Name = "TBCategoría";
+            this.TBCategoría.ReadOnly = true;
+            this.TBCategoría.Size = new System.Drawing.Size(134, 23);
+            this.TBCategoría.TabIndex = 19;
             // 
             // label57
             // 
             this.label57.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label57.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label57.Location = new System.Drawing.Point(115, 596);
+            this.label57.Location = new System.Drawing.Point(113, 665);
             this.label57.Name = "label57";
             this.label57.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label57.Size = new System.Drawing.Size(1093, 52);
@@ -423,285 +747,21 @@ namespace Pan3
             this.label57.Text = "Total: $ ";
             this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(1004, 215);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(53, 15);
-            this.label55.TabIndex = 43;
-            this.label55.Text = "Vuelto: $";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(1004, 187);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(104, 15);
-            this.label54.TabIndex = 42;
-            this.label54.Text = "Saldo pendiente: $";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(1004, 159);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(87, 15);
-            this.label53.TabIndex = 41;
-            this.label53.Text = "Total pagado: $";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(1004, 127);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(44, 15);
-            this.label47.TabIndex = 40;
-            this.label47.Text = "Total: $";
-            // 
-            // lblSaldoPend
-            // 
-            this.lblSaldoPend.AutoSize = true;
-            this.lblSaldoPend.Location = new System.Drawing.Point(1125, 187);
-            this.lblSaldoPend.Name = "lblSaldoPend";
-            this.lblSaldoPend.Size = new System.Drawing.Size(0, 15);
-            this.lblSaldoPend.TabIndex = 39;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(1057, 127);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(0, 15);
-            this.labelTotal.TabIndex = 38;
-            // 
-            // lblVuelto
-            // 
-            this.lblVuelto.AutoSize = true;
-            this.lblVuelto.Location = new System.Drawing.Point(1080, 215);
-            this.lblVuelto.Name = "lblVuelto";
-            this.lblVuelto.Size = new System.Drawing.Size(0, 15);
-            this.lblVuelto.TabIndex = 37;
-            // 
-            // lblTotalPagado
-            // 
-            this.lblTotalPagado.AutoSize = true;
-            this.lblTotalPagado.Location = new System.Drawing.Point(1098, 159);
-            this.lblTotalPagado.Name = "lblTotalPagado";
-            this.lblTotalPagado.Size = new System.Drawing.Size(0, 15);
-            this.lblTotalPagado.TabIndex = 36;
-            // 
-            // txtMonto
-            // 
-            this.txtMonto.Location = new System.Drawing.Point(779, 79);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(113, 23);
-            this.txtMonto.TabIndex = 35;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label25.Location = new System.Drawing.Point(650, 77);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(58, 21);
-            this.label25.TabIndex = 34;
-            this.label25.Text = "Monto:";
-            // 
-            // btnAceptarMdePagos
-            // 
-            this.btnAceptarMdePagos.Location = new System.Drawing.Point(923, 65);
-            this.btnAceptarMdePagos.Name = "btnAceptarMdePagos";
-            this.btnAceptarMdePagos.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarMdePagos.TabIndex = 33;
-            this.btnAceptarMdePagos.Text = "Aceptar";
-            this.btnAceptarMdePagos.UseVisualStyleBackColor = true;
-            this.btnAceptarMdePagos.Click += new System.EventHandler(this.btnAceptarMdePagos_Click);
-            // 
-            // DGVmdp
-            // 
-            this.DGVmdp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVmdp.Location = new System.Drawing.Point(650, 110);
-            this.DGVmdp.Name = "DGVmdp";
-            this.DGVmdp.RowTemplate.Height = 25;
-            this.DGVmdp.Size = new System.Drawing.Size(348, 120);
-            this.DGVmdp.TabIndex = 32;
-            // 
-            // CbFPago
-            // 
-            this.CbFPago.FormattingEnabled = true;
-            this.CbFPago.Location = new System.Drawing.Point(779, 43);
-            this.CbFPago.Name = "CbFPago";
-            this.CbFPago.Size = new System.Drawing.Size(113, 23);
-            this.CbFPago.TabIndex = 31;
-            this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
-            // 
-            // TxtCantidad
-            // 
-            this.TxtCantidad.Location = new System.Drawing.Point(118, 94);
-            this.TxtCantidad.Name = "TxtCantidad";
-            this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
-            this.TxtCantidad.TabIndex = 29;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(650, 45);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(120, 21);
-            this.label42.TabIndex = 26;
-            this.label42.Text = "Forma de pago:";
-            // 
-            // BTDescuento
-            // 
-            this.BTDescuento.Location = new System.Drawing.Point(402, 193);
-            this.BTDescuento.Name = "BTDescuento";
-            this.BTDescuento.Size = new System.Drawing.Size(151, 37);
-            this.BTDescuento.TabIndex = 25;
-            this.BTDescuento.Text = "Agregar Descuento";
-            this.BTDescuento.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(402, 141);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 15);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "Cliente";
-            // 
-            // CBCliente
-            // 
-            this.CBCliente.FormattingEnabled = true;
-            this.CBCliente.Location = new System.Drawing.Point(402, 159);
-            this.CBCliente.Name = "CBCliente";
-            this.CBCliente.Size = new System.Drawing.Size(151, 23);
-            this.CBCliente.TabIndex = 23;
-            this.CBCliente.SelectedIndexChanged += new System.EventHandler(this.CBCliente_SelectedIndexChanged);
-            // 
-            // TBCategoría
-            // 
-            this.TBCategoría.Location = new System.Drawing.Point(227, 205);
-            this.TBCategoría.Name = "TBCategoría";
-            this.TBCategoría.ReadOnly = true;
-            this.TBCategoría.Size = new System.Drawing.Size(134, 23);
-            this.TBCategoría.TabIndex = 19;
-            // 
-            // TBCode
-            // 
-            this.TBCode.Location = new System.Drawing.Point(227, 159);
-            this.TBCode.Name = "TBCode";
-            this.TBCode.ReadOnly = true;
-            this.TBCode.Size = new System.Drawing.Size(90, 23);
-            this.TBCode.TabIndex = 18;
-            // 
-            // TBPrecioU
-            // 
-            this.TBPrecioU.Location = new System.Drawing.Point(116, 207);
-            this.TBPrecioU.Name = "TBPrecioU";
-            this.TBPrecioU.Size = new System.Drawing.Size(100, 23);
-            this.TBPrecioU.TabIndex = 17;
-            // 
-            // TBStock
-            // 
-            this.TBStock.Location = new System.Drawing.Point(116, 159);
-            this.TBStock.Name = "TBStock";
-            this.TBStock.ReadOnly = true;
-            this.TBStock.Size = new System.Drawing.Size(100, 23);
-            this.TBStock.TabIndex = 16;
-            // 
             // BTCancelar
             // 
             this.BTCancelar.BackColor = System.Drawing.Color.Transparent;
             this.BTCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTCancelar.BackgroundImage")));
-            this.BTCancelar.Location = new System.Drawing.Point(29, 576);
+            this.BTCancelar.Location = new System.Drawing.Point(27, 645);
             this.BTCancelar.Name = "BTCancelar";
             this.BTCancelar.Size = new System.Drawing.Size(80, 80);
             this.BTCancelar.TabIndex = 14;
             this.BTCancelar.UseVisualStyleBackColor = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 141);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 15);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Código:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(227, 187);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 15);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Categoría:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 187);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 15);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Precio por Unidad:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(116, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 15);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Stock:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 15);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Cantidad";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(116, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 15);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Buscar por Código / Producto";
-            // 
-            // BTAgregar
-            // 
-            this.BTAgregar.Location = new System.Drawing.Point(346, 75);
-            this.BTAgregar.Name = "BTAgregar";
-            this.BTAgregar.Size = new System.Drawing.Size(137, 45);
-            this.BTAgregar.TabIndex = 6;
-            this.BTAgregar.Text = "Agregar Producto";
-            this.BTAgregar.UseVisualStyleBackColor = true;
-            this.BTAgregar.Click += new System.EventHandler(this.BTAgregar_Click);
-            // 
-            // CBProducto
-            // 
-            this.CBProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.CBProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CBProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBProducto.FormattingEnabled = true;
-            this.CBProducto.Location = new System.Drawing.Point(115, 43);
-            this.CBProducto.Name = "CBProducto";
-            this.CBProducto.Size = new System.Drawing.Size(202, 23);
-            this.CBProducto.TabIndex = 4;
-            this.CBProducto.SelectedIndexChanged += new System.EventHandler(this.CBProducto_SelectedIndexChanged);
-            // 
             // lbltotal
             // 
             this.lbltotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbltotal.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbltotal.Location = new System.Drawing.Point(1194, 596);
+            this.lbltotal.Location = new System.Drawing.Point(1192, 665);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbltotal.Size = new System.Drawing.Size(96, 52);
@@ -712,16 +772,16 @@ namespace Pan3
             // 
             this.BTRemover.BackColor = System.Drawing.Color.Transparent;
             this.BTRemover.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTRemover.BackgroundImage")));
-            this.BTRemover.Location = new System.Drawing.Point(29, 242);
+            this.BTRemover.Location = new System.Drawing.Point(27, 291);
             this.BTRemover.Name = "BTRemover";
-            this.BTRemover.Size = new System.Drawing.Size(80, 80);
+            this.BTRemover.Size = new System.Drawing.Size(80, 100);
             this.BTRemover.TabIndex = 2;
             this.BTRemover.UseVisualStyleBackColor = false;
             // 
             // BTVenta
             // 
             this.BTVenta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTVenta.BackgroundImage")));
-            this.BTVenta.Location = new System.Drawing.Point(1190, 130);
+            this.BTVenta.Location = new System.Drawing.Point(1401, 185);
             this.BTVenta.Name = "BTVenta";
             this.BTVenta.Size = new System.Drawing.Size(100, 100);
             this.BTVenta.TabIndex = 1;
@@ -737,10 +797,10 @@ namespace Pan3
             this.product,
             this.preciounitario,
             this.Total});
-            this.DGVListaVenta.Location = new System.Drawing.Point(115, 242);
+            this.DGVListaVenta.Location = new System.Drawing.Point(113, 291);
             this.DGVListaVenta.Name = "DGVListaVenta";
             this.DGVListaVenta.RowTemplate.Height = 25;
-            this.DGVListaVenta.Size = new System.Drawing.Size(1175, 414);
+            this.DGVListaVenta.Size = new System.Drawing.Size(1388, 434);
             this.DGVListaVenta.TabIndex = 0;
             // 
             // id_prod
@@ -2491,10 +2551,15 @@ namespace Pan3
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.TabVenta.ResumeLayout(false);
-            this.TabVenta.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).EndInit();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).EndInit();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).EndInit();
             this.TabProductos.ResumeLayout(false);
             this.TabProductos.PerformLayout();
@@ -2544,7 +2609,6 @@ namespace Pan3
         private System.Windows.Forms.TabPage TabVenta;
         private System.Windows.Forms.Button BTRemover;
         private System.Windows.Forms.Button BTVenta;
-        private System.Windows.Forms.ComboBox CBProducto;
         private System.Windows.Forms.Button BTAgregar;
         private System.Windows.Forms.Button BTCancelar;
         private System.Windows.Forms.Label label6;
@@ -2559,7 +2623,6 @@ namespace Pan3
         private System.Windows.Forms.TextBox TBStock;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CBCliente;
-        private System.Windows.Forms.Button BTDescuento;
         private System.Windows.Forms.Label lbltime;
         private System.Windows.Forms.Timer TimerHora;
         private System.Windows.Forms.TabPage TabProductos;
@@ -2641,7 +2704,6 @@ namespace Pan3
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.TextBox txtNomProd;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label42;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox txtCodCat;
         private System.Windows.Forms.Label label40;
@@ -2715,24 +2777,11 @@ namespace Pan3
         private System.Windows.Forms.TextBox TxtCantidad;
         private System.Windows.Forms.Label lblIdP;
         private System.Windows.Forms.Label lblAut;
-        private System.Windows.Forms.ComboBox CbFPago;
         private System.Windows.Forms.Label lbltotal;
         private System.Windows.Forms.DataGridView DGVListaVenta;
         private System.Windows.Forms.Label lblcliente;
         private System.Windows.Forms.Label lblformap;
-        private System.Windows.Forms.TextBox txtMonto;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button btnAceptarMdePagos;
-        private System.Windows.Forms.DataGridView DGVmdp;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label lblVuelto;
-        private System.Windows.Forms.Label lblTotalPagado;
-        private System.Windows.Forms.Label labelTotal;
-        private System.Windows.Forms.Label lblSaldoPend;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.TextBox tbBuscarAutorizados;
         private System.Windows.Forms.Label label56;
@@ -2744,8 +2793,6 @@ namespace Pan3
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label lblDeuda;
         private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Button btnPP;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Button BtnCobrarDeuda;
@@ -2759,6 +2806,28 @@ namespace Pan3
         private System.Windows.Forms.TextBox txtHasta;
         private System.Windows.Forms.TextBox txtDesde;
         private System.Windows.Forms.Button btnBuscarPorFecha;
+        private System.Windows.Forms.GroupBox groupBox14;
+        protected System.Windows.Forms.TextBox txtRecargo;
+        protected System.Windows.Forms.Label lblRecargo;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.ComboBox CBProducto;
+        protected System.Windows.Forms.Label label42;
+        protected System.Windows.Forms.ComboBox CbFPago;
+        protected System.Windows.Forms.TextBox txtMonto;
+        protected System.Windows.Forms.Label label25;
+        protected System.Windows.Forms.Button btnAceptarMdePagos;
+        protected System.Windows.Forms.DataGridView DGVmdp;
+        protected System.Windows.Forms.Label label55;
+        protected System.Windows.Forms.Label label54;
+        protected System.Windows.Forms.Label label53;
+        protected System.Windows.Forms.TextBox txtNOp;
+        protected System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox txtVuelto;
+        private System.Windows.Forms.TextBox txtADeuda;
+        private System.Windows.Forms.TextBox txtPagado;
+        private System.Windows.Forms.Button btnETodosMP;
+        private System.Windows.Forms.Button btnEliminarPago;
     }
 }
 

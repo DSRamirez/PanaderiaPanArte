@@ -383,6 +383,8 @@ namespace Pan3
             this.txtVuelto.Name = "txtVuelto";
             this.txtVuelto.Size = new System.Drawing.Size(100, 23);
             this.txtVuelto.TabIndex = 60;
+            this.txtVuelto.Text = "0";
+            this.txtVuelto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtADeuda
             // 
@@ -390,6 +392,8 @@ namespace Pan3
             this.txtADeuda.Name = "txtADeuda";
             this.txtADeuda.Size = new System.Drawing.Size(100, 23);
             this.txtADeuda.TabIndex = 59;
+            this.txtADeuda.Text = "0";
+            this.txtADeuda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPagado
             // 
@@ -397,6 +401,8 @@ namespace Pan3
             this.txtPagado.Name = "txtPagado";
             this.txtPagado.Size = new System.Drawing.Size(100, 23);
             this.txtPagado.TabIndex = 58;
+            this.txtPagado.Text = "0";
+            this.txtPagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtNOp
             // 
@@ -529,6 +535,8 @@ namespace Pan3
             // 
             // CBCliente
             // 
+            this.CBCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CBCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CBCliente.FormattingEnabled = true;
             this.CBCliente.Location = new System.Drawing.Point(15, 45);
             this.CBCliente.Name = "CBCliente";
@@ -572,9 +580,9 @@ namespace Pan3
             this.label61.AutoSize = true;
             this.label61.Location = new System.Drawing.Point(6, 23);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(93, 15);
+            this.label61.Size = new System.Drawing.Size(47, 15);
             this.label61.TabIndex = 48;
-            this.label61.Text = "Deuda/ A favor: ";
+            this.label61.Text = "Deuda: ";
             // 
             // lblDeuda
             // 
@@ -656,6 +664,8 @@ namespace Pan3
             this.TxtCantidad.Name = "TxtCantidad";
             this.TxtCantidad.Size = new System.Drawing.Size(78, 23);
             this.TxtCantidad.TabIndex = 29;
+            this.TxtCantidad.Text = "1";
+            this.TxtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BTAgregar
             // 
@@ -716,6 +726,7 @@ namespace Pan3
             // 
             this.TBPrecioU.Location = new System.Drawing.Point(8, 146);
             this.TBPrecioU.Name = "TBPrecioU";
+            this.TBPrecioU.ReadOnly = true;
             this.TBPrecioU.Size = new System.Drawing.Size(100, 23);
             this.TBPrecioU.TabIndex = 17;
             // 
@@ -774,9 +785,10 @@ namespace Pan3
             this.BTRemover.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTRemover.BackgroundImage")));
             this.BTRemover.Location = new System.Drawing.Point(27, 291);
             this.BTRemover.Name = "BTRemover";
-            this.BTRemover.Size = new System.Drawing.Size(80, 100);
+            this.BTRemover.Size = new System.Drawing.Size(80, 80);
             this.BTRemover.TabIndex = 2;
             this.BTRemover.UseVisualStyleBackColor = false;
+            this.BTRemover.Click += new System.EventHandler(this.BTRemover_Click);
             // 
             // BTVenta
             // 

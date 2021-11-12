@@ -27,6 +27,7 @@ namespace Pan3
         private bool editarse = false;
         private int montoPP;
         private string detallePP;
+        private decimal MontoPagoDeuda;
         double montoConInt = 0;
         decimal Pagado = 0;
 
@@ -820,6 +821,8 @@ namespace Pan3
         private void BTVenta_Click(object sender, EventArgs e)
         {
             GuardarVenta();
+            GuardarDeuda();
+            MostrarDeuda();
         }
 
         private void GuardarVenta()
@@ -873,7 +876,6 @@ namespace Pan3
 
             preciototal = 0;
             CalcularTotalVenta();
-            lbltotal.Text = preciototal.ToString();
         }
 
         private void CalcularTotalVenta()
@@ -882,6 +884,8 @@ namespace Pan3
             {
                 preciototal += Convert.ToDecimal(DGVListaVenta.Rows[i].Cells[4].Value);
             }
+            lbltotal.Text = preciototal.ToString();
+            txtADeuda.Text = lbltotal.Text;
         }
 
         private void LlenarCbProductos()
@@ -924,7 +928,7 @@ namespace Pan3
 
         private void CBCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblDeuda.Text = "";
+            lblDeuda.Text = "0";
             CBCliente.SelectedValue.ToString();
             MostrarDeuda();
         }
@@ -1003,11 +1007,10 @@ namespace Pan3
             txtPagado.Text = Pagado.ToString();
             CalcularSaldo();
             CalcularVuelto();
-
         }
         private void CalcularInteres()
         {
-            montoConInt = Convert.ToDouble(txtMonto.Text) * 1.1;
+            montoConInt = (double.Parse(txtMonto.Text) * double.Parse(txtRecargo.Text)) / 100;
         }
         private void CalcularTotalPagado()
         {
@@ -1133,11 +1136,83 @@ namespace Pan3
 
         private void BtnCobrarDeuda_Click(object sender, EventArgs e)
         {
-            decimal diferencia = 0;
-
-            if (Convert.ToDecimal(txtVuelto.Text) >= 0)
+            if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
-                diferencia = Convert.ToDecimal(lblDeuda.Text) - Convert.ToDecimal(txtVuelto.Text);
+                CobrarDeudaSola();
+            }
+            else
+            {
+                CobrarActualizarDeuda();
+            }
+        }
+
+        private void GuardarDeuda()
+        {
+            decimal adeuda = Convert.ToDecimal(txtADeuda.Text);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = objNegVenta.UltimoRegistroVenta();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        objEDeuda.Id_venta1 = Convert.ToInt32(dr["Id_venta"]);
+                    }
+                }
+                objEDeuda.Fecha1 = DateTime.Now.ToString("d");
+                objEDeuda.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
+                objEDeuda.Importe1 = Convert.ToInt32(adeuda);
+
+                objNegDeuda.EditandoDeuda("Alta", objEDeuda);
+
+                MessageBox.Show("Deuda actualizada");
+                MostrarDeuda();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo actualizar la deuda" + ex);
+            }
+        }
+
+        private void CobrarDeudaSola()
+        {
+            decimal diferencia = 0;
+            decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
+            deuda1 = deuda1 * -1;
+
+            if (Convert.ToDecimal(txtVuelto.Text) == 0)
+            {
+                MontoPagoDeuda = Convert.ToInt32(Interaction.InputBox("Monto", "Deuda"));
+                diferencia = MontoPagoDeuda - deuda1;
+            }
+
+            try
+            {
+                objEDeuda.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
+                objEDeuda.Importe1 = Convert.ToInt32(diferencia);
+
+                objNegDeuda.EditandoDeuda("Modificar", objEDeuda);
+
+                MessageBox.Show("Deuda actualizada");
+                MostrarDeuda();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo actualizar la deuda" + ex);
+            }
+        }
+
+        private void CobrarActualizarDeuda()
+        {
+            decimal diferencia = 0;
+            decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
+            deuda1 = deuda1 * -1;
+
+            if (Convert.ToDecimal(txtVuelto.Text) > 0)
+            {
+                diferencia = Convert.ToDecimal(txtVuelto.Text) - deuda1;
 
                 if (diferencia >= 0)
                 {
@@ -1145,6 +1220,7 @@ namespace Pan3
                     diferencia = 0;
                 }
             }
+
             try
             {
                 objEDeuda.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
@@ -1346,6 +1422,7 @@ namespace Pan3
         private void btnEliminarPago_Click(object sender, EventArgs e)
         {
             decimal importe = 0;
+            decimal total = 0;
 
             int fila = DGVmdp.CurrentRow.Index;
             DGVmdp.Rows.RemoveAt(fila);
@@ -1357,8 +1434,64 @@ namespace Pan3
             Pagado = importe;
             txtADeuda.Text = Convert.ToString(decimal.Parse(lbltotal.Text) - Pagado);
 
-            txtMonto.Text = "";
-            txtRecargo.Text = "";
+            txtPagado.Text = Convert.ToString(importe);
+            txtADeuda.Text = Convert.ToString(decimal.Parse(lbltotal.Text) - decimal.Parse(txtPagado.Text));
+
+            total = decimal.Parse(lbltotal.Text);
+            decimal pagado = decimal.Parse(txtPagado.Text);
+
+            if (pagado < total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado == total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado > total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (txtADeuda.Text == "0")
+            {
+                txtADeuda.BackColor = Color.WhiteSmoke;
+            }
+
         }
+
+        private void BTRemover_Click(object sender, EventArgs e)
+        {
+            decimal total = 0;
+            decimal pagado = 0;
+            int fila = DGVListaVenta.CurrentRow.Index;
+            DGVListaVenta.Rows.RemoveAt(fila);
+
+            foreach (DataGridViewRow row in DGVListaVenta.Rows)
+            {
+                total += Convert.ToDecimal(row.Cells[4].Value);
+            }
+            lbltotal.Text = Convert.ToString(total);
+
+            total = decimal.Parse(lbltotal.Text);
+            pagado = decimal.Parse(txtPagado.Text);
+
+            if (pagado < total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado == total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado > total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (txtADeuda.Text == "0")
+            {
+                txtADeuda.BackColor = Color.WhiteSmoke;
+            }
+        }
+
     }
 }

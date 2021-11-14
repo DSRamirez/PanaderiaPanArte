@@ -251,6 +251,8 @@ namespace Pan3
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
             this.groupBox16.SuspendLayout();
@@ -305,6 +307,7 @@ namespace Pan3
             // 
             // TabVenta
             // 
+            this.TabVenta.Controls.Add(this.btnPrint);
             this.TabVenta.Controls.Add(this.groupBox16);
             this.TabVenta.Controls.Add(this.groupBox15);
             this.TabVenta.Controls.Add(this.groupBox14);
@@ -2549,6 +2552,20 @@ namespace Pan3
             this.lblAut.TabIndex = 2;
             this.lblAut.Text = "Hola: ";
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(1446, 42);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(55, 49);
+            this.btnPrint.TabIndex = 57;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2840,6 +2857,8 @@ namespace Pan3
         private System.Windows.Forms.TextBox txtPagado;
         private System.Windows.Forms.Button btnETodosMP;
         private System.Windows.Forms.Button btnEliminarPago;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnPrint;
     }
 }
 

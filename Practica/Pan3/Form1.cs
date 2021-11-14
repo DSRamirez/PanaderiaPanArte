@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Entidades;
 using Negocios;
 using Microsoft.VisualBasic;
+using System.Drawing.Printing;
 
 
 
@@ -101,7 +102,6 @@ namespace Pan3
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //mostrarBuscarTablaP("");
             accionestabla();
             LlenarDGV();
             LlenarDGVAut();
@@ -1493,5 +1493,33 @@ namespace Pan3
             }
         }
 
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+            Font font = new Font("Arial", 14);
+            int ancho = 500;
+            int y = 30;
+
+            e.Graphics.DrawString(" ***** PANADERÍA PANARTE ***** ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString(" Cliente: " + CBCliente.Text, font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString(" -------- Productos ---------- " + CBCliente.Text, font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
+            foreach (DataGridViewRow row in DGVListaVenta.Rows)
+            {
+                e.Graphics.DrawString((row.Cells[2].Value) + "     " + (row.Cells[4].Value), font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            }
+
+            e.Graphics.DrawString(" Total: $" + lbltotal.Text, font, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+
+            e.Graphics.DrawString(" *** GRACIAS POR SU COMPRA *** ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            printDocument1 = new PrintDocument();
+            PrinterSettings ps = new PrinterSettings();
+            printDocument1.PrinterSettings = ps;
+            printDocument1.PrintPage += Imprimir;
+            printDocument1.Print();
+        }
     }
 }

@@ -58,6 +58,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKqSURBVFhH7dbdS1NhHAdw/wG7Crrp3i66KUZ1UYgRgliQ
+        tFr0orRKmEiGghUiLpM158ytwrnNbdA0mYIiZCpE3qR5MYS2kPINW2vmZL4159zUX+d39uy4eaay52xX
+        9YXP1Z59z5ftXDwZ/3NQHuo+iIUgNfRp6raDfeI3FU2PHUgNfcyDTgiGt6hYmO+SGvqYBpwQ2NiiguNJ
+        DX1amQF/1jep4HhSQx9jvwOWA2EqOJ7U0Mfw3gE+f5iKsT8FA/TMAO9qiAqOJzX0aelzwNxyiAqOJzX0
+        0TED3EsbVHA8qUk6tszMQ9voiuQmuHxBKuLrtyHaw3R2Rqr3yOWiioaConIbOnzkqEskOg1Ier8EhkYd
+        VO4Wl7IdCDuj/QWF5Wry2J1U1r7abuv5CM3Wd3Dy1FnIzc1j5eRc4EqShd+N9hw/cQa0ll62X1ZZj79I
+        fJgBgAN0bX3sAInkRkpFB2A/M4D/buweIJOVplTSA7KyjqVUUgPwf0oLpnvPAQqNGWbd8zA160mrsa9T
+        UFGj4Q9obH4D36fdMGwfF2RgaBTM1k6ert5B7szjuteJB0z/mAO7Y1IQa0c3qE0q6Pz0Ns6TKjl3pkrR
+        nGiAFVy/vOD8NitIR1dvZMAw8+AYVdVPuTPVSl3iAZ55H0zMuAVxjk/CyMhnHvvYF+5MjUqfeMCCb5l9
+        EdOtVm1IPGBpxQ9z3kVOi7kdbt0pFkRnao/rRHUvWvkDlFoL++FPzwKn7JEcNsgNdz0UgZfNNYY/uMnC
+        u98qYwUFNtmr2NJaGBYRcyvCjthO9KzRyB8gfSB34csR65LkHjS8NMZRsQxQr92h1ETpWc8JRZOe7djd
+        Ky2Tu8hj948oO892ragErqJCJOMRH0CUnb//PWC/iM7l2c5flEBOPj1BA/6BZGT8BWTpdDjOqhnUAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <data name="btnETodosMP.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -87,7 +105,7 @@
   <data name="btnEliminarPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        qQAAAKkBq7NRIgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAATESURBVFhHrVdb
+        qAAAAKgBefSzxgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAATESURBVFhHrVdb
         bBtFFPUHIF5C4vEFAqkSpE2hUNvBsR3HMWqTNk28kYk3rQiIvyIkEBIfSEDEQwIJKKGlUJV+IFGE+Kgq
         qMRfeKjiI4nzdB6OQ9LENFk7jtc2NJDYzutyZ3bWWU/Wa6fhSEeKsnfOOTNzd3ZsKhchUbxtwe9tjPpb
         TkVFoQs5FWluTE8dPnxjorZOHrY6okGrIzBud3eEPJ672bDdY15sfigmCp1R0ZtCUyhGyS/AtSP1MGx1
@@ -3314,6 +3332,9 @@
   </data>
   <metadata name="TimerHora.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="printDocument1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>126, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>37</value>

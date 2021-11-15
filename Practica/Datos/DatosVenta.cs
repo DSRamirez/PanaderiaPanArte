@@ -9,12 +9,19 @@ namespace Datos
     {
         public DataSet listadoVentas(string cual)
         {
-            string orden = string.Empty;
-            if (cual != "Todos")
-
-                orden = "select * from venta where Id_venta = " + int.Parse(cual) + ";";
-            else
+            string orden;
+            if (cual == "TodosDetalle")
+            {
+                orden = "Select v.Id_venta, c.nombre_cliente, a.Nombre_autorizado, p.Nombre_fpago , " +
+                    "v.Montofinal, v.Fecha_venta, v.Hora_venta, v.Estado_trans, v.N_Factura from venta v " +
+                    "Inner join cliente c on c.id_cliente = v.Id_cliente " +
+                    "Inner join Autorizado a on a.Id_autorizado = v.Id_autorizado " +
+                    "Inner join fpago p on p.Id_fpago = v.Id_fpago";
+            }
+            else { 
                 orden = "select * from venta";
+            }
+
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();

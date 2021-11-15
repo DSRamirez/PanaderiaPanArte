@@ -114,6 +114,8 @@ namespace Pan3
             LlenarCbClientes();
             FormaDePago();
             LlenarTablaProveedores();
+            LlenarCbProveedores();
+            LlenarCbProd();
         }
 
         #region Proveedor
@@ -1149,6 +1151,7 @@ namespace Pan3
         private void GuardarDeuda()
         {
             decimal adeuda = Convert.ToDecimal(txtADeuda.Text);
+            decimal deudanueva = adeuda + Convert.ToDecimal(lblDeuda.Text);
             try
             {
                 DataSet ds = new DataSet();
@@ -1163,9 +1166,9 @@ namespace Pan3
                 }
                 objEDeuda.Fecha1 = DateTime.Now.ToString("d");
                 objEDeuda.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
-                objEDeuda.Importe1 = Convert.ToInt32(adeuda);
+                objEDeuda.Importe1 = Convert.ToInt32(deudanueva);
 
-                objNegDeuda.EditandoDeuda("Alta", objEDeuda);
+                objNegDeuda.EditandoDeuda("Modificar", objEDeuda);
 
                 MessageBox.Show("Deuda actualizada");
                 MostrarDeuda();
@@ -1180,12 +1183,12 @@ namespace Pan3
         {
             decimal diferencia = 0;
             decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
-            deuda1 = deuda1 * -1;
+            ///deuda1 = deuda1 * -1;
 
             if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
                 MontoPagoDeuda = Convert.ToInt32(Interaction.InputBox("Monto", "Deuda"));
-                diferencia = MontoPagoDeuda - deuda1;
+                diferencia = deuda1 - MontoPagoDeuda;
             }
 
             try
@@ -1258,7 +1261,7 @@ namespace Pan3
         {
             DgvCaja.Rows.Clear();
             DataSet ds = new DataSet();
-            ds = objNegVenta.ListandoVentas("Todos");
+            ds = objNegVenta.ListandoVentas("TodosDetalle");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -1356,60 +1359,42 @@ namespace Pan3
         #endregion
 
         #region Eliminar Producto de la venta
-        //private void BTRemover_Click(object sender, EventArgs e)
-        //{
-        //    if (EliminarProducto())
-        //    {
-        //        decimal total = 0;
-        //        decimal pagado = 0;
-        //        int fila = DGVListaVenta.CurrentRow.Index;
-        //        DGVListaVenta.Rows.RemoveAt(fila);
+        private void BTRemover_Click(object sender, EventArgs e)
+        {
+            decimal total = 0;
+            decimal pagado = 0;
+            int fila = DGVListaVenta.CurrentRow.Index;
+            DGVListaVenta.Rows.RemoveAt(fila);
 
-        //        foreach (DataGridViewRow row in DGVListaVenta.Rows)
-        //        {
-        //            total += Convert.ToDecimal(row.Cells[4].Value);
-        //        }
-        //        lbltotal.Text = Convert.ToString(total);
+            foreach (DataGridViewRow row in DGVListaVenta.Rows)
+            {
+                total += Convert.ToDecimal(row.Cells[4].Value);
+            }
+            lbltotal.Text = Convert.ToString(total);
 
-        //        total = Convert.ToDecimal(lbltotal.Text);
-        //        pagado = Convert.ToDecimal(lblTotalPagado.Text);
+            total = decimal.Parse(lbltotal.Text);
+            pagado = decimal.Parse(txtPagado.Text);
 
-        //        if (pagado < total)
-        //        {
-        //            lblDeuda.Text = Convert.ToString(total - pagado);
-        //            lblDeuda.BackColor = Color.FromArgb(255, 192, 192);
-        //        }
-        //        if (pagado == total)
-        //        {
-        //            lblDeuda.Text = Convert.ToString(total - pagado);
-        //            lblDeuda.BackColor = Color.FromArgb(192, 255, 192);
-        //        }
-        //        if (pagado > total)
-        //        {
-        //            lblDeuda.Text = Convert.ToString(total - pagado);
-        //            lblDeuda.BackColor = Color.FromArgb(255, 255, 192);
-        //        }
-        //        if (lblDeuda.Text == "0")
-        //        {
-        //            lblDeuda.BackColor = Color.WhiteSmoke;
-        //        }
-        //    }
-        //}
-
-        //private bool EliminarProducto()
-        //{
-        //    bool verificacion = true;
-
-        //    if (decimal.Parse(lbltotal.Text) <= 0)
-        //    {
-        //        MessageBox.Show("Debe seleccionar producto a eliminar");
-        //        verificacion = false;
-        //    }
-        //    return verificacion;
-        //}
-
+            if (pagado < total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado == total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (pagado > total)
+            {
+                txtADeuda.Text = Convert.ToString(total - pagado);
+            }
+            if (txtADeuda.Text == "0")
+            {
+                txtADeuda.BackColor = Color.WhiteSmoke;
+            }
+        }
         #endregion
 
+        #region Eliminar Pagos
         private void btnETodosMP_Click(object sender, EventArgs e)
         {
             DGVmdp.Rows.Clear();
@@ -1459,40 +1444,9 @@ namespace Pan3
 
         }
 
-        private void BTRemover_Click(object sender, EventArgs e)
-        {
-            decimal total = 0;
-            decimal pagado = 0;
-            int fila = DGVListaVenta.CurrentRow.Index;
-            DGVListaVenta.Rows.RemoveAt(fila);
+        #endregion
 
-            foreach (DataGridViewRow row in DGVListaVenta.Rows)
-            {
-                total += Convert.ToDecimal(row.Cells[4].Value);
-            }
-            lbltotal.Text = Convert.ToString(total);
-
-            total = decimal.Parse(lbltotal.Text);
-            pagado = decimal.Parse(txtPagado.Text);
-
-            if (pagado < total)
-            {
-                txtADeuda.Text = Convert.ToString(total - pagado);
-            }
-            if (pagado == total)
-            {
-                txtADeuda.Text = Convert.ToString(total - pagado);
-            }
-            if (pagado > total)
-            {
-                txtADeuda.Text = Convert.ToString(total - pagado);
-            }
-            if (txtADeuda.Text == "0")
-            {
-                txtADeuda.BackColor = Color.WhiteSmoke;
-            }
-        }
-
+        #region ticket
         private void Imprimir(object sender, PrintPageEventArgs e)
         {
             Font font = new Font("Arial", 14);
@@ -1521,5 +1475,27 @@ namespace Pan3
             printDocument1.PrintPage += Imprimir;
             printDocument1.Print();
         }
+
+        #endregion
+
+        #region compra
+        private void LlenarCbProveedores()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegProveedor.ListandoProveedor("Todos");
+            CbProveedores.DisplayMember = "nombre_prov";
+            CbProveedores.ValueMember = "id_prov";
+            CbProveedores.DataSource = ds.Tables[0];
+        }
+
+        private void LlenarCbProd()
+        {
+           DataSet ds = new DataSet();
+           ds = objNegProducto.ListandoProductos("Todos");
+            CbProductos.DisplayMember = "Nombre_producto";
+            CbProductos.ValueMember = "Id_producto";
+            CbProductos.DataSource = ds.Tables[0];           
+        }
+        #endregion
     }
 }

@@ -33,6 +33,7 @@ namespace Pan3
         decimal Pagado = 0;
 
         decimal preciototal = 0;
+        decimal preciototalC = 0;
 
         public string NombreAutorizado = "";
         public int IdAutorizado = 0;
@@ -55,6 +56,10 @@ namespace Pan3
         NegFormaDePago objNegFormaDePago = new NegFormaDePago();
         E_Deuda objEDeuda = new E_Deuda();
         NegDeuda objNegDeuda = new NegDeuda();
+        E_Compra objECompra = new E_Compra();
+        NegCompra objNegCompra = new NegCompra();
+        E_ProductoCompra objEProductoCompra = new E_ProductoCompra();
+        NegProductoCompra objNegProductoCompra = new NegProductoCompra();
 
         public Form1()
         {
@@ -66,7 +71,11 @@ namespace Pan3
             CrearColumnasCat();
             CrearColumnasPago();
             CrearColumnasCaja();
+            CrearColumnasEgresosCaja();
             CrearColumnasProveedores();
+            CrearColumnasCompra();
+            CrearColumnasHCompra();
+
             lbltime.Text = DateTime.Now.ToString();
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
             BTRemover.BackgroundImageLayout = ImageLayout.Stretch;
@@ -108,6 +117,7 @@ namespace Pan3
             LlenarDGVCat();
             LlenarDGVProd();
             LlenarDGVCaja();
+            LlenarCajaEgresos();
             LlenarCbCat();
             LlenarCbProductos();
             MostarAut();
@@ -116,6 +126,8 @@ namespace Pan3
             LlenarTablaProveedores();
             LlenarCbProveedores();
             LlenarCbProd();
+            LlenarDgvHCompra();
+            FormaDePagoC();
         }
 
         #region Proveedor
@@ -766,7 +778,7 @@ namespace Pan3
             {
                 try
                 {
-                    objECategoria.Id = Convert.ToInt32(ID);
+                    objECategoria.Id = Convert.ToInt32(idcategoria);
                     objECategoria.Cod = txtCodCat.Text;
                     objECategoria.Name = txtNomCat.Text;
 
@@ -1183,7 +1195,10 @@ namespace Pan3
         {
             decimal diferencia = 0;
             decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
-            ///deuda1 = deuda1 * -1;
+            if (deuda1 < 0)
+            {
+                deuda1 *= -1;
+            }
 
             if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
@@ -1257,6 +1272,19 @@ namespace Pan3
             DgvCaja.Columns[7].HeaderText = "Estado";
             DgvCaja.Columns[8].HeaderText = "N° de Factura";
         }
+
+        private void CrearColumnasEgresosCaja()
+        {
+            dgvCajaEgresos.ColumnCount = 8;
+            dgvCajaEgresos.Columns[0].HeaderText = "Id";
+            dgvCajaEgresos.Columns[1].HeaderText = "Proveedor";
+            dgvCajaEgresos.Columns[2].HeaderText = "Autorizado";
+            dgvCajaEgresos.Columns[3].HeaderText = "Forma de pago";
+            dgvCajaEgresos.Columns[4].HeaderText = "Monto";
+            dgvCajaEgresos.Columns[5].HeaderText = "Fecha";
+            dgvCajaEgresos.Columns[6].HeaderText = "Estado";
+            dgvCajaEgresos.Columns[7].HeaderText = "N° de Factura";
+        }
         private void LlenarDGVCaja()
         {
             DgvCaja.Rows.Clear();
@@ -1273,6 +1301,23 @@ namespace Pan3
                 MessageBox.Show("No hay ventas cargados en el sistema");
         }
 
+        private void LlenarCajaEgresos()
+        {
+            DgvCaja.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegCompra.ListandoCompras("TodoCompras");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvCajaEgresos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                }
+            }
+            else
+                MessageBox.Show("No hay egresos cargados en el sistema");
+
+        }
+
         private void LlenarDgvVentasPorFecha()
         {
             DataSet ds = new DataSet();
@@ -1286,11 +1331,29 @@ namespace Pan3
             }
         }
 
+        private void LlenarCajaEgresosPorFecha()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegCompra.ComprasEntre(txtDesdeC.Text, txtHastaC.Text);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvCajaEgresos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                }
+            }
+        }
         private void btnBuscarPorFecha_Click(object sender, EventArgs e)
         {
             DgvCaja.Rows.Clear();
             CrearColumnasCaja();
             LlenarDgvVentasPorFecha();
+        }
+
+        private void txtBFecha_Click(object sender, EventArgs e)
+        {
+            dgvCajaEgresos.Rows.Clear();
+            LlenarCajaEgresosPorFecha();
         }
 
         #endregion
@@ -1496,6 +1559,136 @@ namespace Pan3
             CbProductos.ValueMember = "Id_producto";
             CbProductos.DataSource = ds.Tables[0];           
         }
+
+        private void CrearColumnasHCompra()
+        {
+            dgvHCompras.ColumnCount = 8;
+            dgvHCompras.Columns[0].HeaderText = "Id";
+            dgvHCompras.Columns[1].HeaderText = "Proveedor";
+            dgvHCompras.Columns[2].HeaderText = "Autorizado";
+            dgvHCompras.Columns[3].HeaderText = "Forma de pago";
+            dgvHCompras.Columns[4].HeaderText = "Monto";
+            dgvHCompras.Columns[5].HeaderText = "Fecha";
+            dgvHCompras.Columns[6].HeaderText = "Estado";
+            dgvHCompras.Columns[7].HeaderText = "N° de Factura";
+        }
+
+        private void LlenarDgvHCompra()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegCompra.ListandoCompras("TodoCompras");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvHCompras.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                }
+            }
+        }
+
+        private void CrearColumnasCompra()
+        {
+            dgvCompras.ColumnCount = 7;
+            
+            dgvCompras.Columns[0].HeaderText = "Proveedor";
+            dgvCompras.Columns[1].HeaderText = "Producto";
+            dgvCompras.Columns[2].HeaderText = "Cantidad";
+            dgvCompras.Columns[3].HeaderText = "Precio";
+            dgvCompras.Columns[4].HeaderText = "N° de Factura";
+            dgvCompras.Columns[5].HeaderText = "Precio Final";
+        }
+
         #endregion
+
+        private void btnGuardarCompra_Click(object sender, EventArgs e)
+        {
+            GuardarCompra();
+        }
+
+        private void FormaDePagoC()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegFormaDePago.ListandoFormaDePago("Todos");
+            cbfp.DisplayMember = "Nombre_fpago";
+            cbfp.ValueMember = "Id_fpago";
+            cbfp.DataSource = ds.Tables[0];
+        }
+
+        private void GuardarCompra()
+        {
+            try
+            {
+                objECompra.Id_Proveedor1 = Convert.ToInt32(CbProveedores.SelectedValue.ToString());
+                objECompra.Id_Autorizado1 = IdAutorizado;
+                objECompra.Id_Fpago1 = Convert.ToInt32(cbfp.SelectedValue.ToString());
+                objECompra.MontoFinal1 = preciototalC;
+                objECompra.Fecha_Compra1 = DateTime.Now.ToString("d");
+                objECompra.Estado1 = cbEst.Text;
+                objECompra.N_Factura1 = txtNFact.Text;
+
+                objNegCompra.InsertandoCompra("Alta", objECompra);
+                GuardarProductoCompra();
+                objNegProducto.SumarStock("SumaStock", objEProductoCompra);
+
+                MessageBox.Show("Compra realizada con éxito");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("La compra no se pudo realizar");
+            }
+        }
+
+        private void GuardarProductoCompra()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = objNegCompra.UltimoRegistroCompra();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        objEProductoCompra.Id_compra1 = Convert.ToInt32(dr["Id_compra"]);
+                    }
+                }
+
+                for (int i = 0; i < dgvCompras.Rows.Count - 1; i++)
+                {
+                    objEProductoCompra.Id_producto1 = Convert.ToInt32(CbProductos.SelectedValue.ToString());
+                    objEProductoCompra.Cantidad1 = Convert.ToInt32(dgvCompras.Rows[i].Cells[2].Value);
+                    objEProductoCompra.Preciou_historico1 = Convert.ToInt32(dgvCompras.Rows[i].Cells[3].Value);
+
+                    objNegProductoCompra.InsertandoProductoCompra("Alta", objEProductoCompra);
+                }
+
+                MessageBox.Show("Producto Compra guardado");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo guardar el Producto compra" + ex);
+            }
+        }
+
+        private void btnAgregarProd_Click(object sender, EventArgs e)
+        {
+            decimal CostoxCant = Convert.ToInt32(txtCantCompra.Text) * Convert.ToInt32(txtPCompra.Text);
+
+            dgvCompras.Rows.Add(Convert.ToInt32(CbProveedores.SelectedValue.ToString()), Convert.ToInt32(CbProductos.SelectedValue.ToString()),txtCantCompra.Text, txtPCompra.Text, txtNFact.Text, CostoxCant);
+
+            preciototalC = 0;
+            CalcularTotalCompra();
+        }
+
+        private void CalcularTotalCompra()
+        {
+            for (int i = 0; i < dgvCompras.Rows.Count; ++i)
+            {
+                preciototalC += Convert.ToDecimal(dgvCompras.Rows[i].Cells[5].Value);
+            }
+            lblTCompra.Text = preciototalC.ToString();
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Entidades
         private int Id_Autorizado;
         private int Id_Fpago;
         private decimal MontoFinal;
-        private DateTime Fecha_Compra;
+        private string Fecha_Compra;
         private string Estado;
         private string N_Factura;
 
@@ -20,7 +20,7 @@ namespace Entidades
 
         }
 
-        public E_Compra(int Id_Compra, int Id_Proveedor, int Id_Autorizado, int Id_Fpago, decimal MontoFinal, DateTime Fecha_Compra, string Estado, string N_Factura)
+        public E_Compra(int Id_Compra, int Id_Proveedor, int Id_Autorizado, int Id_Fpago, decimal MontoFinal, string Fecha_Compra, string Estado, string N_Factura)
         {
             Id_Compra1 = Id_Compra;
             Id_Proveedor1 = Id_Proveedor;
@@ -37,7 +37,7 @@ namespace Entidades
         public int Id_Autorizado1 { get => Id_Autorizado; set => Id_Autorizado = value; }
         public int Id_Fpago1 { get => Id_Fpago; set => Id_Fpago = value; }
         public decimal MontoFinal1 { get => MontoFinal; set => MontoFinal = value; }
-        public DateTime Fecha_Compra1 { get => Fecha_Compra; set => Fecha_Compra = value; }
+        public string Fecha_Compra1 { get => Fecha_Compra; set => Fecha_Compra = value; }
         public string Estado1 { get => Estado; set => Estado = value; }
         public string N_Factura1 { get => N_Factura; set => N_Factura = value; }
     }

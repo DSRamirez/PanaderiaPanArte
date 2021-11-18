@@ -127,6 +127,37 @@ namespace Datos
             return resultado;
         }
 
+        public int SumarStock(string accion, E_ProductoCompra objEProductoCompra)
+        {
+            int resultado = -1;
+            string orden = string.Empty;
+
+            if (accion == "SumaStock")
+            {
+                orden = "UPDATE producto SET Stock_producto = Stock_producto + " + objEProductoCompra.Cantidad1 + " WHERE Id_producto = " + objEProductoCompra.Id_producto1;
+            }
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+
+            try
+            {
+                AbrirConexion();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Error al actualizar stock", e);
+            }
+            finally
+            {
+                CerrarConexion();
+                cmd.Dispose();
+            }
+
+            return resultado;
+        }
+
         public DataSet ListadoProductoRapido(string cual)
         {
             string orden = string.Empty;

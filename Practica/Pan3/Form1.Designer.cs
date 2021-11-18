@@ -87,39 +87,25 @@ namespace Pan3
             this.preciounitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabProductos = new System.Windows.Forms.TabPage();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbfp = new System.Windows.Forms.ComboBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.cbEst = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.lblTCompra = new System.Windows.Forms.Label();
+            this.btnAgregarProd = new System.Windows.Forms.Button();
+            this.txtNFact = new System.Windows.Forms.TextBox();
+            this.txtPCompra = new System.Windows.Forms.TextBox();
+            this.txtCantCompra = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio_compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCompras = new System.Windows.Forms.DataGridView();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.dataGridView7 = new System.Windows.Forms.DataGridView();
-            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvHCompras = new System.Windows.Forms.DataGridView();
             this.label19 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.CbProductos = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnGuardarCompra = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.CbProveedores = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -135,10 +121,8 @@ namespace Pan3
             this.label32 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.DgvCaja = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -253,6 +237,14 @@ namespace Pan3
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.txtBFecha = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.txtHastaC = new System.Windows.Forms.TextBox();
+            this.txtDesdeC = new System.Windows.Forms.TextBox();
+            this.dgvCajaEgresos = new System.Windows.Forms.DataGridView();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
             this.groupBox16.SuspendLayout();
@@ -263,9 +255,9 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.DGVListaVenta)).BeginInit();
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHCompras)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -287,6 +279,9 @@ namespace Pan3
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).BeginInit();
+            this.groupBox17.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -855,14 +850,15 @@ namespace Pan3
             // 
             // TabProductos
             // 
-            this.TabProductos.Controls.Add(this.textBox6);
-            this.TabProductos.Controls.Add(this.textBox5);
-            this.TabProductos.Controls.Add(this.textBox4);
-            this.TabProductos.Controls.Add(this.textBox1);
+            this.TabProductos.Controls.Add(this.cbfp);
+            this.TabProductos.Controls.Add(this.label47);
+            this.TabProductos.Controls.Add(this.cbEst);
             this.TabProductos.Controls.Add(this.label50);
-            this.TabProductos.Controls.Add(this.radioButton10);
-            this.TabProductos.Controls.Add(this.radioButton9);
-            this.TabProductos.Controls.Add(this.radioButton8);
+            this.TabProductos.Controls.Add(this.lblTCompra);
+            this.TabProductos.Controls.Add(this.btnAgregarProd);
+            this.TabProductos.Controls.Add(this.txtNFact);
+            this.TabProductos.Controls.Add(this.txtPCompra);
+            this.TabProductos.Controls.Add(this.txtCantCompra);
             this.TabProductos.Controls.Add(this.label46);
             this.TabProductos.Controls.Add(this.label9);
             this.TabProductos.Controls.Add(this.groupBox11);
@@ -870,7 +866,7 @@ namespace Pan3
             this.TabProductos.Controls.Add(this.label19);
             this.TabProductos.Controls.Add(this.button7);
             this.TabProductos.Controls.Add(this.CbProductos);
-            this.TabProductos.Controls.Add(this.button6);
+            this.TabProductos.Controls.Add(this.btnGuardarCompra);
             this.TabProductos.Controls.Add(this.label8);
             this.TabProductos.Controls.Add(this.CbProveedores);
             this.TabProductos.Controls.Add(this.label10);
@@ -884,89 +880,99 @@ namespace Pan3
             this.TabProductos.Text = "Compra";
             this.TabProductos.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // cbfp
             // 
-            this.textBox6.Location = new System.Drawing.Point(888, 53);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(132, 23);
-            this.textBox6.TabIndex = 64;
+            this.cbfp.FormattingEnabled = true;
+            this.cbfp.Location = new System.Drawing.Point(270, 507);
+            this.cbfp.Name = "cbfp";
+            this.cbfp.Size = new System.Drawing.Size(121, 23);
+            this.cbfp.TabIndex = 69;
             // 
-            // textBox5
+            // label47
             // 
-            this.textBox5.Location = new System.Drawing.Point(714, 53);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(135, 23);
-            this.textBox5.TabIndex = 63;
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(270, 482);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(90, 15);
+            this.label47.TabIndex = 68;
+            this.label47.Text = "Forma de pago:";
             // 
-            // textBox4
+            // cbEst
             // 
-            this.textBox4.Location = new System.Drawing.Point(574, 52);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 23);
-            this.textBox4.TabIndex = 62;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(434, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 61;
+            this.cbEst.FormattingEnabled = true;
+            this.cbEst.Items.AddRange(new object[] {
+            "Cancelado",
+            "Pago parcial",
+            "Pendiente"});
+            this.cbEst.Location = new System.Drawing.Point(586, 507);
+            this.cbEst.Name = "cbEst";
+            this.cbEst.Size = new System.Drawing.Size(121, 23);
+            this.cbEst.TabIndex = 67;
             // 
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(888, 34);
+            this.label50.Location = new System.Drawing.Point(84, 498);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(45, 15);
-            this.label50.TabIndex = 60;
-            this.label50.Text = "Remito";
+            this.label50.Size = new System.Drawing.Size(44, 15);
+            this.label50.TabIndex = 66;
+            this.label50.Text = "Total: $";
             // 
-            // radioButton10
+            // lblTCompra
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(1325, 102);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(78, 19);
-            this.radioButton10.TabIndex = 58;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "Pendiente";
-            this.radioButton10.UseVisualStyleBackColor = true;
+            this.lblTCompra.AutoSize = true;
+            this.lblTCompra.Location = new System.Drawing.Point(134, 498);
+            this.lblTCompra.Name = "lblTCompra";
+            this.lblTCompra.Size = new System.Drawing.Size(0, 15);
+            this.lblTCompra.TabIndex = 65;
             // 
-            // radioButton9
+            // btnAgregarProd
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(1325, 77);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(90, 19);
-            this.radioButton9.TabIndex = 57;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "Pago parcial";
-            this.radioButton9.UseVisualStyleBackColor = true;
+            this.btnAgregarProd.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarProd.Image")));
+            this.btnAgregarProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarProd.Location = new System.Drawing.Point(951, 55);
+            this.btnAgregarProd.Name = "btnAgregarProd";
+            this.btnAgregarProd.Size = new System.Drawing.Size(88, 48);
+            this.btnAgregarProd.TabIndex = 64;
+            this.btnAgregarProd.Text = "Agregar";
+            this.btnAgregarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarProd.UseVisualStyleBackColor = true;
+            this.btnAgregarProd.Click += new System.EventHandler(this.btnAgregarProd_Click);
             // 
-            // radioButton8
+            // txtNFact
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(1325, 52);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(79, 19);
-            this.radioButton8.TabIndex = 56;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Pago total";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.txtNFact.Location = new System.Drawing.Point(761, 70);
+            this.txtNFact.Name = "txtNFact";
+            this.txtNFact.Size = new System.Drawing.Size(135, 23);
+            this.txtNFact.TabIndex = 63;
+            // 
+            // txtPCompra
+            // 
+            this.txtPCompra.Location = new System.Drawing.Point(621, 69);
+            this.txtPCompra.Name = "txtPCompra";
+            this.txtPCompra.Size = new System.Drawing.Size(100, 23);
+            this.txtPCompra.TabIndex = 62;
+            // 
+            // txtCantCompra
+            // 
+            this.txtCantCompra.Location = new System.Drawing.Point(481, 68);
+            this.txtCantCompra.Name = "txtCantCompra";
+            this.txtCantCompra.Size = new System.Drawing.Size(100, 23);
+            this.txtCantCompra.TabIndex = 61;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(1325, 33);
+            this.label46.Location = new System.Drawing.Point(581, 482);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(42, 15);
+            this.label46.Size = new System.Drawing.Size(45, 15);
             this.label46.TabIndex = 55;
-            this.label46.Text = "Estado";
+            this.label46.Text = "Estado:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(714, 34);
+            this.label9.Location = new System.Drawing.Point(761, 51);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 15);
             this.label9.TabIndex = 54;
@@ -974,7 +980,7 @@ namespace Pan3
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.dataGridView1);
+            this.groupBox11.Controls.Add(this.dgvCompras);
             this.groupBox11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox11.Location = new System.Drawing.Point(37, 127);
             this.groupBox11.Name = "groupBox11";
@@ -983,139 +989,34 @@ namespace Pan3
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Detalle de compra";
             // 
-            // dataGridView1
+            // dgvCompras
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Producto,
-            this.Categoria,
-            this.Proveedor,
-            this.precio_compra,
-            this.Ganancia,
-            this.Precio_Venta,
-            this.stock});
-            this.dataGridView1.Location = new System.Drawing.Point(25, 24);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1423, 292);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 50;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.Width = 200;
-            // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoría";
-            this.Categoria.Name = "Categoria";
-            this.Categoria.Width = 200;
-            // 
-            // Proveedor
-            // 
-            this.Proveedor.HeaderText = "Proveedor";
-            this.Proveedor.Name = "Proveedor";
-            this.Proveedor.Width = 200;
-            // 
-            // precio_compra
-            // 
-            this.precio_compra.HeaderText = "Precio de compra";
-            this.precio_compra.Name = "precio_compra";
-            this.precio_compra.Width = 150;
-            // 
-            // Ganancia
-            // 
-            this.Ganancia.HeaderText = "Ganancia";
-            this.Ganancia.Name = "Ganancia";
-            this.Ganancia.Width = 150;
-            // 
-            // Precio_Venta
-            // 
-            this.Precio_Venta.HeaderText = "Precio de venta";
-            this.Precio_Venta.Name = "Precio_Venta";
-            this.Precio_Venta.Width = 150;
-            // 
-            // stock
-            // 
-            this.stock.HeaderText = "Stock";
-            this.stock.Name = "stock";
-            this.stock.Width = 150;
+            this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCompras.Location = new System.Drawing.Point(25, 24);
+            this.dgvCompras.Name = "dgvCompras";
+            this.dgvCompras.RowTemplate.Height = 25;
+            this.dgvCompras.Size = new System.Drawing.Size(1423, 288);
+            this.dgvCompras.TabIndex = 1;
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.dataGridView7);
+            this.groupBox10.Controls.Add(this.dgvHCompras);
             this.groupBox10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox10.Location = new System.Drawing.Point(37, 466);
+            this.groupBox10.Location = new System.Drawing.Point(37, 586);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(1472, 389);
+            this.groupBox10.Size = new System.Drawing.Size(1472, 269);
             this.groupBox10.TabIndex = 51;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Historial de compras";
             // 
-            // dataGridView7
+            // dgvHCompras
             // 
-            this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView7.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column36,
-            this.Column38,
-            this.dataGridViewTextBoxColumn4,
-            this.Column30,
-            this.dataGridViewTextBoxColumn5,
-            this.Column31,
-            this.Column37});
-            this.dataGridView7.Location = new System.Drawing.Point(25, 31);
-            this.dataGridView7.Name = "dataGridView7";
-            this.dataGridView7.RowTemplate.Height = 25;
-            this.dataGridView7.Size = new System.Drawing.Size(1423, 342);
-            this.dataGridView7.TabIndex = 51;
-            // 
-            // Column36
-            // 
-            this.Column36.HeaderText = "Fecha de compra";
-            this.Column36.Name = "Column36";
-            // 
-            // Column38
-            // 
-            this.Column38.HeaderText = "Remito";
-            this.Column38.Name = "Column38";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Proveedor";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 230;
-            // 
-            // Column30
-            // 
-            this.Column30.HeaderText = "N° de Factura";
-            this.Column30.Name = "Column30";
-            this.Column30.Width = 230;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Monto";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 230;
-            // 
-            // Column31
-            // 
-            this.Column31.HeaderText = "Forma de pago";
-            this.Column31.Name = "Column31";
-            this.Column31.Width = 230;
-            // 
-            // Column37
-            // 
-            this.Column37.HeaderText = "Estado";
-            this.Column37.Name = "Column37";
-            this.Column37.Width = 230;
+            this.dgvHCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHCompras.Location = new System.Drawing.Point(25, 33);
+            this.dgvHCompras.Name = "dgvHCompras";
+            this.dgvHCompras.RowTemplate.Height = 25;
+            this.dgvHCompras.Size = new System.Drawing.Size(1423, 220);
+            this.dgvHCompras.TabIndex = 51;
             // 
             // label19
             // 
@@ -1142,27 +1043,28 @@ namespace Pan3
             // CbProductos
             // 
             this.CbProductos.FormattingEnabled = true;
-            this.CbProductos.Location = new System.Drawing.Point(231, 51);
+            this.CbProductos.Location = new System.Drawing.Point(278, 68);
             this.CbProductos.Name = "CbProductos";
             this.CbProductos.Size = new System.Drawing.Size(169, 23);
             this.CbProductos.TabIndex = 28;
             // 
-            // button6
+            // btnGuardarCompra
             // 
-            this.button6.Image = global::Pan3.Properties.Resources.check_ok_accept_apply_1582;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(1511, 21);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(131, 75);
-            this.button6.TabIndex = 40;
-            this.button6.Text = "Guardar";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnGuardarCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarCompra.Image")));
+            this.btnGuardarCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardarCompra.Location = new System.Drawing.Point(865, 482);
+            this.btnGuardarCompra.Name = "btnGuardarCompra";
+            this.btnGuardarCompra.Size = new System.Drawing.Size(88, 48);
+            this.btnGuardarCompra.TabIndex = 40;
+            this.btnGuardarCompra.Text = "Guardar";
+            this.btnGuardarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardarCompra.UseVisualStyleBackColor = true;
+            this.btnGuardarCompra.Click += new System.EventHandler(this.btnGuardarCompra_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(231, 33);
+            this.label8.Location = new System.Drawing.Point(278, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 15);
             this.label8.TabIndex = 29;
@@ -1171,7 +1073,7 @@ namespace Pan3
             // CbProveedores
             // 
             this.CbProveedores.FormattingEnabled = true;
-            this.CbProveedores.Location = new System.Drawing.Point(37, 51);
+            this.CbProveedores.Location = new System.Drawing.Point(84, 68);
             this.CbProveedores.Name = "CbProveedores";
             this.CbProveedores.Size = new System.Drawing.Size(161, 23);
             this.CbProveedores.TabIndex = 32;
@@ -1179,7 +1081,7 @@ namespace Pan3
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 33);
+            this.label10.Location = new System.Drawing.Point(84, 50);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 15);
             this.label10.TabIndex = 33;
@@ -1188,7 +1090,7 @@ namespace Pan3
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(574, 34);
+            this.label11.Location = new System.Drawing.Point(621, 51);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(40, 15);
             this.label11.TabIndex = 35;
@@ -1197,7 +1099,7 @@ namespace Pan3
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(434, 33);
+            this.label12.Location = new System.Drawing.Point(481, 50);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 15);
             this.label12.TabIndex = 37;
@@ -1205,20 +1107,14 @@ namespace Pan3
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnBuscarPorFecha);
-            this.tabPage2.Controls.Add(this.label63);
-            this.tabPage2.Controls.Add(this.label62);
-            this.tabPage2.Controls.Add(this.txtHasta);
-            this.tabPage2.Controls.Add(this.txtDesde);
+            this.tabPage2.Controls.Add(this.groupBox18);
+            this.tabPage2.Controls.Add(this.groupBox17);
             this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.label32);
             this.tabPage2.Controls.Add(this.button10);
             this.tabPage2.Controls.Add(this.button9);
-            this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.DgvCaja);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.button2);
@@ -1233,7 +1129,7 @@ namespace Pan3
             // 
             // btnBuscarPorFecha
             // 
-            this.btnBuscarPorFecha.Location = new System.Drawing.Point(737, 124);
+            this.btnBuscarPorFecha.Location = new System.Drawing.Point(462, 50);
             this.btnBuscarPorFecha.Name = "btnBuscarPorFecha";
             this.btnBuscarPorFecha.Size = new System.Drawing.Size(75, 23);
             this.btnBuscarPorFecha.TabIndex = 37;
@@ -1244,7 +1140,7 @@ namespace Pan3
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(528, 129);
+            this.label63.Location = new System.Drawing.Point(280, 59);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(37, 15);
             this.label63.TabIndex = 36;
@@ -1253,7 +1149,7 @@ namespace Pan3
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(267, 129);
+            this.label62.Location = new System.Drawing.Point(113, 58);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(42, 15);
             this.label62.TabIndex = 35;
@@ -1261,14 +1157,14 @@ namespace Pan3
             // 
             // txtHasta
             // 
-            this.txtHasta.Location = new System.Drawing.Point(571, 124);
+            this.txtHasta.Location = new System.Drawing.Point(323, 54);
             this.txtHasta.Name = "txtHasta";
             this.txtHasta.Size = new System.Drawing.Size(91, 23);
             this.txtHasta.TabIndex = 34;
             // 
             // txtDesde
             // 
-            this.txtDesde.Location = new System.Drawing.Point(315, 124);
+            this.txtDesde.Location = new System.Drawing.Point(161, 53);
             this.txtDesde.Name = "txtDesde";
             this.txtDesde.Size = new System.Drawing.Size(102, 23);
             this.txtDesde.TabIndex = 33;
@@ -1311,16 +1207,6 @@ namespace Pan3
             this.button9.TabIndex = 28;
             this.button9.UseVisualStyleBackColor = false;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(43, 874);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(263, 21);
-            this.label18.TabIndex = 27;
-            this.label18.Text = "Doble click para ver detalle de venta";
-            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(562, 54);
@@ -1337,22 +1223,13 @@ namespace Pan3
             this.label17.TabIndex = 6;
             this.label17.Text = "Monto actual:";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(43, 129);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(142, 15);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "Registro de movimientos:";
-            // 
             // DgvCaja
             // 
             this.DgvCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvCaja.Location = new System.Drawing.Point(43, 156);
+            this.DgvCaja.Location = new System.Drawing.Point(20, 97);
             this.DgvCaja.Name = "DgvCaja";
             this.DgvCaja.RowTemplate.Height = 25;
-            this.DgvCaja.Size = new System.Drawing.Size(1774, 715);
+            this.DgvCaja.Size = new System.Drawing.Size(688, 573);
             this.DgvCaja.TabIndex = 4;
             // 
             // textBox2
@@ -2562,6 +2439,87 @@ namespace Pan3
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
+            // txtBFecha
+            // 
+            this.txtBFecha.Location = new System.Drawing.Point(495, 47);
+            this.txtBFecha.Name = "txtBFecha";
+            this.txtBFecha.Size = new System.Drawing.Size(75, 23);
+            this.txtBFecha.TabIndex = 43;
+            this.txtBFecha.Text = "Buscar";
+            this.txtBFecha.UseVisualStyleBackColor = true;
+            this.txtBFecha.Click += new System.EventHandler(this.txtBFecha_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(313, 56);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 15);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "Hasta";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(146, 55);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(42, 15);
+            this.label64.TabIndex = 41;
+            this.label64.Text = "Desde:";
+            // 
+            // txtHastaC
+            // 
+            this.txtHastaC.Location = new System.Drawing.Point(356, 51);
+            this.txtHastaC.Name = "txtHastaC";
+            this.txtHastaC.Size = new System.Drawing.Size(91, 23);
+            this.txtHastaC.TabIndex = 40;
+            // 
+            // txtDesdeC
+            // 
+            this.txtDesdeC.Location = new System.Drawing.Point(194, 50);
+            this.txtDesdeC.Name = "txtDesdeC";
+            this.txtDesdeC.Size = new System.Drawing.Size(102, 23);
+            this.txtDesdeC.TabIndex = 39;
+            // 
+            // dgvCajaEgresos
+            // 
+            this.dgvCajaEgresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCajaEgresos.Location = new System.Drawing.Point(21, 97);
+            this.dgvCajaEgresos.Name = "dgvCajaEgresos";
+            this.dgvCajaEgresos.RowTemplate.Height = 25;
+            this.dgvCajaEgresos.Size = new System.Drawing.Size(687, 573);
+            this.dgvCajaEgresos.TabIndex = 44;
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.btnBuscarPorFecha);
+            this.groupBox17.Controls.Add(this.txtDesde);
+            this.groupBox17.Controls.Add(this.txtHasta);
+            this.groupBox17.Controls.Add(this.label62);
+            this.groupBox17.Controls.Add(this.label63);
+            this.groupBox17.Controls.Add(this.DgvCaja);
+            this.groupBox17.Location = new System.Drawing.Point(62, 135);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(730, 691);
+            this.groupBox17.TabIndex = 45;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Ingresos";
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.txtHastaC);
+            this.groupBox18.Controls.Add(this.dgvCajaEgresos);
+            this.groupBox18.Controls.Add(this.txtDesdeC);
+            this.groupBox18.Controls.Add(this.txtBFecha);
+            this.groupBox18.Controls.Add(this.label64);
+            this.groupBox18.Controls.Add(this.label18);
+            this.groupBox18.Location = new System.Drawing.Point(848, 135);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(730, 691);
+            this.groupBox18.TabIndex = 46;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Egresos";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2589,9 +2547,9 @@ namespace Pan3
             this.TabProductos.ResumeLayout(false);
             this.TabProductos.PerformLayout();
             this.groupBox11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             this.groupBox10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHCompras)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).EndInit();
@@ -2623,6 +2581,11 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).EndInit();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2654,19 +2617,17 @@ namespace Pan3
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ComboBox CbProductos;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnGuardarCompra;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox CbProveedores;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tpProv;
@@ -2737,30 +2698,11 @@ namespace Pan3
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.TextBox txttelR;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCompras;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.DataGridView dataGridView7;
-        private System.Windows.Forms.RadioButton radioButton10;
-        private System.Windows.Forms.RadioButton radioButton9;
-        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.DataGridView dgvHCompras;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Proveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio_compra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Venta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stock;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column36;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column38;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column31;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column37;
         private System.Windows.Forms.Button BtnEC;
         private System.Windows.Forms.Button BtnEditC;
         private System.Windows.Forms.Button BtnG;
@@ -2851,10 +2793,23 @@ namespace Pan3
         private System.Windows.Forms.Button btnEliminarPago;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNFact;
+        private System.Windows.Forms.TextBox txtPCompra;
+        private System.Windows.Forms.TextBox txtCantCompra;
+        private System.Windows.Forms.Button btnAgregarProd;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label lblTCompra;
+        private System.Windows.Forms.ComboBox cbfp;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.ComboBox cbEst;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.TextBox txtHastaC;
+        private System.Windows.Forms.DataGridView dgvCajaEgresos;
+        private System.Windows.Forms.TextBox txtDesdeC;
+        private System.Windows.Forms.Button txtBFecha;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox17;
     }
 }
 

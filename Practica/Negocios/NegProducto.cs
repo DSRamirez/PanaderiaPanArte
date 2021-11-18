@@ -33,6 +33,11 @@ namespace Negocios
             objDatosProductos.ActualizarStock(accion, objEProductoVenta);
         }
 
+        public void SumarStock(string accion, E_ProductoCompra objEProductoCompra)
+        {
+            objDatosProductos.SumarStock(accion, objEProductoCompra);
+        }
+
         public DataSet ListadoProductoRapido(string cual)
         {
             return objDatosProductos.ListadoProductoRapido(cual);

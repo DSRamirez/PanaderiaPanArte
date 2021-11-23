@@ -22,7 +22,7 @@ namespace Negocios
         }
         public void InsertandoDeuda(string accion, E_Deuda objEDeuda)
         {
-            objDatosDeuda.abmDeuda("Alta", objEDeuda);
+            objDatosDeuda.abmDeuda(accion, objEDeuda);
         }
 
         public void EditandoDeuda(string accion, E_Deuda objEDeuda)

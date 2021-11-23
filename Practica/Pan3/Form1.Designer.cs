@@ -50,9 +50,7 @@ namespace Pan3
             this.label60 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.CbFPago = new System.Windows.Forms.ComboBox();
-            this.txtRecargo = new System.Windows.Forms.TextBox();
             this.DGVmdp = new System.Windows.Forms.DataGridView();
-            this.lblRecargo = new System.Windows.Forms.Label();
             this.btnAceptarMdePagos = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.txtMonto = new System.Windows.Forms.TextBox();
@@ -63,6 +61,7 @@ namespace Pan3
             this.CBCliente = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.txtPDeuda = new System.Windows.Forms.TextBox();
             this.BtnCobrarDeuda = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
@@ -375,12 +374,14 @@ namespace Pan3
             this.txtPrecioPV.Name = "txtPrecioPV";
             this.txtPrecioPV.Size = new System.Drawing.Size(160, 23);
             this.txtPrecioPV.TabIndex = 53;
+            this.txtPrecioPV.Text = "0";
+            this.txtPrecioPV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecioPV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioPV_KeyPress);
             // 
             // btnPrint
             // 
             this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(1446, 42);
+            this.btnPrint.Location = new System.Drawing.Point(1446, 54);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(55, 49);
             this.btnPrint.TabIndex = 57;
@@ -398,9 +399,7 @@ namespace Pan3
             this.groupBox16.Controls.Add(this.label60);
             this.groupBox16.Controls.Add(this.label42);
             this.groupBox16.Controls.Add(this.CbFPago);
-            this.groupBox16.Controls.Add(this.txtRecargo);
             this.groupBox16.Controls.Add(this.DGVmdp);
-            this.groupBox16.Controls.Add(this.lblRecargo);
             this.groupBox16.Controls.Add(this.btnAceptarMdePagos);
             this.groupBox16.Controls.Add(this.label25);
             this.groupBox16.Controls.Add(this.txtMonto);
@@ -445,7 +444,7 @@ namespace Pan3
             // txtVuelto
             // 
             this.txtVuelto.Enabled = false;
-            this.txtVuelto.Location = new System.Drawing.Point(382, 49);
+            this.txtVuelto.Location = new System.Drawing.Point(429, 55);
             this.txtVuelto.Name = "txtVuelto";
             this.txtVuelto.Size = new System.Drawing.Size(100, 23);
             this.txtVuelto.TabIndex = 60;
@@ -455,7 +454,7 @@ namespace Pan3
             // txtADeuda
             // 
             this.txtADeuda.Enabled = false;
-            this.txtADeuda.Location = new System.Drawing.Point(382, 78);
+            this.txtADeuda.Location = new System.Drawing.Point(429, 84);
             this.txtADeuda.Name = "txtADeuda";
             this.txtADeuda.Size = new System.Drawing.Size(100, 23);
             this.txtADeuda.TabIndex = 59;
@@ -465,7 +464,7 @@ namespace Pan3
             // txtPagado
             // 
             this.txtPagado.Enabled = false;
-            this.txtPagado.Location = new System.Drawing.Point(382, 18);
+            this.txtPagado.Location = new System.Drawing.Point(429, 24);
             this.txtPagado.Name = "txtPagado";
             this.txtPagado.Size = new System.Drawing.Size(100, 23);
             this.txtPagado.TabIndex = 58;
@@ -474,7 +473,7 @@ namespace Pan3
             // 
             // txtNOp
             // 
-            this.txtNOp.Location = new System.Drawing.Point(117, 102);
+            this.txtNOp.Location = new System.Drawing.Point(128, 82);
             this.txtNOp.Name = "txtNOp";
             this.txtNOp.Size = new System.Drawing.Size(113, 23);
             this.txtNOp.TabIndex = 56;
@@ -483,7 +482,7 @@ namespace Pan3
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label60.Location = new System.Drawing.Point(13, 106);
+            this.label60.Location = new System.Drawing.Point(24, 86);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(96, 15);
             this.label60.TabIndex = 55;
@@ -493,7 +492,7 @@ namespace Pan3
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(13, 19);
+            this.label42.Location = new System.Drawing.Point(24, 27);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(90, 15);
             this.label42.TabIndex = 26;
@@ -502,19 +501,11 @@ namespace Pan3
             // CbFPago
             // 
             this.CbFPago.FormattingEnabled = true;
-            this.CbFPago.Location = new System.Drawing.Point(117, 16);
+            this.CbFPago.Location = new System.Drawing.Point(128, 24);
             this.CbFPago.Name = "CbFPago";
             this.CbFPago.Size = new System.Drawing.Size(113, 23);
             this.CbFPago.TabIndex = 31;
             this.CbFPago.SelectedIndexChanged += new System.EventHandler(this.CbFPago_SelectedIndexChanged);
-            // 
-            // txtRecargo
-            // 
-            this.txtRecargo.Enabled = false;
-            this.txtRecargo.Location = new System.Drawing.Point(117, 74);
-            this.txtRecargo.Name = "txtRecargo";
-            this.txtRecargo.Size = new System.Drawing.Size(113, 23);
-            this.txtRecargo.TabIndex = 54;
             // 
             // DGVmdp
             // 
@@ -522,24 +513,14 @@ namespace Pan3
             this.DGVmdp.Location = new System.Drawing.Point(6, 131);
             this.DGVmdp.Name = "DGVmdp";
             this.DGVmdp.RowTemplate.Height = 25;
-            this.DGVmdp.Size = new System.Drawing.Size(476, 115);
+            this.DGVmdp.Size = new System.Drawing.Size(476, 128);
             this.DGVmdp.TabIndex = 32;
-            // 
-            // lblRecargo
-            // 
-            this.lblRecargo.AutoSize = true;
-            this.lblRecargo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRecargo.Location = new System.Drawing.Point(13, 78);
-            this.lblRecargo.Name = "lblRecargo";
-            this.lblRecargo.Size = new System.Drawing.Size(53, 15);
-            this.lblRecargo.TabIndex = 53;
-            this.lblRecargo.Text = "Recargo:";
             // 
             // btnAceptarMdePagos
             // 
             this.btnAceptarMdePagos.BackColor = System.Drawing.Color.White;
             this.btnAceptarMdePagos.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptarMdePagos.Image")));
-            this.btnAceptarMdePagos.Location = new System.Drawing.Point(249, 49);
+            this.btnAceptarMdePagos.Location = new System.Drawing.Point(260, 57);
             this.btnAceptarMdePagos.Name = "btnAceptarMdePagos";
             this.btnAceptarMdePagos.Size = new System.Drawing.Size(46, 43);
             this.btnAceptarMdePagos.TabIndex = 33;
@@ -550,7 +531,7 @@ namespace Pan3
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label25.Location = new System.Drawing.Point(13, 48);
+            this.label25.Location = new System.Drawing.Point(24, 56);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(46, 15);
             this.label25.TabIndex = 34;
@@ -558,7 +539,7 @@ namespace Pan3
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(117, 45);
+            this.txtMonto.Location = new System.Drawing.Point(128, 53);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(113, 23);
             this.txtMonto.TabIndex = 35;
@@ -567,7 +548,7 @@ namespace Pan3
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(318, 52);
+            this.label55.Location = new System.Drawing.Point(370, 58);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(53, 15);
             this.label55.TabIndex = 43;
@@ -576,7 +557,7 @@ namespace Pan3
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(318, 81);
+            this.label54.Location = new System.Drawing.Point(370, 87);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(53, 15);
             this.label54.TabIndex = 42;
@@ -585,7 +566,7 @@ namespace Pan3
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(284, 21);
+            this.label53.Location = new System.Drawing.Point(336, 27);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(87, 15);
             this.label53.TabIndex = 41;
@@ -625,19 +606,29 @@ namespace Pan3
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.label19);
             this.groupBox13.Controls.Add(this.txtPDeuda);
             this.groupBox13.Controls.Add(this.BtnCobrarDeuda);
             this.groupBox13.Controls.Add(this.label61);
             this.groupBox13.Controls.Add(this.lblDeuda);
             this.groupBox13.Location = new System.Drawing.Point(15, 101);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(200, 121);
+            this.groupBox13.Size = new System.Drawing.Size(200, 158);
             this.groupBox13.TabIndex = 51;
             this.groupBox13.TabStop = false;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 100);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(45, 15);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Abona:";
+            // 
             // txtPDeuda
             // 
-            this.txtPDeuda.Location = new System.Drawing.Point(7, 81);
+            this.txtPDeuda.Location = new System.Drawing.Point(7, 121);
             this.txtPDeuda.Name = "txtPDeuda";
             this.txtPDeuda.Size = new System.Drawing.Size(100, 23);
             this.txtPDeuda.TabIndex = 51;
@@ -649,7 +640,7 @@ namespace Pan3
             // 
             this.BtnCobrarDeuda.BackColor = System.Drawing.Color.White;
             this.BtnCobrarDeuda.Image = ((System.Drawing.Image)(resources.GetObject("BtnCobrarDeuda.Image")));
-            this.BtnCobrarDeuda.Location = new System.Drawing.Point(130, 48);
+            this.BtnCobrarDeuda.Location = new System.Drawing.Point(130, 71);
             this.BtnCobrarDeuda.Name = "BtnCobrarDeuda";
             this.BtnCobrarDeuda.Size = new System.Drawing.Size(64, 44);
             this.BtnCobrarDeuda.TabIndex = 50;
@@ -835,6 +826,7 @@ namespace Pan3
             this.BTCancelar.Size = new System.Drawing.Size(80, 80);
             this.BTCancelar.TabIndex = 14;
             this.BTCancelar.UseVisualStyleBackColor = false;
+            this.BTCancelar.Click += new System.EventHandler(this.BTCancelar_Click);
             // 
             // lbltotal
             // 
@@ -2736,8 +2728,6 @@ namespace Pan3
         private System.Windows.Forms.TextBox txtDesde;
         private System.Windows.Forms.Button btnBuscarPorFecha;
         private System.Windows.Forms.GroupBox groupBox14;
-        protected System.Windows.Forms.TextBox txtRecargo;
-        protected System.Windows.Forms.Label lblRecargo;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.ComboBox CBProducto;
@@ -2785,6 +2775,7 @@ namespace Pan3
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnAcepProdVarios;
         private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label19;
     }
 }
 

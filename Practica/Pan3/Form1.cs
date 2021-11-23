@@ -19,9 +19,12 @@ namespace Pan3
 {
     public partial class Form1 : Form
     {
+
+        #region variables globales
+
         private string idproveedor;
         private string idcliente;
-        private string idfpago;
+        //private string idfpago;
         private string idautorizado;
         private string idproducto;
         private string idcategoria;
@@ -37,6 +40,11 @@ namespace Pan3
 
         public string NombreAutorizado = "";
         public int IdAutorizado = 0;
+        public decimal MontoInicialCaja = 0;
+
+        #endregion 
+
+        #region Entidades y objetos
 
         E_Proveedor objEProveedor = new E_Proveedor();
         NegProveedores objNegProveedor = new NegProveedores();
@@ -60,7 +68,10 @@ namespace Pan3
         NegCompra objNegCompra = new NegCompra();
         E_ProductoCompra objEProductoCompra = new E_ProductoCompra();
         NegProductoCompra objNegProductoCompra = new NegProductoCompra();
+        E_Caja objECaja = new E_Caja();
+        NegCaja objNegCaja = new NegCaja();
 
+        #endregion
         public Form1()
         {
             InitializeComponent();
@@ -74,7 +85,6 @@ namespace Pan3
             CrearColumnasEgresosCaja();
             CrearColumnasProveedores();
             CrearColumnasCompra();
-            CrearColumnasHCompra();
 
             lbltime.Text = DateTime.Now.ToString();
             BTVenta.BackgroundImageLayout = ImageLayout.Stretch;
@@ -126,17 +136,19 @@ namespace Pan3
             LlenarTablaProveedores();
             LlenarCbProveedores();
             LlenarCbProd();
-            LlenarDgvHCompra();
             FormaDePagoC();
+
+            DataSet ds = objNegCaja.datosUltimoAutorizadoConCajaAbierta();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                MontoInicialCaja = decimal.Parse(dr[2].ToString());
+            }
+
+            txtMontoInicial.Text = MontoInicialCaja.ToString();
         }
 
         #region Proveedor
-
-        //public void mostrarBuscarTablaP(string buscar)
-        //{
-        //    NegProveedores objNegocio = new NegProveedores();
-        //    dgvProv.DataSource = objNegocio.ListandoProveedores(buscar);
-        //}
 
         public void accionestabla()
         {
@@ -155,16 +167,6 @@ namespace Pan3
             txtcuil.Text = "";
 
             txtprov.Focus();
-        }
-
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            LimpiarTxt();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarTxt();
         }
 
         private void CrearColumnasProveedores()
@@ -372,6 +374,8 @@ namespace Pan3
                     MessageBox.Show("No se pudo editar el cliente" + ex);
                 }
             }
+
+            LlenarCbClientes();
         }
 
         private void LimpiarTxtC()
@@ -404,11 +408,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el proveedor que desea editar");
             }
-        }
 
-        private void btnnuevocliente_Click(object sender, EventArgs e)
-        {
-            LimpiarTxtC();
+            LlenarCbClientes();
         }
 
         private void btncancelarC_Click(object sender, EventArgs e)
@@ -431,6 +432,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el cliente que desea eliminar");
             }
+
+            LlenarCbClientes();
         }
 
         #endregion
@@ -544,11 +547,6 @@ namespace Pan3
             }
         }
 
-        private void BtnNAut_Click(object sender, EventArgs e)
-        {
-            LimpiarTxtA();
-        }
-
         private void BtnElAut_Click(object sender, EventArgs e)
         {
             if (dgvAutorizados.SelectedRows.Count > 0)
@@ -657,6 +655,8 @@ namespace Pan3
                     MessageBox.Show("No se pudo editar el producto" + ex);
                 }
             }
+
+            LlenarCbProductos();
         }
 
         private void btnEdProd_Click(object sender, EventArgs e)
@@ -678,6 +678,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el producto que desea editar");
             }
+
+            LlenarCbProductos();
         }
 
         private void btnElProd_Click(object sender, EventArgs e)
@@ -694,6 +696,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el producto que desea eliminar");
             }
+
+            LlenarCbProductos();
         }
 
         #endregion
@@ -837,6 +841,7 @@ namespace Pan3
             GuardarVenta();
             GuardarDeuda();
             MostrarDeuda();
+            LlenarDGVCaja();
         }
 
         private void GuardarVenta()
@@ -875,21 +880,24 @@ namespace Pan3
                 LlenarDGVProd();
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("La venta no se pudo realizar");
+                MessageBox.Show("La venta no se pudo realizar" + e.Message);
             }
         }
 
         private void BTAgregar_Click(object sender, EventArgs e)
         {
+            if (camposVaciosProducto())
+            {
+                decimal precioxcantidad = Convert.ToInt32(TxtCantidad.Text) * Convert.ToInt32(TBPrecioU.Text);
 
-            decimal precioxcantidad = Convert.ToInt32(TxtCantidad.Text) * Convert.ToInt32(TBPrecioU.Text);
+                DGVListaVenta.Rows.Add(Convert.ToInt32(CBProducto.SelectedValue.ToString()), TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
 
-            DGVListaVenta.Rows.Add(Convert.ToInt32(CBProducto.SelectedValue.ToString()),TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
+                preciototal = 0;
+                CalcularTotalVenta();
+            }
 
-            preciototal = 0;
-            CalcularTotalVenta();
         }
 
         private void CalcularTotalVenta()
@@ -906,7 +914,7 @@ namespace Pan3
         {
             DataSet ds = new DataSet();
             ds = objNegProducto.ListandoProductos("Todos");
-            CBProducto.DisplayMember ="Nombre_producto";
+            CBProducto.DisplayMember = "Nombre_producto";
             CBProducto.ValueMember = "Id_producto";
             CBProducto.DataSource = ds.Tables[0];
         }
@@ -997,30 +1005,34 @@ namespace Pan3
 
         private void btnAceptarMdePagos_Click(object sender, EventArgs e)
         {
-            decimal total = 0;
-
-            foreach (DataGridViewRow row in DGVmdp.Rows)
+            if (!camposVaciosPago())
             {
-                if (CbFPago.Text == "Efectivo" || CbFPago.Text == "Débito")
+                decimal total = 0;
+
+                foreach (DataGridViewRow row in DGVmdp.Rows)
                 {
-                    total += Convert.ToDecimal(row.Cells[3].Value);
-                    preciototal = total;
+                    if (CbFPago.Text == "Efectivo" || CbFPago.Text == "Débito")
+                    {
+                        total += Convert.ToDecimal(row.Cells[3].Value);
+                        preciototal = total;
+                    }
+                    else
+                    {
+                        CalcularInteres();
+                        total = Convert.ToDecimal(montoConInt);
+                        preciototal = Convert.ToDecimal(montoConInt);
+                    }
                 }
-                else
-                {
-                    CalcularInteres();
-                    total = Convert.ToDecimal(montoConInt);
-                    preciototal = Convert.ToDecimal(montoConInt);
-                }             
+
+                DGVmdp.Rows.Add(CbFPago.SelectedValue, CbFPago.Text, txtRecargo.Text, txtMonto.Text, preciototal);
+
+                Pagado = 0;
+                CalcularTotalPagado();
+                txtPagado.Text = Pagado.ToString();
+                CalcularSaldo();
+                CalcularVuelto();
             }
-
-            DGVmdp.Rows.Add(CbFPago.SelectedValue, CbFPago.Text, txtRecargo.Text, txtMonto.Text, preciototal);
-
-            Pagado = 0;
-            CalcularTotalPagado();
-            txtPagado.Text = Pagado.ToString();
-            CalcularSaldo();
-            CalcularVuelto();
+   
         }
         private void CalcularInteres()
         {
@@ -1034,11 +1046,11 @@ namespace Pan3
             }
         }
 
-        private void CalcularSaldo()          
+        private void CalcularSaldo()
         {
             decimal saldo = Convert.ToDecimal(lbltotal.Text) - Pagado;
             if (saldo <= 0)
-            {               
+            {
                 txtADeuda.Text = saldo.ToString();
                 CalcularVuelto();
             }
@@ -1071,7 +1083,7 @@ namespace Pan3
         #region ProductoVenta
 
         private void GuardarProductoVenta()
-        {          
+        {
             try
             {
                 DataSet ds = new DataSet();
@@ -1117,7 +1129,7 @@ namespace Pan3
         #endregion
 
         #region Productos de Panaderia 
-        private void btnPP_Click(object sender, EventArgs e)
+        private void btnAcepProdVarios_Click(object sender, EventArgs e)
         {
             AgregarProdPanaderia();
             preciototal = 0;
@@ -1127,9 +1139,7 @@ namespace Pan3
 
         private void AgregarProdPanaderia()
         {
-            detallePP = Interaction.InputBox("Detalle del producto", "Productos de panadería");
-            montoPP = Convert.ToInt32(Interaction.InputBox("Monto", "Productos de panadería"));
-            DGVListaVenta.Rows.Add(999, 1, detallePP, montoPP, montoPP);
+            DGVListaVenta.Rows.Add(999, 1, txtDescripcion.Text, txtPrecioPV.Text, txtPrecioPV.Text);
         }
         #endregion
 
@@ -1152,6 +1162,7 @@ namespace Pan3
         {
             if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
+                ValidacionPagoDeuda();
                 CobrarDeudaSola();
             }
             else
@@ -1200,9 +1211,16 @@ namespace Pan3
                 deuda1 *= -1;
             }
 
+            //decimal MontoPagoDeuda;
+            //MontoPagoDeuda = Convert.ToDecimal(txtPDeuda.Text);
+            //diferencia = deuda1 - MontoPagoDeuda;
+
+            ValidacionPagoDeuda(); //QUEDÉ ACÁ
+
             if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
-                MontoPagoDeuda = Convert.ToInt32(Interaction.InputBox("Monto", "Deuda"));
+                decimal MontoPagoDeuda;
+                MontoPagoDeuda = Convert.ToDecimal(txtPDeuda.Text);
                 diferencia = deuda1 - MontoPagoDeuda;
             }
 
@@ -1299,11 +1317,12 @@ namespace Pan3
             }
             else
                 MessageBox.Show("No hay ventas cargados en el sistema");
+
         }
 
         private void LlenarCajaEgresos()
         {
-            DgvCaja.Rows.Clear();
+            dgvCajaEgresos.Rows.Clear();
             DataSet ds = new DataSet();
             ds = objNegCompra.ListandoCompras("TodoCompras");
             if (ds.Tables[0].Rows.Count > 0)
@@ -1354,6 +1373,30 @@ namespace Pan3
         {
             dgvCajaEgresos.Rows.Clear();
             LlenarCajaEgresosPorFecha();
+        }
+
+        private void btnCerrarCaja_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Cerrar caja con un monto de $" + txtMontoInicial.Text + " ?", "Cerrar caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                int nGrabados = -1;
+
+                objECaja.ImporteFinal1 = Convert.ToDecimal(txtMontoInicial.Text);
+                objECaja.Estado1 = false;
+                objECaja.Fecha1 = DateTime.Now.ToString("d");
+                nGrabados = objNegCaja.abmCaja("Cierre", objECaja);
+
+                if (nGrabados == -1)
+                {
+                    MessageBox.Show(" No se pudo cerrar la caja");
+                }
+                else
+                {
+                    MessageBox.Show("Cierre de caja realizado");
+                }
+            }
         }
 
         #endregion
@@ -1553,43 +1596,16 @@ namespace Pan3
 
         private void LlenarCbProd()
         {
-           DataSet ds = new DataSet();
-           ds = objNegProducto.ListandoProductos("Todos");
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos("Todos");
             CbProductos.DisplayMember = "Nombre_producto";
             CbProductos.ValueMember = "Id_producto";
-            CbProductos.DataSource = ds.Tables[0];           
+            CbProductos.DataSource = ds.Tables[0];
         }
-
-        private void CrearColumnasHCompra()
-        {
-            dgvHCompras.ColumnCount = 8;
-            dgvHCompras.Columns[0].HeaderText = "Id";
-            dgvHCompras.Columns[1].HeaderText = "Proveedor";
-            dgvHCompras.Columns[2].HeaderText = "Autorizado";
-            dgvHCompras.Columns[3].HeaderText = "Forma de pago";
-            dgvHCompras.Columns[4].HeaderText = "Monto";
-            dgvHCompras.Columns[5].HeaderText = "Fecha";
-            dgvHCompras.Columns[6].HeaderText = "Estado";
-            dgvHCompras.Columns[7].HeaderText = "N° de Factura";
-        }
-
-        private void LlenarDgvHCompra()
-        {
-            DataSet ds = new DataSet();
-            ds = objNegCompra.ListandoCompras("TodoCompras");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    dgvHCompras.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
-                }
-            }
-        }
-
         private void CrearColumnasCompra()
         {
             dgvCompras.ColumnCount = 7;
-            
+
             dgvCompras.Columns[0].HeaderText = "Proveedor";
             dgvCompras.Columns[1].HeaderText = "Producto";
             dgvCompras.Columns[2].HeaderText = "Cantidad";
@@ -1597,8 +1613,6 @@ namespace Pan3
             dgvCompras.Columns[4].HeaderText = "N° de Factura";
             dgvCompras.Columns[5].HeaderText = "Precio Final";
         }
-
-        #endregion
 
         private void btnGuardarCompra_Click(object sender, EventArgs e)
         {
@@ -1676,7 +1690,7 @@ namespace Pan3
         {
             decimal CostoxCant = Convert.ToInt32(txtCantCompra.Text) * Convert.ToInt32(txtPCompra.Text);
 
-            dgvCompras.Rows.Add(Convert.ToInt32(CbProveedores.SelectedValue.ToString()), Convert.ToInt32(CbProductos.SelectedValue.ToString()),txtCantCompra.Text, txtPCompra.Text, txtNFact.Text, CostoxCant);
+            dgvCompras.Rows.Add(Convert.ToInt32(CbProveedores.SelectedValue.ToString()), Convert.ToInt32(CbProductos.SelectedValue.ToString()), txtCantCompra.Text, txtPCompra.Text, txtNFact.Text, CostoxCant);
 
             preciototalC = 0;
             CalcularTotalCompra();
@@ -1689,6 +1703,151 @@ namespace Pan3
                 preciototalC += Convert.ToDecimal(dgvCompras.Rows[i].Cells[5].Value);
             }
             lblTCompra.Text = preciototalC.ToString();
+        }
+
+
+        #endregion
+
+        #region validaciones
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool camposVaciosProducto()
+        {
+            bool correcta = true;
+            if (TxtCantidad.Text == "" || Convert.ToDecimal(TxtCantidad.Text) <= 0)
+            {
+                correcta = false;
+                MessageBox.Show("La cantidad de productos no puede ser menor a 1");
+                TxtCantidad.SelectAll();
+                TxtCantidad.Focus();
+            }
+
+            return correcta;
+        }
+
+        private bool camposVaciosPago()
+        {
+            bool validation = false;
+
+            if (!txtMonto.Text.All(char.IsNumber) || txtMonto.Text == "")
+            {
+                validation = true;
+                MessageBox.Show("Debe ingresar un monto de pago correcto");
+                txtMonto.SelectAll();
+                txtMonto.Focus();
+                return validation;
+            }
+
+            if (CbFPago.SelectedValue.ToString() == "")
+            {
+                validation = true;
+                MessageBox.Show("Debe ingresar una forma de pago correcta");
+                CbFPago.Focus();
+                return validation;
+            }
+
+            if (CbFPago.SelectedValue.ToString() == "Tarjeta de crédito")
+            {
+                validation = true;
+                MessageBox.Show("Debe ingresar un numero de operacion correcto");
+                txtNOp.SelectAll();
+                txtNOp.Focus();
+                return validation;
+            }
+
+            return validation;
+        }
+
+        private bool ValidacionPagoDeuda()
+        {
+            bool validation = false;
+
+            if (!txtPDeuda.Text.All(char.IsNumber) || txtPDeuda.Text == "")
+            {
+                validation = true;
+                MessageBox.Show("Debe ingresar un monto de pago correcto");
+                txtMonto.SelectAll();
+                txtMonto.Focus();
+                return validation;
+            }
+            else if (txtPDeuda.Text == "" || Convert.ToDecimal(txtPDeuda.Text) <= 0)
+            {
+                validation = false;
+                MessageBox.Show("El pago no puede ser menor a 1");
+                txtPDeuda.SelectAll();
+                txtPDeuda.Focus();
+                return validation;
+            }
+            return validation;
+        }
+
+        private void TxtCantidad_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Convert.ToDecimal(TxtCantidad.Text) < 0)
+            {
+                MessageBox.Show("La cantidad no debe ser menor que 1");
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPDeuda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
+        private void txtPrecioPV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

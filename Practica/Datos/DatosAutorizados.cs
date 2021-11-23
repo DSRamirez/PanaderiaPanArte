@@ -37,7 +37,6 @@ namespace Datos
             return ds;
         }
 
-
         public int AbmAutorizados(string accion, E_Autorizados objEAutorizado)
         {
             int resultado = -1;
@@ -88,19 +87,29 @@ namespace Datos
             return resultado;
         }
 
-        public DataSet Login(E_Autorizados objEAutorizado)
+        public int Login(E_Autorizados objEAutorizado)
         {
-            string orden = "SELECT Usuario_autorizado, Clave_autorizado FROM Autorizado WHERE Usuario_autorizado = '" + objEAutorizado.Usuario_aut + "'AND Clave_autorizado ='" + objEAutorizado.Clave_aut + "' ";
+            string orden = "SELECT Id_autorizado, Usuario_autorizado, Clave_autorizado FROM Autorizado WHERE Usuario_autorizado = '" + objEAutorizado.Usuario_aut + "'AND Clave_autorizado ='" + objEAutorizado.Clave_aut + "' ";
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            int id_Autorizado = 0;
+
             try
             {
                 Conexion.Open();
                 cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
                 da.Fill(ds);
+
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    id_Autorizado = int.Parse(dr[0].ToString());
+                }
             }
+
             catch (Exception e)
             {
                 throw new Exception("Usuario no encontrado", e);
@@ -110,7 +119,9 @@ namespace Datos
                 Conexion.Close();
                 cmd.Dispose();
             }
-            return ds;
+
+
+            return id_Autorizado;
         }
 
         public DataSet ListadoAutorizadoRapido(string cual)
@@ -133,6 +144,32 @@ namespace Datos
                 Conexion.Open();
                 cmd.ExecuteNonQuery();
 
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Autorizados", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+
+        public DataSet listadoAutorizadoPorFecha(string fecha)
+        {
+            string orden = "select * from caja where fecha = '" + fecha + "' and Estado = 1";
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
                 da.Fill(ds);
             }

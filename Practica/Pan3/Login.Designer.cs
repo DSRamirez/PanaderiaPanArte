@@ -109,11 +109,10 @@ namespace Pan3
             // lblhora
             // 
             this.lblhora.AutoSize = true;
-            this.lblhora.Location = new System.Drawing.Point(380, 19);
+            this.lblhora.Location = new System.Drawing.Point(231, 19);
             this.lblhora.Name = "lblhora";
-            this.lblhora.Size = new System.Drawing.Size(38, 15);
+            this.lblhora.Size = new System.Drawing.Size(0, 15);
             this.lblhora.TabIndex = 6;
-            this.lblhora.Text = "label2";
             // 
             // btnSalir
             // 

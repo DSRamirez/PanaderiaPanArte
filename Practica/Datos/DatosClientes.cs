@@ -13,11 +13,10 @@ namespace Datos
         public DataSet listadoClientes(string cual)
         {
             string orden;
-            if (cual != "Todos")
-                
-                orden = "select * from cliente where id_cliente = " + int.Parse(cual) + ";";             
+            if (cual != "Todos") 
+                orden = "select * from cliente where id_cliente = " + int.Parse(cual);
             else
-                orden = "select * from cliente;";
+                orden = "select * from cliente where esta_cancelado = 0";
                 SqlCommand cmd = new SqlCommand(orden, Conexion);
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();

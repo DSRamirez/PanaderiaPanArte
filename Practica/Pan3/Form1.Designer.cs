@@ -33,6 +33,12 @@ namespace Pan3
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabVenta = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btnAcepProdVarios = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtPrecioPV = new System.Windows.Forms.TextBox();
             this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.btnETodosMP = new System.Windows.Forms.Button();
@@ -57,6 +63,7 @@ namespace Pan3
             this.CBCliente = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.txtPDeuda = new System.Windows.Forms.TextBox();
             this.BtnCobrarDeuda = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.lblDeuda = new System.Windows.Forms.Label();
@@ -64,7 +71,6 @@ namespace Pan3
             this.label1 = new System.Windows.Forms.Label();
             this.CBProducto = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPP = new System.Windows.Forms.Button();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.BTAgregar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -100,9 +106,6 @@ namespace Pan3
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.dgvCompras = new System.Windows.Forms.DataGridView();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.dgvHCompras = new System.Windows.Forms.DataGridView();
-            this.label19 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.CbProductos = new System.Windows.Forms.ComboBox();
             this.btnGuardarCompra = new System.Windows.Forms.Button();
@@ -112,26 +115,35 @@ namespace Pan3
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btActualizarMontoActual = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.txtHastaC = new System.Windows.Forms.TextBox();
+            this.dgvCajaEgresos = new System.Windows.Forms.DataGridView();
+            this.txtDesdeC = new System.Windows.Forms.TextBox();
+            this.txtBFecha = new System.Windows.Forms.Button();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.btnBuscarPorFecha = new System.Windows.Forms.Button();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.txtHasta = new System.Windows.Forms.TextBox();
             this.txtDesde = new System.Windows.Forms.TextBox();
+            this.txtHasta = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.DgvCaja = new System.Windows.Forms.DataGridView();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtMontoActual = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.DgvCaja = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMontoInicial = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCerrarCaja = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tbBuscarAutorizados = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
-            this.BtnNAut = new System.Windows.Forms.Button();
             this.BtnElAut = new System.Windows.Forms.Button();
             this.BtnEdAut = new System.Windows.Forms.Button();
             this.BtnGAut = new System.Windows.Forms.Button();
@@ -151,9 +163,6 @@ namespace Pan3
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label43 = new System.Windows.Forms.Label();
             this.tbBuscarClientes = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.btncancelarC = new System.Windows.Forms.Button();
-            this.btnnuevocliente = new System.Windows.Forms.Button();
             this.BtnEC = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvCliente = new System.Windows.Forms.DataGridView();
@@ -174,13 +183,11 @@ namespace Pan3
             this.button23 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvProv = new System.Windows.Forms.DataGridView();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtprov = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
@@ -237,16 +244,9 @@ namespace Pan3
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAut = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.txtBFecha = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.txtHastaC = new System.Windows.Forms.TextBox();
-            this.txtDesdeC = new System.Windows.Forms.TextBox();
-            this.dgvCajaEgresos = new System.Windows.Forms.DataGridView();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.TabVenta.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).BeginInit();
             this.groupBox15.SuspendLayout();
@@ -256,9 +256,10 @@ namespace Pan3
             this.TabProductos.SuspendLayout();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
-            this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHCompras)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.groupBox18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).BeginInit();
+            this.groupBox17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -279,9 +280,6 @@ namespace Pan3
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).BeginInit();
-            this.groupBox17.SuspendLayout();
-            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -302,6 +300,7 @@ namespace Pan3
             // 
             // TabVenta
             // 
+            this.TabVenta.Controls.Add(this.groupBox10);
             this.TabVenta.Controls.Add(this.btnPrint);
             this.TabVenta.Controls.Add(this.groupBox16);
             this.TabVenta.Controls.Add(this.groupBox15);
@@ -319,6 +318,64 @@ namespace Pan3
             this.TabVenta.TabIndex = 0;
             this.TabVenta.Text = "Venta";
             this.TabVenta.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.btnAcepProdVarios);
+            this.groupBox10.Controls.Add(this.label65);
+            this.groupBox10.Controls.Add(this.txtDescripcion);
+            this.groupBox10.Controls.Add(this.label26);
+            this.groupBox10.Controls.Add(this.txtPrecioPV);
+            this.groupBox10.Location = new System.Drawing.Point(328, 216);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(380, 88);
+            this.groupBox10.TabIndex = 57;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Productos panadería";
+            // 
+            // btnAcepProdVarios
+            // 
+            this.btnAcepProdVarios.BackColor = System.Drawing.Color.White;
+            this.btnAcepProdVarios.Image = ((System.Drawing.Image)(resources.GetObject("btnAcepProdVarios.Image")));
+            this.btnAcepProdVarios.Location = new System.Drawing.Point(308, 26);
+            this.btnAcepProdVarios.Name = "btnAcepProdVarios";
+            this.btnAcepProdVarios.Size = new System.Drawing.Size(49, 43);
+            this.btnAcepProdVarios.TabIndex = 56;
+            this.btnAcepProdVarios.UseVisualStyleBackColor = false;
+            this.btnAcepProdVarios.Click += new System.EventHandler(this.btnAcepProdVarios_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(41, 54);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(46, 15);
+            this.label65.TabIndex = 55;
+            this.label65.Text = "Precio: ";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(93, 22);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(160, 23);
+            this.txtDescripcion.TabIndex = 52;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(15, 25);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(72, 15);
+            this.label26.TabIndex = 54;
+            this.label26.Text = "Descripción:";
+            // 
+            // txtPrecioPV
+            // 
+            this.txtPrecioPV.Location = new System.Drawing.Point(93, 51);
+            this.txtPrecioPV.Name = "txtPrecioPV";
+            this.txtPrecioPV.Size = new System.Drawing.Size(160, 23);
+            this.txtPrecioPV.TabIndex = 53;
+            this.txtPrecioPV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioPV_KeyPress);
             // 
             // btnPrint
             // 
@@ -352,7 +409,7 @@ namespace Pan3
             this.groupBox16.Controls.Add(this.label53);
             this.groupBox16.Location = new System.Drawing.Point(724, 31);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(594, 254);
+            this.groupBox16.Size = new System.Drawing.Size(594, 273);
             this.groupBox16.TabIndex = 56;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Pago";
@@ -387,6 +444,7 @@ namespace Pan3
             // 
             // txtVuelto
             // 
+            this.txtVuelto.Enabled = false;
             this.txtVuelto.Location = new System.Drawing.Point(382, 49);
             this.txtVuelto.Name = "txtVuelto";
             this.txtVuelto.Size = new System.Drawing.Size(100, 23);
@@ -396,6 +454,7 @@ namespace Pan3
             // 
             // txtADeuda
             // 
+            this.txtADeuda.Enabled = false;
             this.txtADeuda.Location = new System.Drawing.Point(382, 78);
             this.txtADeuda.Name = "txtADeuda";
             this.txtADeuda.Size = new System.Drawing.Size(100, 23);
@@ -405,6 +464,7 @@ namespace Pan3
             // 
             // txtPagado
             // 
+            this.txtPagado.Enabled = false;
             this.txtPagado.Location = new System.Drawing.Point(382, 18);
             this.txtPagado.Name = "txtPagado";
             this.txtPagado.Size = new System.Drawing.Size(100, 23);
@@ -450,6 +510,7 @@ namespace Pan3
             // 
             // txtRecargo
             // 
+            this.txtRecargo.Enabled = false;
             this.txtRecargo.Location = new System.Drawing.Point(117, 74);
             this.txtRecargo.Name = "txtRecargo";
             this.txtRecargo.Size = new System.Drawing.Size(113, 23);
@@ -501,6 +562,7 @@ namespace Pan3
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(113, 23);
             this.txtMonto.TabIndex = 35;
+            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
             // 
             // label55
             // 
@@ -536,7 +598,7 @@ namespace Pan3
             this.groupBox15.Controls.Add(this.groupBox13);
             this.groupBox15.Location = new System.Drawing.Point(51, 31);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(240, 254);
+            this.groupBox15.Size = new System.Drawing.Size(240, 273);
             this.groupBox15.TabIndex = 55;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Datos del cliente";
@@ -563,14 +625,25 @@ namespace Pan3
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.txtPDeuda);
             this.groupBox13.Controls.Add(this.BtnCobrarDeuda);
             this.groupBox13.Controls.Add(this.label61);
             this.groupBox13.Controls.Add(this.lblDeuda);
             this.groupBox13.Location = new System.Drawing.Point(15, 101);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(200, 100);
+            this.groupBox13.Size = new System.Drawing.Size(200, 121);
             this.groupBox13.TabIndex = 51;
             this.groupBox13.TabStop = false;
+            // 
+            // txtPDeuda
+            // 
+            this.txtPDeuda.Location = new System.Drawing.Point(7, 81);
+            this.txtPDeuda.Name = "txtPDeuda";
+            this.txtPDeuda.Size = new System.Drawing.Size(100, 23);
+            this.txtPDeuda.TabIndex = 51;
+            this.txtPDeuda.Text = "0";
+            this.txtPDeuda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPDeuda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPDeuda_KeyPress);
             // 
             // BtnCobrarDeuda
             // 
@@ -595,7 +668,7 @@ namespace Pan3
             // lblDeuda
             // 
             this.lblDeuda.AutoSize = true;
-            this.lblDeuda.Location = new System.Drawing.Point(6, 62);
+            this.lblDeuda.Location = new System.Drawing.Point(7, 53);
             this.lblDeuda.Name = "lblDeuda";
             this.lblDeuda.Size = new System.Drawing.Size(0, 15);
             this.lblDeuda.TabIndex = 49;
@@ -605,7 +678,6 @@ namespace Pan3
             this.groupBox14.Controls.Add(this.label1);
             this.groupBox14.Controls.Add(this.CBProducto);
             this.groupBox14.Controls.Add(this.label2);
-            this.groupBox14.Controls.Add(this.btnPP);
             this.groupBox14.Controls.Add(this.TxtCantidad);
             this.groupBox14.Controls.Add(this.BTAgregar);
             this.groupBox14.Controls.Add(this.label6);
@@ -618,10 +690,10 @@ namespace Pan3
             this.groupBox14.Controls.Add(this.TBCategoría);
             this.groupBox14.Location = new System.Drawing.Point(328, 31);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(380, 254);
+            this.groupBox14.Size = new System.Drawing.Size(380, 179);
             this.groupBox14.TabIndex = 52;
             this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Productos ";
+            this.groupBox14.Text = "Productos varios";
             // 
             // label1
             // 
@@ -653,19 +725,6 @@ namespace Pan3
             this.label2.TabIndex = 8;
             this.label2.Text = "Cantidad";
             // 
-            // btnPP
-            // 
-            this.btnPP.Image = ((System.Drawing.Image)(resources.GetObject("btnPP.Image")));
-            this.btnPP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPP.Location = new System.Drawing.Point(6, 182);
-            this.btnPP.Name = "btnPP";
-            this.btnPP.Size = new System.Drawing.Size(168, 66);
-            this.btnPP.TabIndex = 50;
-            this.btnPP.Text = "Productos varios ";
-            this.btnPP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPP.UseVisualStyleBackColor = true;
-            this.btnPP.Click += new System.EventHandler(this.btnPP_Click);
-            // 
             // TxtCantidad
             // 
             this.TxtCantidad.Location = new System.Drawing.Point(224, 48);
@@ -674,6 +733,7 @@ namespace Pan3
             this.TxtCantidad.TabIndex = 29;
             this.TxtCantidad.Text = "1";
             this.TxtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCantidad_KeyPress_1);
             // 
             // BTAgregar
             // 
@@ -791,7 +851,7 @@ namespace Pan3
             // 
             this.BTRemover.BackColor = System.Drawing.Color.Transparent;
             this.BTRemover.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTRemover.BackgroundImage")));
-            this.BTRemover.Location = new System.Drawing.Point(27, 291);
+            this.BTRemover.Location = new System.Drawing.Point(30, 318);
             this.BTRemover.Name = "BTRemover";
             this.BTRemover.Size = new System.Drawing.Size(80, 80);
             this.BTRemover.TabIndex = 2;
@@ -817,36 +877,42 @@ namespace Pan3
             this.product,
             this.preciounitario,
             this.Total});
-            this.DGVListaVenta.Location = new System.Drawing.Point(113, 291);
+            this.DGVListaVenta.Location = new System.Drawing.Point(113, 318);
             this.DGVListaVenta.Name = "DGVListaVenta";
+            this.DGVListaVenta.ReadOnly = true;
             this.DGVListaVenta.RowTemplate.Height = 25;
-            this.DGVListaVenta.Size = new System.Drawing.Size(1388, 434);
+            this.DGVListaVenta.Size = new System.Drawing.Size(1388, 407);
             this.DGVListaVenta.TabIndex = 0;
             // 
             // id_prod
             // 
             this.id_prod.HeaderText = "Id";
             this.id_prod.Name = "id_prod";
+            this.id_prod.ReadOnly = true;
             // 
             // cantidad
             // 
             this.cantidad.HeaderText = "Cantidad";
             this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
             // 
             // product
             // 
             this.product.HeaderText = "Producto";
             this.product.Name = "product";
+            this.product.ReadOnly = true;
             // 
             // preciounitario
             // 
             this.preciounitario.HeaderText = "Precio unitario";
             this.preciounitario.Name = "preciounitario";
+            this.preciounitario.ReadOnly = true;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // TabProductos
             // 
@@ -862,8 +928,6 @@ namespace Pan3
             this.TabProductos.Controls.Add(this.label46);
             this.TabProductos.Controls.Add(this.label9);
             this.TabProductos.Controls.Add(this.groupBox11);
-            this.TabProductos.Controls.Add(this.groupBox10);
-            this.TabProductos.Controls.Add(this.label19);
             this.TabProductos.Controls.Add(this.button7);
             this.TabProductos.Controls.Add(this.CbProductos);
             this.TabProductos.Controls.Add(this.btnGuardarCompra);
@@ -883,7 +947,7 @@ namespace Pan3
             // cbfp
             // 
             this.cbfp.FormattingEnabled = true;
-            this.cbfp.Location = new System.Drawing.Point(270, 507);
+            this.cbfp.Location = new System.Drawing.Point(308, 165);
             this.cbfp.Name = "cbfp";
             this.cbfp.Size = new System.Drawing.Size(121, 23);
             this.cbfp.TabIndex = 69;
@@ -891,7 +955,7 @@ namespace Pan3
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(270, 482);
+            this.label47.Location = new System.Drawing.Point(308, 140);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(90, 15);
             this.label47.TabIndex = 68;
@@ -904,7 +968,7 @@ namespace Pan3
             "Cancelado",
             "Pago parcial",
             "Pendiente"});
-            this.cbEst.Location = new System.Drawing.Point(586, 507);
+            this.cbEst.Location = new System.Drawing.Point(624, 165);
             this.cbEst.Name = "cbEst";
             this.cbEst.Size = new System.Drawing.Size(121, 23);
             this.cbEst.TabIndex = 67;
@@ -912,7 +976,7 @@ namespace Pan3
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(84, 498);
+            this.label50.Location = new System.Drawing.Point(122, 156);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(44, 15);
             this.label50.TabIndex = 66;
@@ -921,7 +985,7 @@ namespace Pan3
             // lblTCompra
             // 
             this.lblTCompra.AutoSize = true;
-            this.lblTCompra.Location = new System.Drawing.Point(134, 498);
+            this.lblTCompra.Location = new System.Drawing.Point(172, 156);
             this.lblTCompra.Name = "lblTCompra";
             this.lblTCompra.Size = new System.Drawing.Size(0, 15);
             this.lblTCompra.TabIndex = 65;
@@ -930,7 +994,7 @@ namespace Pan3
             // 
             this.btnAgregarProd.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarProd.Image")));
             this.btnAgregarProd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProd.Location = new System.Drawing.Point(951, 55);
+            this.btnAgregarProd.Location = new System.Drawing.Point(873, 51);
             this.btnAgregarProd.Name = "btnAgregarProd";
             this.btnAgregarProd.Size = new System.Drawing.Size(88, 48);
             this.btnAgregarProd.TabIndex = 64;
@@ -941,21 +1005,21 @@ namespace Pan3
             // 
             // txtNFact
             // 
-            this.txtNFact.Location = new System.Drawing.Point(761, 70);
+            this.txtNFact.Location = new System.Drawing.Point(713, 69);
             this.txtNFact.Name = "txtNFact";
             this.txtNFact.Size = new System.Drawing.Size(135, 23);
             this.txtNFact.TabIndex = 63;
             // 
             // txtPCompra
             // 
-            this.txtPCompra.Location = new System.Drawing.Point(621, 69);
+            this.txtPCompra.Location = new System.Drawing.Point(573, 68);
             this.txtPCompra.Name = "txtPCompra";
             this.txtPCompra.Size = new System.Drawing.Size(100, 23);
             this.txtPCompra.TabIndex = 62;
             // 
             // txtCantCompra
             // 
-            this.txtCantCompra.Location = new System.Drawing.Point(481, 68);
+            this.txtCantCompra.Location = new System.Drawing.Point(433, 67);
             this.txtCantCompra.Name = "txtCantCompra";
             this.txtCantCompra.Size = new System.Drawing.Size(100, 23);
             this.txtCantCompra.TabIndex = 61;
@@ -963,7 +1027,7 @@ namespace Pan3
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(581, 482);
+            this.label46.Location = new System.Drawing.Point(619, 140);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(45, 15);
             this.label46.TabIndex = 55;
@@ -972,7 +1036,7 @@ namespace Pan3
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(761, 51);
+            this.label9.Location = new System.Drawing.Point(713, 50);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 15);
             this.label9.TabIndex = 54;
@@ -982,9 +1046,9 @@ namespace Pan3
             // 
             this.groupBox11.Controls.Add(this.dgvCompras);
             this.groupBox11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox11.Location = new System.Drawing.Point(37, 127);
+            this.groupBox11.Location = new System.Drawing.Point(37, 236);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(1472, 333);
+            this.groupBox11.Size = new System.Drawing.Size(1033, 645);
             this.groupBox11.TabIndex = 52;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Detalle de compra";
@@ -992,49 +1056,20 @@ namespace Pan3
             // dgvCompras
             // 
             this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCompras.Location = new System.Drawing.Point(25, 24);
+            this.dgvCompras.Location = new System.Drawing.Point(25, 43);
             this.dgvCompras.Name = "dgvCompras";
+            this.dgvCompras.ReadOnly = true;
             this.dgvCompras.RowTemplate.Height = 25;
-            this.dgvCompras.Size = new System.Drawing.Size(1423, 288);
+            this.dgvCompras.Size = new System.Drawing.Size(977, 574);
             this.dgvCompras.TabIndex = 1;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.dgvHCompras);
-            this.groupBox10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox10.Location = new System.Drawing.Point(37, 586);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(1472, 269);
-            this.groupBox10.TabIndex = 51;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Historial de compras";
-            // 
-            // dgvHCompras
-            // 
-            this.dgvHCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHCompras.Location = new System.Drawing.Point(25, 33);
-            this.dgvHCompras.Name = "dgvHCompras";
-            this.dgvHCompras.RowTemplate.Height = 25;
-            this.dgvHCompras.Size = new System.Drawing.Size(1423, 220);
-            this.dgvHCompras.TabIndex = 51;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(37, 858);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(278, 21);
-            this.label19.TabIndex = 49;
-            this.label19.Text = "Doble click para ver detalle de compra";
             // 
             // button7
             // 
-            this.button7.Image = global::Pan3.Properties.Resources.cancel_stop_exit_1583;
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(1648, 21);
+            this.button7.Location = new System.Drawing.Point(973, 90);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(131, 75);
+            this.button7.Size = new System.Drawing.Size(97, 53);
             this.button7.TabIndex = 41;
             this.button7.Text = "Cancelar";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1043,7 +1078,7 @@ namespace Pan3
             // CbProductos
             // 
             this.CbProductos.FormattingEnabled = true;
-            this.CbProductos.Location = new System.Drawing.Point(278, 68);
+            this.CbProductos.Location = new System.Drawing.Point(230, 67);
             this.CbProductos.Name = "CbProductos";
             this.CbProductos.Size = new System.Drawing.Size(169, 23);
             this.CbProductos.TabIndex = 28;
@@ -1052,7 +1087,7 @@ namespace Pan3
             // 
             this.btnGuardarCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarCompra.Image")));
             this.btnGuardarCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarCompra.Location = new System.Drawing.Point(865, 482);
+            this.btnGuardarCompra.Location = new System.Drawing.Point(873, 137);
             this.btnGuardarCompra.Name = "btnGuardarCompra";
             this.btnGuardarCompra.Size = new System.Drawing.Size(88, 48);
             this.btnGuardarCompra.TabIndex = 40;
@@ -1064,7 +1099,7 @@ namespace Pan3
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(278, 50);
+            this.label8.Location = new System.Drawing.Point(230, 49);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 15);
             this.label8.TabIndex = 29;
@@ -1073,7 +1108,7 @@ namespace Pan3
             // CbProveedores
             // 
             this.CbProveedores.FormattingEnabled = true;
-            this.CbProveedores.Location = new System.Drawing.Point(84, 68);
+            this.CbProveedores.Location = new System.Drawing.Point(36, 67);
             this.CbProveedores.Name = "CbProveedores";
             this.CbProveedores.Size = new System.Drawing.Size(161, 23);
             this.CbProveedores.TabIndex = 32;
@@ -1081,7 +1116,7 @@ namespace Pan3
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(84, 50);
+            this.label10.Location = new System.Drawing.Point(36, 49);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 15);
             this.label10.TabIndex = 33;
@@ -1090,7 +1125,7 @@ namespace Pan3
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(621, 51);
+            this.label11.Location = new System.Drawing.Point(573, 50);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(40, 15);
             this.label11.TabIndex = 35;
@@ -1099,7 +1134,7 @@ namespace Pan3
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(481, 50);
+            this.label12.Location = new System.Drawing.Point(433, 49);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 15);
             this.label12.TabIndex = 37;
@@ -1107,17 +1142,19 @@ namespace Pan3
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btActualizarMontoActual);
+            this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Controls.Add(this.groupBox18);
             this.tabPage2.Controls.Add(this.groupBox17);
             this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.label32);
             this.tabPage2.Controls.Add(this.button10);
             this.tabPage2.Controls.Add(this.button9);
-            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.txtMontoActual);
             this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.txtMontoInicial);
             this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.btnCerrarCaja);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
@@ -1126,6 +1163,105 @@ namespace Pan3
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Caja";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btActualizarMontoActual
+            // 
+            this.btActualizarMontoActual.Location = new System.Drawing.Point(385, 78);
+            this.btActualizarMontoActual.Name = "btActualizarMontoActual";
+            this.btActualizarMontoActual.Size = new System.Drawing.Size(75, 23);
+            this.btActualizarMontoActual.TabIndex = 0;
+            this.btActualizarMontoActual.Text = "Actualizar";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(1286, 64);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 15);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Cerrar caja";
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.txtHastaC);
+            this.groupBox18.Controls.Add(this.dgvCajaEgresos);
+            this.groupBox18.Controls.Add(this.txtDesdeC);
+            this.groupBox18.Controls.Add(this.txtBFecha);
+            this.groupBox18.Controls.Add(this.label64);
+            this.groupBox18.Controls.Add(this.label18);
+            this.groupBox18.Location = new System.Drawing.Point(848, 135);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(730, 691);
+            this.groupBox18.TabIndex = 46;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Egresos";
+            // 
+            // txtHastaC
+            // 
+            this.txtHastaC.Location = new System.Drawing.Point(356, 51);
+            this.txtHastaC.Name = "txtHastaC";
+            this.txtHastaC.Size = new System.Drawing.Size(91, 23);
+            this.txtHastaC.TabIndex = 40;
+            // 
+            // dgvCajaEgresos
+            // 
+            this.dgvCajaEgresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCajaEgresos.Location = new System.Drawing.Point(21, 97);
+            this.dgvCajaEgresos.Name = "dgvCajaEgresos";
+            this.dgvCajaEgresos.ReadOnly = true;
+            this.dgvCajaEgresos.RowTemplate.Height = 25;
+            this.dgvCajaEgresos.Size = new System.Drawing.Size(687, 573);
+            this.dgvCajaEgresos.TabIndex = 44;
+            // 
+            // txtDesdeC
+            // 
+            this.txtDesdeC.Location = new System.Drawing.Point(194, 50);
+            this.txtDesdeC.Name = "txtDesdeC";
+            this.txtDesdeC.Size = new System.Drawing.Size(102, 23);
+            this.txtDesdeC.TabIndex = 39;
+            // 
+            // txtBFecha
+            // 
+            this.txtBFecha.Location = new System.Drawing.Point(495, 47);
+            this.txtBFecha.Name = "txtBFecha";
+            this.txtBFecha.Size = new System.Drawing.Size(75, 23);
+            this.txtBFecha.TabIndex = 43;
+            this.txtBFecha.Text = "Buscar";
+            this.txtBFecha.UseVisualStyleBackColor = true;
+            this.txtBFecha.Click += new System.EventHandler(this.txtBFecha_Click);
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(146, 55);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(42, 15);
+            this.label64.TabIndex = 41;
+            this.label64.Text = "Desde:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(313, 56);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 15);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "Hasta";
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.btnBuscarPorFecha);
+            this.groupBox17.Controls.Add(this.txtDesde);
+            this.groupBox17.Controls.Add(this.txtHasta);
+            this.groupBox17.Controls.Add(this.label62);
+            this.groupBox17.Controls.Add(this.label63);
+            this.groupBox17.Controls.Add(this.DgvCaja);
+            this.groupBox17.Location = new System.Drawing.Point(62, 135);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(730, 691);
+            this.groupBox17.TabIndex = 45;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Ingresos";
             // 
             // btnBuscarPorFecha
             // 
@@ -1137,14 +1273,19 @@ namespace Pan3
             this.btnBuscarPorFecha.UseVisualStyleBackColor = true;
             this.btnBuscarPorFecha.Click += new System.EventHandler(this.btnBuscarPorFecha_Click);
             // 
-            // label63
+            // txtDesde
             // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(280, 59);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(37, 15);
-            this.label63.TabIndex = 36;
-            this.label63.Text = "Hasta";
+            this.txtDesde.Location = new System.Drawing.Point(161, 53);
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(102, 23);
+            this.txtDesde.TabIndex = 33;
+            // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(323, 54);
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(91, 23);
+            this.txtHasta.TabIndex = 34;
             // 
             // label62
             // 
@@ -1155,24 +1296,29 @@ namespace Pan3
             this.label62.TabIndex = 35;
             this.label62.Text = "Desde:";
             // 
-            // txtHasta
+            // label63
             // 
-            this.txtHasta.Location = new System.Drawing.Point(323, 54);
-            this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(91, 23);
-            this.txtHasta.TabIndex = 34;
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(280, 59);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(37, 15);
+            this.label63.TabIndex = 36;
+            this.label63.Text = "Hasta";
             // 
-            // txtDesde
+            // DgvCaja
             // 
-            this.txtDesde.Location = new System.Drawing.Point(161, 53);
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(102, 23);
-            this.txtDesde.TabIndex = 33;
+            this.DgvCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvCaja.Location = new System.Drawing.Point(20, 97);
+            this.DgvCaja.Name = "DgvCaja";
+            this.DgvCaja.ReadOnly = true;
+            this.DgvCaja.RowTemplate.Height = 25;
+            this.DgvCaja.Size = new System.Drawing.Size(688, 573);
+            this.DgvCaja.TabIndex = 4;
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(1129, 62);
+            this.label33.Location = new System.Drawing.Point(840, 69);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(50, 15);
             this.label33.TabIndex = 32;
@@ -1181,7 +1327,7 @@ namespace Pan3
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(857, 62);
+            this.label32.Location = new System.Drawing.Point(616, 69);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(54, 15);
             this.label32.TabIndex = 30;
@@ -1191,7 +1337,7 @@ namespace Pan3
             // 
             this.button10.BackColor = System.Drawing.Color.White;
             this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
-            this.button10.Location = new System.Drawing.Point(1185, 24);
+            this.button10.Location = new System.Drawing.Point(896, 31);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(94, 80);
             this.button10.TabIndex = 29;
@@ -1201,69 +1347,63 @@ namespace Pan3
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(917, 24);
+            this.button9.Location = new System.Drawing.Point(676, 31);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(94, 80);
             this.button9.TabIndex = 28;
             this.button9.UseVisualStyleBackColor = false;
             // 
-            // textBox3
+            // txtMontoActual
             // 
-            this.textBox3.Location = new System.Drawing.Point(562, 54);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
-            this.textBox3.TabIndex = 7;
+            this.txtMontoActual.Location = new System.Drawing.Point(279, 78);
+            this.txtMontoActual.Name = "txtMontoActual";
+            this.txtMontoActual.ReadOnly = true;
+            this.txtMontoActual.Size = new System.Drawing.Size(100, 23);
+            this.txtMontoActual.TabIndex = 7;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(476, 62);
+            this.label17.Location = new System.Drawing.Point(193, 86);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(81, 15);
             this.label17.TabIndex = 6;
             this.label17.Text = "Monto actual:";
             // 
-            // DgvCaja
+            // txtMontoInicial
             // 
-            this.DgvCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvCaja.Location = new System.Drawing.Point(20, 97);
-            this.DgvCaja.Name = "DgvCaja";
-            this.DgvCaja.RowTemplate.Height = 25;
-            this.DgvCaja.Size = new System.Drawing.Size(688, 573);
-            this.DgvCaja.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(195, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 3;
+            this.txtMontoInicial.Location = new System.Drawing.Point(279, 40);
+            this.txtMontoInicial.Name = "txtMontoInicial";
+            this.txtMontoInicial.ReadOnly = true;
+            this.txtMontoInicial.Size = new System.Drawing.Size(100, 23);
+            this.txtMontoInicial.TabIndex = 3;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(109, 62);
+            this.label15.Location = new System.Drawing.Point(193, 48);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(80, 15);
             this.label15.TabIndex = 2;
             this.label15.Text = "Monto inicial:";
             // 
-            // button2
+            // btnCerrarCaja
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Image = global::Pan3.Properties.Resources.cashier2_116573;
-            this.button2.Location = new System.Drawing.Point(691, 24);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 80);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCerrarCaja.BackColor = System.Drawing.Color.White;
+            this.btnCerrarCaja.Image = global::Pan3.Properties.Resources.cashier2_116573;
+            this.btnCerrarCaja.Location = new System.Drawing.Point(1367, 31);
+            this.btnCerrarCaja.Name = "btnCerrarCaja";
+            this.btnCerrarCaja.Size = new System.Drawing.Size(94, 80);
+            this.btnCerrarCaja.TabIndex = 1;
+            this.btnCerrarCaja.UseVisualStyleBackColor = false;
+            this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Image = global::Pan3.Properties.Resources.cashier2_117800;
-            this.button1.Location = new System.Drawing.Point(323, 24);
+            this.button1.Location = new System.Drawing.Point(82, 26);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 80);
             this.button1.TabIndex = 0;
@@ -1273,7 +1413,6 @@ namespace Pan3
             // 
             this.tabPage1.Controls.Add(this.tbBuscarAutorizados);
             this.tabPage1.Controls.Add(this.label56);
-            this.tabPage1.Controls.Add(this.BtnNAut);
             this.tabPage1.Controls.Add(this.BtnElAut);
             this.tabPage1.Controls.Add(this.BtnEdAut);
             this.tabPage1.Controls.Add(this.BtnGAut);
@@ -1304,26 +1443,12 @@ namespace Pan3
             this.label56.TabIndex = 56;
             this.label56.Text = "Buscar: ";
             // 
-            // BtnNAut
-            // 
-            this.BtnNAut.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnNAut.Image = ((System.Drawing.Image)(resources.GetObject("BtnNAut.Image")));
-            this.BtnNAut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNAut.Location = new System.Drawing.Point(61, 470);
-            this.BtnNAut.Name = "BtnNAut";
-            this.BtnNAut.Size = new System.Drawing.Size(104, 48);
-            this.BtnNAut.TabIndex = 55;
-            this.BtnNAut.Text = "Nuevo";
-            this.BtnNAut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNAut.UseVisualStyleBackColor = true;
-            this.BtnNAut.Click += new System.EventHandler(this.BtnNAut_Click);
-            // 
             // BtnElAut
             // 
             this.BtnElAut.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnElAut.Image = ((System.Drawing.Image)(resources.GetObject("BtnElAut.Image")));
             this.BtnElAut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnElAut.Location = new System.Drawing.Point(220, 397);
+            this.BtnElAut.Location = new System.Drawing.Point(282, 352);
             this.BtnElAut.Name = "BtnElAut";
             this.BtnElAut.Size = new System.Drawing.Size(104, 48);
             this.BtnElAut.TabIndex = 54;
@@ -1337,7 +1462,7 @@ namespace Pan3
             this.BtnEdAut.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnEdAut.Image = ((System.Drawing.Image)(resources.GetObject("BtnEdAut.Image")));
             this.BtnEdAut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEdAut.Location = new System.Drawing.Point(219, 470);
+            this.BtnEdAut.Location = new System.Drawing.Point(151, 352);
             this.BtnEdAut.Name = "BtnEdAut";
             this.BtnEdAut.Size = new System.Drawing.Size(105, 48);
             this.BtnEdAut.TabIndex = 53;
@@ -1351,7 +1476,7 @@ namespace Pan3
             this.BtnGAut.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnGAut.Image = ((System.Drawing.Image)(resources.GetObject("BtnGAut.Image")));
             this.BtnGAut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGAut.Location = new System.Drawing.Point(61, 397);
+            this.BtnGAut.Location = new System.Drawing.Point(21, 352);
             this.BtnGAut.Name = "BtnGAut";
             this.BtnGAut.Size = new System.Drawing.Size(104, 48);
             this.BtnGAut.TabIndex = 52;
@@ -1376,6 +1501,7 @@ namespace Pan3
             this.dgvAutorizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAutorizados.Location = new System.Drawing.Point(25, 40);
             this.dgvAutorizados.Name = "dgvAutorizados";
+            this.dgvAutorizados.ReadOnly = true;
             this.dgvAutorizados.RowTemplate.Height = 25;
             this.dgvAutorizados.Size = new System.Drawing.Size(1397, 783);
             this.dgvAutorizados.TabIndex = 16;
@@ -1494,9 +1620,6 @@ namespace Pan3
             // 
             this.tabPage3.Controls.Add(this.label43);
             this.tabPage3.Controls.Add(this.tbBuscarClientes);
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.btncancelarC);
-            this.tabPage3.Controls.Add(this.btnnuevocliente);
             this.tabPage3.Controls.Add(this.BtnEC);
             this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Controls.Add(this.BtnEditC);
@@ -1527,49 +1650,12 @@ namespace Pan3
             this.tbBuscarClientes.TabIndex = 55;
             this.tbBuscarClientes.TextChanged += new System.EventHandler(this.tbBuscarClientes_TextChanged);
             // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(104, 706);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(44, 15);
-            this.label26.TabIndex = 53;
-            this.label26.Text = "label26";
-            // 
-            // btncancelarC
-            // 
-            this.btncancelarC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btncancelarC.Image = ((System.Drawing.Image)(resources.GetObject("btncancelarC.Image")));
-            this.btncancelarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncancelarC.Location = new System.Drawing.Point(183, 581);
-            this.btncancelarC.Name = "btncancelarC";
-            this.btncancelarC.Size = new System.Drawing.Size(103, 48);
-            this.btncancelarC.TabIndex = 52;
-            this.btncancelarC.Text = "Cancelar";
-            this.btncancelarC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btncancelarC.UseVisualStyleBackColor = true;
-            this.btncancelarC.Click += new System.EventHandler(this.btncancelarC_Click);
-            // 
-            // btnnuevocliente
-            // 
-            this.btnnuevocliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnnuevocliente.Image = ((System.Drawing.Image)(resources.GetObject("btnnuevocliente.Image")));
-            this.btnnuevocliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnnuevocliente.Location = new System.Drawing.Point(104, 487);
-            this.btnnuevocliente.Name = "btnnuevocliente";
-            this.btnnuevocliente.Size = new System.Drawing.Size(104, 48);
-            this.btnnuevocliente.TabIndex = 51;
-            this.btnnuevocliente.Text = "Nuevo";
-            this.btnnuevocliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnnuevocliente.UseVisualStyleBackColor = true;
-            this.btnnuevocliente.Click += new System.EventHandler(this.btnnuevocliente_Click);
-            // 
             // BtnEC
             // 
             this.BtnEC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnEC.Image = ((System.Drawing.Image)(resources.GetObject("BtnEC.Image")));
             this.BtnEC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEC.Location = new System.Drawing.Point(263, 414);
+            this.BtnEC.Location = new System.Drawing.Point(324, 380);
             this.BtnEC.Name = "BtnEC";
             this.BtnEC.Size = new System.Drawing.Size(104, 48);
             this.BtnEC.TabIndex = 47;
@@ -1594,6 +1680,7 @@ namespace Pan3
             this.dgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCliente.Location = new System.Drawing.Point(17, 36);
             this.dgvCliente.Name = "dgvCliente";
+            this.dgvCliente.ReadOnly = true;
             this.dgvCliente.RowTemplate.Height = 25;
             this.dgvCliente.Size = new System.Drawing.Size(1242, 787);
             this.dgvCliente.TabIndex = 18;
@@ -1603,7 +1690,7 @@ namespace Pan3
             this.BtnEditC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnEditC.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditC.Image")));
             this.BtnEditC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEditC.Location = new System.Drawing.Point(262, 487);
+            this.BtnEditC.Location = new System.Drawing.Point(181, 380);
             this.BtnEditC.Name = "BtnEditC";
             this.BtnEditC.Size = new System.Drawing.Size(105, 48);
             this.BtnEditC.TabIndex = 46;
@@ -1727,7 +1814,7 @@ namespace Pan3
             this.BtnG.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnG.Image = ((System.Drawing.Image)(resources.GetObject("BtnG.Image")));
             this.BtnG.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnG.Location = new System.Drawing.Point(104, 414);
+            this.BtnG.Location = new System.Drawing.Point(33, 380);
             this.BtnG.Name = "BtnG";
             this.BtnG.Size = new System.Drawing.Size(104, 48);
             this.BtnG.TabIndex = 45;
@@ -1741,12 +1828,10 @@ namespace Pan3
             this.tpProv.Controls.Add(this.button23);
             this.tpProv.Controls.Add(this.button17);
             this.tpProv.Controls.Add(this.btnEditar);
-            this.tpProv.Controls.Add(this.btnNuevo);
             this.tpProv.Controls.Add(this.txtbuscar);
             this.tpProv.Controls.Add(this.label52);
             this.tpProv.Controls.Add(this.btnEliminar);
             this.tpProv.Controls.Add(this.groupBox6);
-            this.tpProv.Controls.Add(this.btnCancelar);
             this.tpProv.Controls.Add(this.groupBox5);
             this.tpProv.Controls.Add(this.btnGuardar);
             this.tpProv.Location = new System.Drawing.Point(4, 24);
@@ -1785,7 +1870,7 @@ namespace Pan3
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(96, 607);
+            this.btnEditar.Location = new System.Drawing.Point(157, 553);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(104, 48);
             this.btnEditar.TabIndex = 51;
@@ -1793,20 +1878,6 @@ namespace Pan3
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNuevo.Location = new System.Drawing.Point(42, 553);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(104, 48);
-            this.btnNuevo.TabIndex = 50;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // txtbuscar
             // 
@@ -1831,7 +1902,7 @@ namespace Pan3
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(157, 553);
+            this.btnEliminar.Location = new System.Drawing.Point(276, 553);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(104, 48);
             this.btnEliminar.TabIndex = 47;
@@ -1857,24 +1928,11 @@ namespace Pan3
             this.dgvProv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProv.Location = new System.Drawing.Point(20, 45);
             this.dgvProv.Name = "dgvProv";
+            this.dgvProv.ReadOnly = true;
             this.dgvProv.RowTemplate.Height = 25;
             this.dgvProv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProv.Size = new System.Drawing.Size(1325, 678);
             this.dgvProv.TabIndex = 0;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(277, 553);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(103, 48);
-            this.btnCancelar.TabIndex = 46;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // groupBox5
             // 
@@ -2031,7 +2089,7 @@ namespace Pan3
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(215, 607);
+            this.btnGuardar.Location = new System.Drawing.Point(42, 553);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(104, 48);
             this.btnGuardar.TabIndex = 45;
@@ -2090,6 +2148,7 @@ namespace Pan3
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategorias.Location = new System.Drawing.Point(17, 27);
             this.dgvCategorias.Name = "dgvCategorias";
+            this.dgvCategorias.ReadOnly = true;
             this.dgvCategorias.RowTemplate.Height = 25;
             this.dgvCategorias.Size = new System.Drawing.Size(1282, 262);
             this.dgvCategorias.TabIndex = 1;
@@ -2219,6 +2278,7 @@ namespace Pan3
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Location = new System.Drawing.Point(37, 41);
             this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowTemplate.Height = 25;
             this.dgvProductos.Size = new System.Drawing.Size(1282, 280);
             this.dgvProductos.TabIndex = 0;
@@ -2439,87 +2499,6 @@ namespace Pan3
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
-            // txtBFecha
-            // 
-            this.txtBFecha.Location = new System.Drawing.Point(495, 47);
-            this.txtBFecha.Name = "txtBFecha";
-            this.txtBFecha.Size = new System.Drawing.Size(75, 23);
-            this.txtBFecha.TabIndex = 43;
-            this.txtBFecha.Text = "Buscar";
-            this.txtBFecha.UseVisualStyleBackColor = true;
-            this.txtBFecha.Click += new System.EventHandler(this.txtBFecha_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(313, 56);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 15);
-            this.label18.TabIndex = 42;
-            this.label18.Text = "Hasta";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(146, 55);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(42, 15);
-            this.label64.TabIndex = 41;
-            this.label64.Text = "Desde:";
-            // 
-            // txtHastaC
-            // 
-            this.txtHastaC.Location = new System.Drawing.Point(356, 51);
-            this.txtHastaC.Name = "txtHastaC";
-            this.txtHastaC.Size = new System.Drawing.Size(91, 23);
-            this.txtHastaC.TabIndex = 40;
-            // 
-            // txtDesdeC
-            // 
-            this.txtDesdeC.Location = new System.Drawing.Point(194, 50);
-            this.txtDesdeC.Name = "txtDesdeC";
-            this.txtDesdeC.Size = new System.Drawing.Size(102, 23);
-            this.txtDesdeC.TabIndex = 39;
-            // 
-            // dgvCajaEgresos
-            // 
-            this.dgvCajaEgresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCajaEgresos.Location = new System.Drawing.Point(21, 97);
-            this.dgvCajaEgresos.Name = "dgvCajaEgresos";
-            this.dgvCajaEgresos.RowTemplate.Height = 25;
-            this.dgvCajaEgresos.Size = new System.Drawing.Size(687, 573);
-            this.dgvCajaEgresos.TabIndex = 44;
-            // 
-            // groupBox17
-            // 
-            this.groupBox17.Controls.Add(this.btnBuscarPorFecha);
-            this.groupBox17.Controls.Add(this.txtDesde);
-            this.groupBox17.Controls.Add(this.txtHasta);
-            this.groupBox17.Controls.Add(this.label62);
-            this.groupBox17.Controls.Add(this.label63);
-            this.groupBox17.Controls.Add(this.DgvCaja);
-            this.groupBox17.Location = new System.Drawing.Point(62, 135);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(730, 691);
-            this.groupBox17.TabIndex = 45;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "Ingresos";
-            // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.txtHastaC);
-            this.groupBox18.Controls.Add(this.dgvCajaEgresos);
-            this.groupBox18.Controls.Add(this.txtDesdeC);
-            this.groupBox18.Controls.Add(this.txtBFecha);
-            this.groupBox18.Controls.Add(this.label64);
-            this.groupBox18.Controls.Add(this.label18);
-            this.groupBox18.Location = new System.Drawing.Point(848, 135);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(730, 691);
-            this.groupBox18.TabIndex = 46;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "Egresos";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2534,6 +2513,8 @@ namespace Pan3
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.TabVenta.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVmdp)).EndInit();
@@ -2548,10 +2529,13 @@ namespace Pan3
             this.TabProductos.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
-            this.groupBox10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHCompras)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).EndInit();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -2581,11 +2565,6 @@ namespace Pan3
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCajaEgresos)).EndInit();
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
-            this.groupBox18.ResumeLayout(false);
-            this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2623,11 +2602,10 @@ namespace Pan3
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMontoInicial;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCerrarCaja;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tpProv;
@@ -2657,7 +2635,7 @@ namespace Pan3
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtMontoActual;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView DgvCaja;
         private System.Windows.Forms.TextBox txttel;
@@ -2699,15 +2677,12 @@ namespace Pan3
         private System.Windows.Forms.TextBox txttelR;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.DataGridView dgvCompras;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.DataGridView dgvHCompras;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BtnEC;
         private System.Windows.Forms.Button BtnEditC;
         private System.Windows.Forms.Button BtnG;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnElCat;
         private System.Windows.Forms.Button btnGCat;
@@ -2718,17 +2693,12 @@ namespace Pan3
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.TextBox txtbuscar;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridView dgvProv;
-        private System.Windows.Forms.Button btnnuevocliente;
-        private System.Windows.Forms.Button btncancelarC;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button BtnNAut;
         private System.Windows.Forms.Button BtnElAut;
         private System.Windows.Forms.Button BtnEdAut;
         private System.Windows.Forms.Button BtnGAut;
@@ -2738,12 +2708,9 @@ namespace Pan3
         private System.Windows.Forms.TextBox txtPrecioVenta;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox TxtCantidad;
-        private System.Windows.Forms.Label lblIdP;
         private System.Windows.Forms.Label lblAut;
         private System.Windows.Forms.Label lbltotal;
         private System.Windows.Forms.DataGridView DGVListaVenta;
-        private System.Windows.Forms.Label lblcliente;
-        private System.Windows.Forms.Label lblformap;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.TextBox tbBuscarAutorizados;
@@ -2756,7 +2723,6 @@ namespace Pan3
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label lblDeuda;
         private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Button btnPP;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Button BtnCobrarDeuda;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_prod;
@@ -2810,6 +2776,15 @@ namespace Pan3
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btActualizarMontoActual;
+        private System.Windows.Forms.TextBox txtPDeuda;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtPrecioPV;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Button btnAcepProdVarios;
+        private System.Windows.Forms.GroupBox groupBox10;
     }
 }
 

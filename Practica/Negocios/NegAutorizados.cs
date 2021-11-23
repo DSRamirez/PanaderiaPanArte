@@ -32,7 +32,7 @@ namespace Negocios
             objDatoAutorizado.AbmAutorizados(accion, objEAutorizado);
         }
 
-        public DataSet Login(string usuario, string password , E_Autorizados objEAutorizado)
+        public int Login(string usuario, string password , E_Autorizados objEAutorizado)
         {
             objEAutorizado.Usuario_aut = usuario;
             objEAutorizado.Clave_aut = password;
@@ -42,6 +42,11 @@ namespace Negocios
         public DataSet ListadoAutorizadoRapido(string cual)
         {
             return objDatoAutorizado.ListadoAutorizadoRapido(cual);
+        }
+
+        public DataSet ListadoAutorizadoPorFecha(string fecha)
+        {
+            return objDatoAutorizado.listadoAutorizadoPorFecha(fecha);
         }
     }
 }

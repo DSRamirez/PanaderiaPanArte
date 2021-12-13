@@ -20,20 +20,6 @@ namespace Datos
                            "'," + objECaja.ImporteInicial1 +
                            "," + objECaja.ImporteFinal1 +
                            ",'" + objECaja.Estado1 + "');";
-
-                //if (EstaAbierta(objECaja.Fecha1, "Caja"))
-                //{
-                //    orden = "insert into Caja values (" + objECaja.Id_Autorizado1 +
-                //            ",'" + objECaja.Fecha1 +
-                //            "'," + objECaja.ImporteInicial1 +
-                //            "," + objECaja.ImporteFinal1 +
-                //            "," + objECaja.Estado1 + ");";
-                //}
-                //else
-                //{
-                //    resultado = -2;
-                //    return (resultado);
-                //}
             }
 
             if (accion == "Modificar")
@@ -51,7 +37,6 @@ namespace Datos
             if (accion == "IdCaja")
             {
                 orden = "Select Id_Caja from Caja where Fecha = '" + objECaja.Fecha1 + "'";
-                //VER SI HACE FALTA AGREGAR ESTADO ABIERTO
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -74,42 +59,6 @@ namespace Datos
 
             return resultado;
         }
-
-        //public bool EstaAbierta(string fecha, string cual)
-        //{
-        //    string orden = string.Empty;
-        //    bool verificacion = false;
-
-        //    if (cual == "Caja")
-        //    {
-        //        orden = "select Fecha from Caja";
-        //    }
-
-        //    SqlCommand cmd = new SqlCommand(orden, Conexion);
-        //    SqlDataReader dr;
-
-        //    try
-        //    {
-        //        AbrirConexion();
-        //        dr = cmd.ExecuteReader();
-
-        //        while (dr.Read())
-        //        {
-        //            if ((dr[0].ToString()) == fecha)
-        //            {
-        //                return verificacion;
-        //            }
-        //        }
-        //        verificacion = true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return verificacion;
-        //    }
-        //    CerrarConexion();
-        //    cmd.Dispose();
-        //    return (verificacion);
-        //}
 
         public DataSet DatosUltimoAutorizadoConCajaAbierta()
         {
@@ -136,10 +85,7 @@ namespace Datos
                 Conexion.Close();
                 cmd.Dispose();
             }
-            //if (ds.Tables.Count >= 1)
-            //{
-            //    cajaAbierta = true;
-            //}
+
             return ds;
         }
     }

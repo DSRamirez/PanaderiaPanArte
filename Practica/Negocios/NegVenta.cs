@@ -19,17 +19,6 @@ namespace Negocios
         {
             objDatosVenta.abmVenta("Alta", objEVentas);
         }
-
-        public void EditandoVenta(string accion, E_Ventas objEVentas)
-        {
-            objDatosVenta.abmVenta(accion, objEVentas);
-        }
-
-        public void EliminandoVenta(string accion, E_Ventas objEVentas)
-        {
-            objDatosVenta.abmVenta(accion, objEVentas);
-        }
-
         public DataSet UltimoRegistroVenta()
         {
             return objDatosVenta.UltimoRegistroVenta();
@@ -37,6 +26,10 @@ namespace Negocios
         public DataSet VentasEntre(string Desde, string Hasta)
         {
             return objDatosVenta.TraerRegistrosPorFechas(Desde, Hasta);
+        }
+        public DataSet RegistrosHoy(string VentasHoy, string quien)
+        {
+            return objDatosVenta.RegistrosHoy(VentasHoy, quien);
         }
     }
 }

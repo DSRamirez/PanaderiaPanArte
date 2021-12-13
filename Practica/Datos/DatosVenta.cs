@@ -19,7 +19,11 @@ namespace Datos
                     "Inner join fpago p on p.Id_fpago = v.Id_fpago";
             }
             else { 
-                orden = "select * from venta";
+                orden = "Select v.Id_venta, c.nombre_cliente, a.Nombre_autorizado, p.Nombre_fpago , " +
+                    "v.Montofinal, v.Fecha_venta, v.Hora_venta, v.Estado_trans, v.N_Factura from venta v " +
+                    "Inner join cliente c on c.id_cliente = v.Id_cliente " +
+                    "Inner join Autorizado a on a.Id_autorizado = v.Id_autorizado " +
+                    "Inner join fpago p on p.Id_fpago = v.Id_fpago where Id_venta =" + int.Parse(cual);
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -53,27 +57,14 @@ namespace Datos
 
             if (accion == "Alta")
             {
-                orden = "insert into venta values ('" + objEVentas.Id_cliente1 +
-                    "','" + objEVentas.Id_autorizado1 +
-                    "','" + objEVentas.Id_fpago1 +
-                    "','" + objEVentas.Monto1 +
-                    "','" + objEVentas.Fecha_compra1 +
+                orden = "insert into venta values (" + objEVentas.Id_cliente1 +
+                    "," + objEVentas.Id_autorizado1 +
+                    "," + objEVentas.Id_fpago1 +
+                    "," + objEVentas.Monto1 +
+                    ",'" + objEVentas.Fecha_compra1 +
                     "','" + objEVentas.Hora_venta1 +
                     "','" + objEVentas.Estado_trans1 +
                     "','" + objEVentas.Num_Factura1 + "');";
-            }
-
-            if (accion == "Modificar")
-            {
-                orden = "update venta set Id_cliente = '" + objEVentas.Id_cliente1 +
-                    "','" + objEVentas.Id_autorizado1 +
-                    "','" + objEVentas.Id_fpago1 +
-                    "','" + objEVentas.Monto1 +
-                    "','" + objEVentas.Fecha_compra1 +
-                    "','" + objEVentas.Hora_venta1 +
-                    "','" + objEVentas.Estado_trans1 +
-                    "','" + objEVentas.Num_Factura1 + 
-                    "'where venta = " + objEVentas.Id_venta1 + ";";
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -101,7 +92,7 @@ namespace Datos
         public DataSet UltimoRegistroVenta()
         {
             string orden = string.Empty;
-                orden = "Select TOP 1 Id_venta from venta order by Id_venta desc";
+                orden = "Select TOP 1 Id_venta, c.nombre_cliente from venta v inner join cliente c on c.id_cliente = v.Id_cliente order by Id_venta desc";
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -147,6 +138,37 @@ namespace Datos
             catch (Exception e)
             {
                 throw new Exception("Error al traer ultimo registro", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+
+        public DataSet RegistrosHoy(string VentasHoy, string quien)
+        {
+            string orden = "Select v.Id_venta, c.nombre_cliente, a.Nombre_autorizado, p.Nombre_fpago , v.Montofinal, v.Fecha_venta, v.Hora_venta, v.Estado_trans, v.N_Factura " +
+                "from venta v " +
+                "Inner join cliente c on c.id_cliente = v.Id_cliente " +
+                "Inner join Autorizado a on a.Id_autorizado = v.Id_autorizado " +
+                "Inner join fpago p on p.Id_fpago = v.Id_fpago where v.Fecha_venta = '" + VentasHoy + "' and v.Id_autorizado =" + int.Parse(quien) + ";";
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer ventas de hoy", e);
             }
             finally
             {

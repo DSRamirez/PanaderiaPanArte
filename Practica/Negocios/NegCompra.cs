@@ -38,5 +38,10 @@ namespace Negocios
             {
                 return objDatosCompra.TraerRegistrosPorFechas(Desde, Hasta);
             }
+
+        public DataSet RegistrosHoy(string Hoy, string quien)
+        {
+            return objDatosCompra.RegistrosHoy(Hoy, quien);
+        }
     }
 }

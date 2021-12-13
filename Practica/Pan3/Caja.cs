@@ -74,12 +74,11 @@ namespace Pan3
         public Boolean CajaAbierta()
         {
             bool estado = false;
-
             string fecha = DateTime.Now.ToString("d");
 
             DataSet ds = objNegAutorizado.ListadoAutorizadoPorFecha(fecha);
 
-            if (ds.Tables[0].Rows.Count == 0)
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 estado = true;
             }

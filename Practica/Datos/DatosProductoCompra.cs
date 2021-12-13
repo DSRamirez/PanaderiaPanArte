@@ -14,7 +14,11 @@ namespace Datos
             string orden = string.Empty;
             if (cual != "Todos")
 
-                orden = "select * from producto_compra where id_producto_compra = " + int.Parse(cual) + ";";
+                orden = " select c.nombre_prov, p.Nombre_producto, vi.cantidad, vi.Preciou_historico from producto_compra vi" +
+                    " inner join producto p on p.Id_producto = vi.id_producto" +
+                    " inner join compra v on v.Id_compra = vi.Id_compra" +
+                    " inner join proveedor c on c.id_prov = v.Id_proveedor" +
+                    " where vi.Id_compra = " + int.Parse(cual);
             else
                 orden = "select * from producto_compra;";
 

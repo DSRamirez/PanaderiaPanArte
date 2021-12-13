@@ -16,7 +16,7 @@ namespace Datos
             if (cual != "Todos") 
                 orden = "select * from cliente where id_cliente = " + int.Parse(cual);
             else
-                orden = "select * from cliente where esta_cancelado = 0";
+                orden = "select * from cliente where esta_cancelado = 'false'";
                 SqlCommand cmd = new SqlCommand(orden, Conexion);
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();

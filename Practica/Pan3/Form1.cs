@@ -65,6 +65,10 @@ namespace Pan3
         NegProductoCompra objNegProductoCompra = new NegProductoCompra();
         E_Caja objECaja = new E_Caja();
         NegCaja objNegCaja = new NegCaja();
+        E_MovimientosExtraordinarios objEMovimientosExtraordinario = new E_MovimientosExtraordinarios();
+        NegMovimientosExtraordinarios objNegMovimientosEstraordinarios = new NegMovimientosExtraordinarios();
+        E_ProdProv objEProdProv = new E_ProdProv();
+        NegProdProv objNegProdProv = new NegProdProv();
 
         #endregion
         public Form1()
@@ -76,7 +80,7 @@ namespace Pan3
             CrearColumnasProd();
             CrearColumnasCat();
             CrearColumnasPago();
-            CrearColumnasCaja();
+            CrearColumnasIngresosCaja();
             CrearColumnasEgresosCaja();
             CrearColumnasProveedores();
             CrearColumnasCompra();
@@ -116,28 +120,36 @@ namespace Pan3
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            txtDesde.Text = DateTime.Now.ToString("d");
+            txtHasta.Text = DateTime.Now.ToString("d");
+            txtDesdeC.Text = DateTime.Now.ToString("d");
+            txtHastaC.Text = DateTime.Now.ToString("d");
             accionestabla();
             LlenarDGV();
             LlenarDGVAut();
             LlenarDGVCat();
             LlenarDGVProd();
-            LlenarDGVCaja();
+            LlenarDGVCajaIngresos();
+            LlenarDGVCajaIngresosExtras();
+            IngresosExtrasPorFecha();
             LlenarCajaEgresos();
+            LlenarDGVCajaEgresosExtras();
             LlenarCbCat();
             LlenarCbProductos();
-            MostarAut();
             LlenarCbClientes();
             FormaDePago();
             LlenarTablaProveedores();
             LlenarCbProveedores();
+            LlenarCbProdProv();
             LlenarCbProd();
             FormaDePagoC();
+            Perfil();
 
             DataSet ds = objNegCaja.datosUltimoAutorizadoConCajaAbierta();
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                MontoInicialCaja = decimal.Parse(dr[2].ToString());
+                MontoInicialCaja = decimal.Parse(dr[3].ToString());
             }
 
             txtMontoInicial.Text = MontoInicialCaja.ToString();
@@ -304,6 +316,9 @@ namespace Pan3
             dgvCliente.Columns[4].HeaderText = "E-mail";
             dgvCliente.Columns[5].HeaderText = "Telefono";
             dgvCliente.Columns[6].HeaderText = "Estado";
+
+            dgvCliente.Columns[0].Visible = false;
+            dgvCliente.Columns[6].Visible = false;
         }
         private void LlenarDGV()
         {
@@ -444,12 +459,9 @@ namespace Pan3
             dgvAutorizados.Columns[5].HeaderText = "Estado";
 
             dgvAutorizados.Columns[0].Visible = false;
+            dgvAutorizados.Columns[5].Visible = false;
         }
 
-        private void MostarAut()
-        {
-            lblAut.Text = lblAut.Text + NombreAutorizado;
-        }
         private void LlenarDGVAut()
         {
             dgvAutorizados.Rows.Clear();
@@ -466,48 +478,55 @@ namespace Pan3
 
         private void BtnGAut_Click(object sender, EventArgs e)
         {
-            if (editarse == false)
+            if (txtClaveAut.Text != txtConfCAut.Text)
             {
-                try
-                {
-                    objEAutorizado.Nombre_aut = txtNomAut.Text;
-                    objEAutorizado.Apellido_aut = txtApAut.Text;
-                    objEAutorizado.Usuario_aut = txtUsAut.Text;
-                    objEAutorizado.Clave_aut = txtClaveAut.Text;
-                    objEAutorizado.Esta_cancelado = false;
-
-                    objNegAutorizado.InsertandoAutorizados("Alta", objEAutorizado);
-                    MessageBox.Show("Autorizado guardado");
-                    LlenarDGVAut();
-                    LimpiarTxtA();
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show("No se pudo guardar el autorizado" + ex);
-                }
+                MessageBox.Show("Las claves no coinciden");
             }
-
-            if (editarse == true)
+            else
             {
-                try
+                if (editarse == false)
                 {
-                    objEAutorizado.Id = Convert.ToInt32(idautorizado);
-                    objEAutorizado.Nombre_aut = txtNomAut.Text;
-                    objEAutorizado.Apellido_aut = txtApAut.Text;
-                    objEAutorizado.Usuario_aut = txtUsAut.Text;
-                    objEAutorizado.Clave_aut = txtClaveAut.Text;
+                    try
+                    {
+                        objEAutorizado.Nombre_aut = txtNomAut.Text;
+                        objEAutorizado.Apellido_aut = txtApAut.Text;
+                        objEAutorizado.Usuario_aut = txtUsAut.Text;
+                        objEAutorizado.Clave_aut = txtClaveAut.Text;
+                        objEAutorizado.Esta_cancelado = false;
 
-                    objNegAutorizado.EditandoAutorizados("Modificar", objEAutorizado);
+                        objNegAutorizado.InsertandoAutorizados("Alta", objEAutorizado);
+                        MessageBox.Show("Autorizado guardado");
+                        LlenarDGVAut();
+                        LimpiarTxtA();
+                    }
+                    catch (Exception ex)
+                    {
 
-                    MessageBox.Show("Autorizado editado");
-                    LimpiarTxtA();
-                    LlenarDGVAut();
+                        MessageBox.Show("No se pudo guardar el autorizado" + ex);
+                    }
                 }
-                catch (Exception ex)
-                {
 
-                    MessageBox.Show("No se pudo editar el autorizado" + ex);
+                if (editarse == true)
+                {
+                    try
+                    {
+                        objEAutorizado.Id = Convert.ToInt32(idautorizado);
+                        objEAutorizado.Nombre_aut = txtNomAut.Text;
+                        objEAutorizado.Apellido_aut = txtApAut.Text;
+                        objEAutorizado.Usuario_aut = txtUsAut.Text;
+                        objEAutorizado.Clave_aut = txtClaveAut.Text;
+
+                        objNegAutorizado.EditandoAutorizados("Modificar", objEAutorizado);
+
+                        MessageBox.Show("Autorizado editado");
+                        LimpiarTxtA();
+                        LlenarDGVAut();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("No se pudo editar el autorizado" + ex);
+                    }
                 }
             }
         }
@@ -538,6 +557,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el autorizado que desea editar");
             }
+            dgvAutorizados.Rows.Clear();
+            LlenarDGVAut();
         }
 
         private void BtnElAut_Click(object sender, EventArgs e)
@@ -555,6 +576,8 @@ namespace Pan3
             {
                 MessageBox.Show("Seleccione el autorizado que desea eliminar");
             }
+            dgvAutorizados.Rows.Clear();
+            LlenarDGVAut();
         }
         #endregion
 
@@ -612,8 +635,10 @@ namespace Pan3
                     objEProducto.Idcat = Convert.ToInt32(cbCategoria.SelectedIndex);
 
                     objNegProducto.InsertandoProducto("Alta", objEProducto);
+                    GuardarProdProv();
                     MessageBox.Show("Producto guardado");
                     LlenarDGVProd();
+                    LlenarCbProd();
                     LimpiarTxtProd();
                 }
                 catch (Exception ex)
@@ -641,6 +666,7 @@ namespace Pan3
                     MessageBox.Show("Producto editado");
                     LimpiarTxtProd();
                     LlenarDGVProd();
+                    LlenarCbProd();
                 }
                 catch (Exception ex)
                 {
@@ -650,6 +676,24 @@ namespace Pan3
             }
 
             LlenarCbProductos();
+        }
+
+        private void GuardarProdProv()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegProducto.UltimoProducto();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    objEProdProv.Id_Producto1 = Convert.ToInt32(dr["Id_producto"]);
+                }
+            }
+            objEProdProv.Id_Proveedor1 = Convert.ToInt32(CBProvProd.SelectedValue.ToString());
+
+            objNegProdProv.AbmProdProv("Alta", objEProdProv);
+            MessageBox.Show("Producto proveedor guardado");
         }
 
         private void btnEdProd_Click(object sender, EventArgs e)
@@ -673,6 +717,7 @@ namespace Pan3
             }
 
             LlenarCbProductos();
+            LlenarCbProd();
         }
 
         private void btnElProd_Click(object sender, EventArgs e)
@@ -684,6 +729,7 @@ namespace Pan3
 
                 MessageBox.Show("Se eliminó el producto correctamente");
                 LlenarDGVProd();
+                LlenarCbProd();
             }
             else
             {
@@ -691,6 +737,7 @@ namespace Pan3
             }
 
             LlenarCbProductos();
+            LlenarCbProd();
         }
 
         #endregion
@@ -763,6 +810,7 @@ namespace Pan3
                     MessageBox.Show("Categoría guardada");
                     LlenarDGVCat();
                     LimpiarTxtCat();
+                    LlenarCbCat();
                 }
                 catch (Exception ex)
                 {
@@ -784,6 +832,7 @@ namespace Pan3
                     MessageBox.Show("Categoría editada");
                     LimpiarTxtCat();
                     LlenarDGVCat();
+                    LlenarCbCat();
                 }
                 catch (Exception ex)
                 {
@@ -832,27 +881,26 @@ namespace Pan3
         private void BTVenta_Click(object sender, EventArgs e)
         {
             GuardarVenta();
-            GuardarDeuda();
-            MostrarDeuda();
-            LlenarDGVCaja();
+            LlenarDGVCajaIngresos();
+            LlenarDGVCajaIngresosExtras();
+            PreguntarSiCancelaDeuda();
+            ImprimirComprobante();
             LimpiarCampos();
+            ActualizarDatos();
         }
 
         private void GuardarVenta()
         {
+            decimal MontoVenta = Convert.ToDecimal(txtPagado.Text) - Convert.ToDecimal(txtVuelto.Text);
+
             try
             {
                 objEProductoVenta.Id_producto = Convert.ToInt32(CBProducto.SelectedValue.ToString());
-                if (objEProductoVenta.Id_producto == 0)
-                {
-                    ProdPan();
-                    GuardarProductoVenta();
-                }
                 objEProductoVenta.Cantidad = Convert.ToInt32(TxtCantidad.Text);
                 objEVenta.Id_cliente1 = Convert.ToInt32(CBCliente.SelectedValue.ToString());
                 objEVenta.Id_autorizado1 = IdAutorizado;
                 objEVenta.Id_fpago1 = Convert.ToInt32(CbFPago.SelectedValue.ToString());
-                objEVenta.Monto1 = Convert.ToDecimal(txtPagado.Text);
+                objEVenta.Monto1 = MontoVenta;
                 objEVenta.Fecha_compra1 = DateTime.Now.ToString("d");
                 objEVenta.Hora_venta1 = DateTime.Now.ToString("hh:mm tt"); ;
                 objEVenta.Estado_trans1 = "cancelada";
@@ -866,12 +914,6 @@ namespace Pan3
 
                 DGVListaVenta.Rows.Clear();
                 DGVmdp.Rows.Clear();
-                lbltotal.Text = "";
-                TBStock.Text = "";
-                TBPrecioU.Text = "";
-                TBCode.Text = "";
-                TBCategoría.Text = "";
-                TxtCantidad.Text = "";
                 LlenarDGVProd();
             }
             catch (Exception e)
@@ -883,7 +925,6 @@ namespace Pan3
         {
             if (camposVaciosProducto())
             {
-
                 decimal precioxcantidad = Convert.ToInt32(TxtCantidad.Text) * Convert.ToInt32(TBPrecioU.Text);
                 DGVListaVenta.Rows.Add(Convert.ToInt32(CBProducto.SelectedValue.ToString()), TxtCantidad.Text, CBProducto.Text, TBPrecioU.Text, precioxcantidad);
 
@@ -891,9 +932,7 @@ namespace Pan3
                 preciototal = 0;
                 CalcularTotalVenta();
             }
-
         }
-
         private void CalcularTotalVenta()
         {
             for (int i = 0; i < DGVListaVenta.Rows.Count; ++i)
@@ -911,25 +950,6 @@ namespace Pan3
             CBProducto.DisplayMember = "Nombre_producto";
             CBProducto.ValueMember = "Id_producto";
             CBProducto.DataSource = ds.Tables[0];
-        }
-
-        private void CBProducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CBProducto.SelectedValue.ToString();
-
-            DataSet ds = new DataSet();
-            ds = objNegProducto.ListandoProductos(CBProducto.SelectedValue.ToString());
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    CBProducto.SelectedValue.ToString();
-                    TBStock.Text = (dr["Stock_producto"].ToString());
-                    TBPrecioU.Text = (dr["Preciouv_producto"].ToString());
-                    TBCode.Text = (dr["Cod_producto"].ToString());
-                    TBCategoría.Text = (dr["Id_categoria"].ToString());
-                }
-            }
         }
 
 
@@ -981,15 +1001,6 @@ namespace Pan3
             {
                 txtNOp.Enabled = true;
             }
-
-            //if (CbFPago.Text == "Tarjeta de crédito")
-            //{
-            //    txtRecargo.Text = "10";
-            //}
-            //else
-            //{
-            //    txtRecargo.Text = "0";
-            //}
         }
 
         private void CrearColumnasPago()
@@ -997,9 +1008,7 @@ namespace Pan3
             DGVmdp.ColumnCount = 3;
             DGVmdp.Columns[0].HeaderText = "Id";
             DGVmdp.Columns[1].HeaderText = "Forma de pago";
-            //DGVmdp.Columns[2].HeaderText = "Interés";
             DGVmdp.Columns[2].HeaderText = "Monto";
-            //DGVmdp.Columns[4].HeaderText = "Monto con int";
 
             DGVmdp.Columns[0].Visible = false;
         }
@@ -1017,12 +1026,6 @@ namespace Pan3
                         total += Convert.ToDecimal(row.Cells[2].Value);
                         preciototal = total;
                     }
-                    //else
-                    //{
-                    //    CalcularInteres();
-                    //    total = Convert.ToDecimal(montoConInt);
-                    //    preciototal = Convert.ToDecimal(montoConInt);
-                    //}
                 }
 
                 DGVmdp.Rows.Add(CbFPago.SelectedValue, CbFPago.Text, txtMonto.Text, preciototal);
@@ -1030,8 +1033,7 @@ namespace Pan3
                 Pagado = 0;
                 CalcularTotalPagado();
                 txtPagado.Text = Pagado.ToString();
-                CalcularSaldo();
-                CalcularVuelto();
+                CalcularSaldoPendiente();
             }
 
         }
@@ -1048,11 +1050,9 @@ namespace Pan3
             txtPrecioPV.Text = "0";
             CBCliente.SelectedIndex = 0;
             txtADeuda.Text = "0";
+            lbltotal.Text = "";
         }
-        //private void CalcularInteres()
-        //{
-        //    montoConInt = (double.Parse(txtMonto.Text) * double.Parse(txtRecargo.Text)) / 100;
-        //}
+
         private void CalcularTotalPagado()
         {
             for (int i = 0; i < DGVmdp.Rows.Count; ++i)
@@ -1061,12 +1061,11 @@ namespace Pan3
             }
         }
 
-        private void CalcularSaldo()
+        private void CalcularSaldoPendiente()
         {
-            decimal saldo = Convert.ToDecimal(lbltotal.Text) - Pagado;
+            decimal saldo = Convert.ToDecimal(lbltotal.Text) - Pagado; 
             if (saldo <= 0)
             {
-                txtADeuda.Text = saldo.ToString();
                 CalcularVuelto();
             }
             else
@@ -1079,17 +1078,30 @@ namespace Pan3
         {
             decimal vuelto = Convert.ToDecimal(txtPagado.Text) - Convert.ToDecimal(lbltotal.Text);
 
-            if (vuelto <= 0)
+            if (vuelto >= 0)
             {
-                txtVuelto.Text = "0";
-                txtVuelto.ForeColor = Color.Red;
-                txtADeuda.Text = vuelto.ToString();
-                txtADeuda.ForeColor = Color.Red;
+                txtVuelto.Text = vuelto.ToString();
+                txtADeuda.Text ="0";
             }
             else
             {
-                txtVuelto.Text = vuelto.ToString();
-                txtVuelto.ForeColor = Color.Green;
+                txtADeuda.Text = vuelto.ToString();
+            }
+        }
+
+        private void PreguntarSiCancelaDeuda()
+        {
+            decimal vuelto = Convert.ToDecimal(txtVuelto.Text);
+            if (vuelto > 0 && Convert.ToDecimal(lblDeuda.Text) > 0)
+            {
+                if (MessageBox.Show("¿Desea cancelar la deuda con el vuelto?", "Alerta de saldo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    CobrarActualizarDeuda();
+                }
+            }
+            else
+            {
+                GuardarDeuda();
             }
         }
 
@@ -1114,6 +1126,8 @@ namespace Pan3
 
                 for (int i = 0; i < DGVListaVenta.Rows.Count - 1; i++)
                 {
+                    objEProductoVenta.Id_producto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[0].Value);
+                    objEProductoVenta.Cantidad = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[1].Value);
                     objEProductoVenta.Preciou_historico = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[3].Value);
                     objEProductoVenta.Monto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[4].Value);
 
@@ -1130,17 +1144,6 @@ namespace Pan3
             }
         }
 
-        private void ProdPan()
-        {
-            for (int i = 0; i < DGVListaVenta.Rows.Count - 1; i++)
-            {
-                objEProductoVenta.Id_producto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[0].Value);
-                objEProductoVenta.Cantidad = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[1].Value);
-                objEProductoVenta.Preciou_historico = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[3].Value);
-                objEProductoVenta.Monto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[4].Value);
-            }
-        }
-
         #endregion
 
         #region Productos de Panaderia 
@@ -1154,8 +1157,19 @@ namespace Pan3
 
         private void AgregarProdPanaderia()
         {
-            DGVListaVenta.Rows.Add(999, 1, txtDescripcion.Text, txtPrecioPV.Text, txtPrecioPV.Text);
+            DGVListaVenta.Rows.Add(1, 1, txtDescripcion.Text, txtPrecioPV.Text, txtPrecioPV.Text);
         }
+
+        //private void ProdPan()
+        //{
+        //    for (int i = 0; i < DGVListaVenta.Rows.Count - 1; i++)
+        //    {
+        //        objEProductoVenta.Id_producto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[0].Value);
+        //        objEProductoVenta.Cantidad = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[1].Value);
+        //        objEProductoVenta.Preciou_historico = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[3].Value);
+        //        objEProductoVenta.Monto = Convert.ToInt32(DGVListaVenta.Rows[i].Cells[4].Value);
+        //    }
+        //}
         #endregion
 
         #region Deuda
@@ -1191,11 +1205,16 @@ namespace Pan3
             {
                 CobrarActualizarDeuda();
             }
+            txtPDeuda.Text = "0";
         }
 
         private void GuardarDeuda()
         {
             decimal adeuda = Convert.ToDecimal(txtADeuda.Text);
+            if (adeuda < 0)
+            {
+                adeuda *= -1;
+            }
             decimal deudanueva = adeuda + Convert.ToDecimal(lblDeuda.Text);
 
             if (!MostrarDeuda())
@@ -1260,18 +1279,22 @@ namespace Pan3
         {
             decimal diferencia = 0;
             decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
-            if (deuda1 < 0)
-            {
-                deuda1 *= -1;
-            }
 
-            ValidacionPagoDeuda(); //QUEDÉ ACÁ
+            ValidacionPagoDeuda();
 
             if (Convert.ToDecimal(txtVuelto.Text) == 0)
             {
                 decimal MontoPagoDeuda;
                 MontoPagoDeuda = Convert.ToDecimal(txtPDeuda.Text);
-                diferencia = deuda1 - MontoPagoDeuda;
+
+                if (deuda1 < 0)
+                {
+                    diferencia = deuda1 - MontoPagoDeuda;
+                }
+                else
+                {
+                    diferencia = deuda1 - MontoPagoDeuda;
+                }
             }
 
             try
@@ -1294,13 +1317,13 @@ namespace Pan3
         {
             decimal diferencia = 0;
             decimal deuda1 = Convert.ToDecimal(lblDeuda.Text);
-            deuda1 = deuda1 * -1;
 
             if (Convert.ToDecimal(txtVuelto.Text) > 0)
             {
                 diferencia = Convert.ToDecimal(txtVuelto.Text) - deuda1;
+                diferencia = diferencia *= -1;
 
-                if (diferencia >= 0)
+                if (diferencia <= 0)
                 {
                     txtVuelto.Text = diferencia.ToString();
                     diferencia = 0;
@@ -1327,18 +1350,20 @@ namespace Pan3
 
         #region Caja
 
-        private void CrearColumnasCaja()
+        private void CrearColumnasIngresosCaja()
         {
-            DgvCaja.ColumnCount = 9;
-            DgvCaja.Columns[0].HeaderText = "Id";
-            DgvCaja.Columns[1].HeaderText = "Cliente";
-            DgvCaja.Columns[2].HeaderText = "Autorizado";
-            DgvCaja.Columns[3].HeaderText = "Forma de pago";
-            DgvCaja.Columns[4].HeaderText = "Monto";
-            DgvCaja.Columns[5].HeaderText = "Fecha";
-            DgvCaja.Columns[6].HeaderText = "Hora";
-            DgvCaja.Columns[7].HeaderText = "Estado";
-            DgvCaja.Columns[8].HeaderText = "N° de Factura";
+            DgvCajaIngresos.ColumnCount = 9;
+            DgvCajaIngresos.Columns[0].HeaderText = "Id";
+            DgvCajaIngresos.Columns[1].HeaderText = "Cliente";
+            DgvCajaIngresos.Columns[2].HeaderText = "Autorizado";
+            DgvCajaIngresos.Columns[3].HeaderText = "Forma de pago";
+            DgvCajaIngresos.Columns[4].HeaderText = "Monto";
+            DgvCajaIngresos.Columns[5].HeaderText = "Fecha";
+            DgvCajaIngresos.Columns[6].HeaderText = "Hora";
+            DgvCajaIngresos.Columns[7].HeaderText = "Estado";
+            DgvCajaIngresos.Columns[8].HeaderText = "N° de Factura";            
+
+            DgvCajaIngresos.Columns[0].Visible = false;
         }
 
         private void CrearColumnasEgresosCaja()
@@ -1352,17 +1377,19 @@ namespace Pan3
             dgvCajaEgresos.Columns[5].HeaderText = "Fecha";
             dgvCajaEgresos.Columns[6].HeaderText = "Estado";
             dgvCajaEgresos.Columns[7].HeaderText = "N° de Factura";
+
+            dgvCajaEgresos.Columns[0].Visible = false;
         }
-        private void LlenarDGVCaja()
+        private void LlenarDGVCajaIngresos()
         {
-            DgvCaja.Rows.Clear();
+            DgvCajaIngresos.Rows.Clear();
             DataSet ds = new DataSet();
-            ds = objNegVenta.ListandoVentas("TodosDetalle");
+            ds = objNegVenta.RegistrosHoy(DateTime.Now.ToString("d"), IdAutorizado.ToString());
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    DgvCaja.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                    DgvCajaIngresos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
                 }
             }
         }
@@ -1371,7 +1398,7 @@ namespace Pan3
         {
             dgvCajaEgresos.Rows.Clear();
             DataSet ds = new DataSet();
-            ds = objNegCompra.ListandoCompras("TodoCompras");
+            ds = objNegCompra.RegistrosHoy(DateTime.Now.ToString("d"), IdAutorizado.ToString());
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -1380,16 +1407,73 @@ namespace Pan3
                 }
             }
         }
-
+        
         private void LlenarDgvVentasPorFecha()
         {
-            DataSet ds = new DataSet();
-            ds = objNegVenta.VentasEntre(txtDesde.Text, txtHasta.Text);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (txtDesde.Text == "" && txtHasta.Text == "")
             {
-                foreach (DataRow dr in ds.Tables[0].Rows)
+                MessageBox.Show("Debe ingresar un rango de fechas");
+            }
+            else
+            {
+                DataSet ds = new DataSet();
+                ds = objNegVenta.VentasEntre(txtDesde.Text, txtHasta.Text);
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    DgvCaja.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        DgvCajaIngresos.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
+                    }
+                }
+            }
+        }
+
+        private DataSet LlenarVentasItemPorId(string idVenta)
+        {
+            DataSet ds = new DataSet();
+            ds = objNegProductoVenta.LlenarVentasItemPorId(idVenta);
+
+            return ds;
+        }
+
+        private void IngresosExtrasPorFecha()
+        {
+            if (txtDesde.Text == "" && txtHasta.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un rango de fechas");
+            }
+            else
+            {
+                objEMovimientosExtraordinario.Id_autorizado = IdAutorizado;
+                DataSet ds = new DataSet();
+                ds = objNegMovimientosEstraordinarios.TraerIngresosExtraordinariosPorFechas(txtDesde.Text, txtHasta.Text, objEMovimientosExtraordinario);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        DgvCajaIngresos.Rows.Add("", "", dr[0].ToString(), "", dr[1].ToString(), dr[2].ToString(), "", "", "");
+                    }
+                }
+            }
+        }
+
+        private void EgresosExtrasPorFecha()
+        {
+            if (txtDesde.Text == "" && txtHasta.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un rango de fechas");
+            }
+            else
+            {
+                objEMovimientosExtraordinario.Id_autorizado = IdAutorizado;
+                DataSet ds = new DataSet();
+                ds = objNegMovimientosEstraordinarios.TraerEgresosExtraordinariosPorFechas(txtDesde.Text, txtHasta.Text, objEMovimientosExtraordinario);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        dgvCajaEgresos.Rows.Add("", "", dr[0].ToString(), "", dr[1].ToString(), dr[2].ToString(), "", "", "");
+                    }
                 }
             }
         }
@@ -1408,29 +1492,30 @@ namespace Pan3
         }
         private void btnBuscarPorFecha_Click(object sender, EventArgs e)
         {
-            DgvCaja.Rows.Clear();
-            CrearColumnasCaja();
+            DgvCajaIngresos.Rows.Clear();
+            CrearColumnasIngresosCaja();
             LlenarDgvVentasPorFecha();
+            IngresosExtrasPorFecha();
         }
 
         private void txtBFecha_Click(object sender, EventArgs e)
         {
             dgvCajaEgresos.Rows.Clear();
+            CrearColumnasEgresosCaja();
             LlenarCajaEgresosPorFecha();
+            EgresosExtrasPorFecha();
         }
 
         private void btnCerrarCaja_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Cerrar caja con un monto de $" + txtMontoInicial.Text + " ?", "Cerrar caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Cerrar caja con un monto de $" + txtMontoActual.Text + " ?", "Cerrar caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                int nGrabados = -1;
-
-                objECaja.ImporteFinal1 = Convert.ToDecimal(txtMontoInicial.Text);
-                objECaja.Estado1 = false;
                 objECaja.Fecha1 = DateTime.Now.ToString("d");
-                nGrabados = objNegCaja.abmCaja("Cierre", objECaja);
+                objECaja.ImporteFinal1 = Convert.ToDecimal(txtMontoActual.Text);
+                objECaja.Estado1 = false;
+                int nGrabados = objNegCaja.abmCaja("Cierre", objECaja);
 
                 if (nGrabados == -1)
                 {
@@ -1439,6 +1524,107 @@ namespace Pan3
                 else
                 {
                     MessageBox.Show("Cierre de caja realizado");
+                }
+            }
+
+            tabControl1.TabPages.Remove(TabVenta);
+            tabControl1.TabPages.Remove(TabCompra);
+        }
+
+
+        private void btActualizarMontoActual_Click(object sender, EventArgs e)
+        {
+            decimal MontoCajaIngresos = 0;
+            decimal MontoCajaEgresos = 0;
+            decimal CambiarSigno = 0;
+
+            for (int i = 0; i < dgvCajaEgresos.Rows.Count; ++i)
+            {
+                if (Convert.ToDecimal(dgvCajaEgresos.Rows[i].Cells[4].Value) <= 0)
+                {
+                    CambiarSigno = Convert.ToDecimal(dgvCajaEgresos.Rows[i].Cells[4].Value) * -1;
+                }
+                else
+                {
+                    MontoCajaEgresos += Convert.ToDecimal(dgvCajaEgresos.Rows[i].Cells[4].Value);
+                }
+                MontoCajaEgresos += CambiarSigno;
+            }
+
+            for (int i = 0; i < DgvCajaIngresos.Rows.Count; ++i)
+            {
+                MontoCajaIngresos += Convert.ToDecimal(DgvCajaIngresos.Rows[i].Cells[4].Value);
+            }
+
+            decimal TotalCaja = Convert.ToDecimal(txtMontoInicial.Text) + MontoCajaIngresos - MontoCajaEgresos;
+            txtMontoActual.Text = TotalCaja.ToString();
+        }
+
+        private void BtnIngresosExtra_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                objEMovimientosExtraordinario.Id_autorizado = IdAutorizado;
+                objEMovimientosExtraordinario.Fecha_MovExt = DateTime.Now.ToString("d");
+                objEMovimientosExtraordinario.Monto = Convert.ToDecimal(TxtIngresoExtra.Text);
+
+                objNegMovimientosEstraordinarios.InsertandoMovimientosExtraordinarios("Alta", objEMovimientosExtraordinario);
+                MessageBox.Show("Movimiento guardado");
+
+                TxtIngresoExtra.Text = "0";
+                LlenarDGVCajaIngresosExtras();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo guardar el movimiento" + ex);
+            }
+        }
+
+        private void LlenarDGVCajaIngresosExtras()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegMovimientosEstraordinarios.RegistrosIngresosHoy(DateTime.Now.ToString("d"), objEMovimientosExtraordinario);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    DgvCajaIngresos.Rows.Add("", "", dr[0].ToString(), "", dr[1].ToString(), dr[2].ToString(), "", "", "");
+                }
+            }
+        }
+
+        private void BtnEgresosExtra_Click(object sender, EventArgs e)
+        {
+            decimal egreso = Convert.ToDecimal(TxtEgresoExtra.Text) * -1;
+            try
+            {
+                objEMovimientosExtraordinario.Id_autorizado = IdAutorizado;
+                objEMovimientosExtraordinario.Fecha_MovExt = DateTime.Now.ToString("d");
+                objEMovimientosExtraordinario.Monto = egreso;
+
+                objNegMovimientosEstraordinarios.InsertandoMovimientosExtraordinarios("Alta", objEMovimientosExtraordinario);
+                MessageBox.Show("Movimiento guardado");
+
+                TxtEgresoExtra.Text = "0";
+                LlenarDGVCajaEgresosExtras();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo guardar el movimiento" + ex);
+            }
+        }
+
+        private void LlenarDGVCajaEgresosExtras()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegMovimientosEstraordinarios.RegistrosEgresosHoy(DateTime.Now.ToString("d"), objEMovimientosExtraordinario);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvCajaEgresos.Rows.Add(dr[0].ToString(), "", dr[1].ToString(), "", Convert.ToDecimal(dr[2]) * -1, dr[3].ToString(), "", "", "");
                 }
             }
         }
@@ -1564,8 +1750,9 @@ namespace Pan3
 
             foreach (DataGridViewRow row in DGVmdp.Rows)
             {
-                importe += Convert.ToDecimal(row.Cells[3].Value);
+                importe += Convert.ToDecimal(row.Cells[2].Value);
             }
+
             Pagado = importe;
             txtADeuda.Text = Convert.ToString(decimal.Parse(lbltotal.Text) - Pagado);
 
@@ -1602,22 +1789,40 @@ namespace Pan3
             Font font = new Font("Arial", 14);
             int ancho = 500;
             int y = 30;
+            string nombreCliente = "";
+            decimal montoTotal = 0;
+            int idVenta = 0;
 
-            e.Graphics.DrawString(" ***** PANADERÍA PANARTE ***** ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-            e.Graphics.DrawString(" Cliente: " + CBCliente.Text, font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
-            e.Graphics.DrawString(" -------- Productos ---------- " + CBCliente.Text, font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
 
-            foreach (DataGridViewRow row in DGVListaVenta.Rows)
+            DataSet ds3 = new DataSet();
+            ds3 = objNegVenta.UltimoRegistroVenta();
+
+            foreach (DataRow dr in ds3.Tables[0].Rows)
             {
-                e.Graphics.DrawString((row.Cells[2].Value) + "     " + (row.Cells[4].Value), font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                idVenta = Convert.ToInt32(dr["Id_venta"]);
+                nombreCliente = dr["nombre_cliente"].ToString();
             }
 
-            e.Graphics.DrawString(" Total: $" + lbltotal.Text, font, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+            DataSet ds = new DataSet();
+            ds = LlenarVentasItemPorId(idVenta.ToString());
+
+            e.Graphics.DrawString(" ***** PANADERÍA PANARTE ***** ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString(" Cliente: " + nombreCliente, font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+            e.Graphics.DrawString(" -------- Productos ---------- ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                e.Graphics.DrawString((dr[1]) + "     $" + (dr[3]), font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
+                montoTotal += Convert.ToDecimal(dr[3]);
+            }
+
+            e.Graphics.DrawString(" Total: $" + montoTotal, font, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
 
             e.Graphics.DrawString(" *** GRACIAS POR SU COMPRA *** ", font, Brushes.Black, new RectangleF(0, y += 30, ancho, 20));
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+
+        private void ImprimirComprobante()
         {
             printDocument1 = new PrintDocument();
             PrinterSettings ps = new PrinterSettings();
@@ -1638,10 +1843,19 @@ namespace Pan3
             CbProveedores.DataSource = ds.Tables[0];
         }
 
+        private void LlenarCbProdProv()
+        {
+            DataSet ds = new DataSet();
+            ds = objNegProveedor.ListandoProveedor("Todos");
+            CBProvProd.DisplayMember = "nombre_prov";
+            CBProvProd.ValueMember = "id_prov";
+            CBProvProd.DataSource = ds.Tables[0];
+        }
+
         private void LlenarCbProd()
         {
             DataSet ds = new DataSet();
-            ds = objNegProducto.ListandoProductos("Todos");
+            ds = objNegProdProv.ListadoProdProv(CbProveedores.SelectedValue.ToString());
             CbProductos.DisplayMember = "Nombre_producto";
             CbProductos.ValueMember = "Id_producto";
             CbProductos.DataSource = ds.Tables[0];
@@ -1661,6 +1875,10 @@ namespace Pan3
         private void btnGuardarCompra_Click(object sender, EventArgs e)
         {
             GuardarCompra();
+            dgvCompras.Rows.Clear();
+            LlenarCajaEgresos();
+            LlenarDGVCajaEgresosExtras();
+            LimpiarCamposCompra();
         }
 
         private void FormaDePagoC()
@@ -1737,7 +1955,7 @@ namespace Pan3
             dgvCompras.Rows.Add(Convert.ToInt32(CbProveedores.SelectedValue.ToString()), Convert.ToInt32(CbProductos.SelectedValue.ToString()), txtCantCompra.Text, txtPCompra.Text, txtNFact.Text, CostoxCant);
 
             preciototalC = 0;
-            CalcularTotalCompra();
+            CalcularTotalCompra();           
         }
 
         private void CalcularTotalCompra()
@@ -1894,10 +2112,230 @@ namespace Pan3
 
         #endregion
 
+        #region Botones cancelar
         private void BTCancelar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
+        private void btnCancelarProd_Click(object sender, EventArgs e)
+        {
+            limpiarCamposProducto();
+        }
+
+        private void btnCancelarCat_Click(object sender, EventArgs e)
+        {
+            limpiarCamposCategoria();
+        }
+
+        private void btnCancelarProv_Click(object sender, EventArgs e)
+        {
+            limpiarCamposProveedor();
+        }
+
+        private void btnCancelarCliente_Click(object sender, EventArgs e)
+        {
+            limpiarCamposCliente();
+        }
+
+        private void btnCancelarAut_Click(object sender, EventArgs e)
+        {
+            limpiarCamposAutorizado();
+        }
+
+        private void LimpiarCamposCompra()
+        {
+            txtCantCompra.Text = "";
+            txtPCompra.Text = "";
+            txtNFact.Text = "";
+            lblTCompra.Text = "";
+        }
+
+        #endregion
+
+        #region Limpiar Campos
+        private void limpiarCamposCliente()
+        {
+            txtNomCliente.Text = "";
+            TxtNomCom.Text = "";
+            TxtDomCliente.Text = "";
+            TxtTelCliente.Text = "";
+            TxtEmailCliente.Text = "";
+        }
+        private void limpiarCamposProducto()
+        {
+            txtCodProd.Text = "";
+            txtNomProd.Text = "";
+            txtStockP.Text = "";
+            txtPrecioCompra.Text = "";
+            txtPrecioVenta.Text = "";
+            cbCategoria.Text = "";
+        }
+
+        private void limpiarCamposCategoria()
+        {
+            txtNomCat.Text = "";
+            txtCodCat.Text = "";
+        }
+        private void limpiarCamposAutorizado()
+        {
+            txtNomAut.Text = "";
+            txtApAut.Text = "";
+            txtUsAut.Text = "";
+            txtClaveAut.Text = "";
+            txtConfCAut.Text = "";
+        }
+        private void limpiarCamposProveedor()
+        {
+            txtprov.Text = "";
+            txtrs.Text = "";
+            txtmail.Text = "";
+            txttel.Text = "";
+            txttelR.Text = "";
+            txtdom.Text = "";
+            txtcuil.Text = "";
+        }
+
+        #endregion
+
+        #region Perfil
+        private void Perfil()
+        {
+            if (IdAutorizado != 1)
+            {
+                tabControl1.TabPages.Remove(TabAutorizados);
+            }
+        }
+        #endregion
+
+        #region Actualizar CB Productos
+        private void CBProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarDatos();
+        }
+
+        private void ActualizarDatos()
+        {
+            CBProducto.SelectedValue.ToString();
+
+            DataSet ds = new DataSet();
+            ds = objNegProducto.ListandoProductos(CBProducto.SelectedValue.ToString());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    CBProducto.SelectedValue.ToString();
+                    TBStock.Text = (dr["Stock_producto"].ToString());
+                    TBPrecioU.Text = (dr["Preciouv_producto"].ToString());
+                    TBCode.Text = (dr["Cod_producto"].ToString());
+                    TBCategoría.Text = (dr["Id_categoria"].ToString());
+                }
+            }
+        }
+        #endregion
+
+        #region Detalle de ingresos y egresos
+        private void DgvCajaIngresos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DetalleVenta detalle = new DetalleVenta();
+
+            DataSet ds = new DataSet();
+            ds = objNegVenta.ListandoVentas(this.DgvCajaIngresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    detalle.txtAutorizado.Text = (dr["Nombre_autorizado"].ToString());
+                    detalle.txtCliente.Text = (dr["nombre_cliente"].ToString());
+                    detalle.txtFecha.Text = (dr["Fecha_venta"].ToString());
+                    detalle.txtMonto.Text = (dr["Montofinal"].ToString());
+                }
+            }
+
+            DataSet ds1 = new DataSet();
+            ds1 = objNegProductoVenta.LlenarVentasItemPorId(this.DgvCajaIngresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds1.Tables[0].Rows)
+                {
+                    detalle.DgvPVDetalle.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+            }
+            decimal t = 0;
+
+            for (int i = 0; i < detalle.DgvPVDetalle.Rows.Count; ++i)
+            {
+                t += Convert.ToDecimal(detalle.DgvPVDetalle.Rows[i].Cells[2].Value);
+            }
+
+            detalle.txtTotal.Text = t.ToString();
+
+            DataSet ds2 = new DataSet();
+            ds2 = objNegMovimientosEstraordinarios.listadoMovimientosExtraordinarios(this.DgvCajaIngresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds2.Tables[0].Rows)
+                {
+                    detalle.label2.Visible = false;
+                    detalle.txtAutorizado.Text = (dr["Nombre_autorizado"].ToString());
+                    detalle.txtCliente.Visible = false;
+                    detalle.label7.Visible = false;
+                    detalle.txtMonto.Visible = false;
+                    detalle.txtFecha.Text = (dr["Fecha_MovExt"].ToString());
+                    detalle.txtTotal.Text = (dr[2]).ToString();
+                    detalle.DgvPVDetalle.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+            }
+
+            detalle.ShowDialog();
+        }
+
+        private void dgvCajaEgresos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DetalleCompra detalle = new DetalleCompra();
+
+            DataSet ds = new DataSet();
+            ds = objNegCompra.ListandoCompras(this.dgvCajaEgresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    detalle.txtAutorizado.Text = (dr["Nombre_autorizado"].ToString());
+                    detalle.txtProveedor.Text = (dr["nombre_prov"].ToString());
+                    detalle.txtFecha.Text = (dr["Fecha_compra"].ToString());
+                    detalle.txtMonto.Text = (dr["Montofinal"].ToString());
+                }
+            }
+
+            DataSet ds1 = new DataSet();
+            ds1 = objNegProductoCompra.ListandoProductoCompra(this.dgvCajaEgresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds1.Tables[0].Rows)
+                {
+                    detalle.DgvPVDetalle.Rows.Add(dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                }
+            }
+
+
+            DataSet ds2 = new DataSet();
+            ds2 = objNegMovimientosEstraordinarios.listadoMovimientosExtraordinarios(this.dgvCajaEgresos.CurrentRow.Cells[0].Value.ToString());
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds2.Tables[0].Rows)
+                {
+                    detalle.label2.Visible = false;
+                    detalle.txtAutorizado.Text = (dr["Nombre_autorizado"].ToString());
+                    detalle.txtProveedor.Visible = false;
+                    detalle.txtFecha.Text = (dr["Fecha_MovExt"].ToString());
+                    detalle.txtMonto.Text = (Convert.ToDecimal(dr[2]) * -1).ToString();
+                    detalle.DgvPVDetalle.Rows.Add(dr[1].ToString(), Convert.ToDecimal(dr[2]) * -1, dr[3].ToString());
+                }
+            }
+
+            detalle.ShowDialog();
+        }
+
+        #endregion
     }
 }

@@ -15,9 +15,9 @@ namespace Negocios
             objDatosProductoVenta.abmProductoVenta("Alta", objEProductoVenta);
         }
 
-        public DataSet ListandoProductoVentas(string buscar)
+        public DataSet LlenarVentasItemPorId(string buscar)
         {
-            return objDatosProductoVenta.listadoProductoVenta(buscar);
+            return objDatosProductoVenta.LlenarVentasItemPorId(buscar);
         }
     }
 }

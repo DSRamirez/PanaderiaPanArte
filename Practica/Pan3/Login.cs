@@ -54,7 +54,6 @@ namespace Pan3
             {
                 if (!cajaSinCerrar(id_Autorizado))
                 {
-
                     frm.NombreAutorizado = txtusuario.Text;
                     frm.IdAutorizado = id_Autorizado;
 
@@ -63,6 +62,7 @@ namespace Pan3
 
                     if (!frmCaja.CajaAbierta())
                     {
+                        Hide();
                         frmCaja.Show();
                     }
                     else
@@ -73,9 +73,12 @@ namespace Pan3
             }
         }
 
+
+        //cajaSinCerrar Comprueba si el usuario que ingresó antes tiene caja abierta, si es el mismo entonces abre el form1,
+        //sino indica que no se ha cerrado la caja anterior
         private bool cajaSinCerrar(int id_Autorizado)
         {
-            bool cajaSinCerrar = false;            
+            bool cajaSinCerrar = false;
             bool ultimo_estado = false;
             int ultimo_id_Autorizado = 0;
 
@@ -83,8 +86,8 @@ namespace Pan3
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                ultimo_estado = bool.Parse(dr[0].ToString());
                 ultimo_id_Autorizado = int.Parse(dr[1].ToString());
+                ultimo_estado = bool.Parse(dr[5].ToString());
             }
 
             if (ultimo_estado == true && (id_Autorizado != ultimo_id_Autorizado))
@@ -95,26 +98,6 @@ namespace Pan3
 
             return cajaSinCerrar;
         }
-
-        //private void CerrarCaja()
-        //{
-        //    int nGrabados = -1;
-
-        //    objECaja.ImporteFinal1 = Convert.ToDecimal(0);
-        //    objECaja.Estado1 = false;
-        //    objECaja.Fecha1 = DateTime.Now.ToString("d");
-        //    nGrabados = objNegCaja.abmCaja("Cierre", objECaja);
-
-        //    if (nGrabados == -1)
-        //    {
-        //        MessageBox.Show("No se pudo cerrar la caja");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Cierre de caja realizado");
-        //        frmCaja.Show();
-        //    }
-        //}
 
     }
 }

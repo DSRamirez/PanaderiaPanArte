@@ -19,7 +19,11 @@ namespace Datos
             }
             else
             {
-                orden = "select * from compra";
+                orden = "Select v.Id_compra, c.nombre_prov, a.Nombre_autorizado, p.Nombre_fpago , " +
+                        "v.Montofinal, v.Fecha_compra, v.Estado_trans, v.N_Factura from compra v " +
+                        "Inner join proveedor c on c.id_prov = v.Id_proveedor " +
+                        "Inner join Autorizado a on a.Id_autorizado = v.Id_autorizado " +
+                        "Inner join fpago p on p.Id_fpago = v.Id_fpago where Id_compra =" + int.Parse(cual);
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -144,6 +148,36 @@ namespace Datos
             catch (Exception e)
             {
                 throw new Exception("Error al traer ultimo registro", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+
+        public DataSet RegistrosHoy(string Hoy, string quien)
+        {
+            string orden = "Select c.Id_compra, p.nombre_prov, a.Nombre_autorizado, f.Nombre_fpago , c.Montofinal, c.Fecha_compra, c.Estado_trans, c.N_Factura " +
+                    "from compra c Inner join proveedor p on c.Id_proveedor = p.id_prov " +
+                    "Inner join Autorizado a on a.Id_autorizado = c.Id_autorizado " +
+                    "Inner join fpago f on f.Id_fpago = c.Id_fpago where c.Fecha_compra = '" + Hoy + "' and c.Id_autorizado =" + int.Parse(quien)+ ";";
+
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer los registros de hoy", e);
             }
             finally
             {

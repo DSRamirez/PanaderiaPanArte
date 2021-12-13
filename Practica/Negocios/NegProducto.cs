@@ -42,5 +42,10 @@ namespace Negocios
         {
             return objDatosProductos.ListadoProductoRapido(cual);
         }
+
+        public DataSet UltimoProducto()
+        {
+            return objDatosProductos.UltimoProducto();
+        }
     }
 }

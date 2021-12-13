@@ -19,7 +19,7 @@ namespace Datos
             }
             else
             {
-                orden = "select * from producto;";
+                orden = "select * from producto where Id_producto != 1";
             }
 
             SqlCommand cmd = new SqlCommand(orden, Conexion);
@@ -184,6 +184,32 @@ namespace Datos
             catch (Exception e)
             {
                 throw new Exception("Error al listar producto", e);
+            }
+            finally
+            {
+                Conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+
+        public DataSet UltimoProducto()
+        {
+            string orden = "Select TOP 1 Id_producto from producto order by Id_producto desc";
+            SqlCommand cmd = new SqlCommand(orden, Conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                Conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer ultimo producto", e);
             }
             finally
             {

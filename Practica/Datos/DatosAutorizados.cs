@@ -14,7 +14,7 @@ namespace Datos
 
                 orden = "select * from Autorizado where Id_autorizado = " + int.Parse(cual) + ";";
             else
-                orden = "select * from Autorizado;";
+                orden = "select * from Autorizado where esta_cancelado = 0;";
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -89,7 +89,7 @@ namespace Datos
 
         public int Login(E_Autorizados objEAutorizado)
         {
-            string orden = "SELECT Id_autorizado, Usuario_autorizado, Clave_autorizado FROM Autorizado WHERE Usuario_autorizado = '" + objEAutorizado.Usuario_aut + "'AND Clave_autorizado ='" + objEAutorizado.Clave_aut + "' ";
+            string orden = "SELECT Id_autorizado, Usuario_autorizado, Clave_autorizado FROM Autorizado WHERE esta_cancelado = 0 and Usuario_autorizado = '" + objEAutorizado.Usuario_aut + "'AND Clave_autorizado ='" + objEAutorizado.Clave_aut + "' ";
             SqlCommand cmd = new SqlCommand(orden, Conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter(cmd);

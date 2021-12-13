@@ -9,12 +9,16 @@ namespace Datos
 {
     public class DatosProductoVenta : DatosConexionDB
     {
-        public DataSet listadoProductoVenta(string cual)
+        public DataSet LlenarVentasItemPorId(string cual)
         {
             string orden = string.Empty;
             if (cual != "Todos")
 
-                orden = "select * from producto_venta where id_producto_venta = " + int.Parse(cual) + ";";
+                orden = " select c.nombre_cliente, p.Nombre_producto, vi.cantidad, vi.monto from producto_venta vi" +
+                    " inner join producto p on p.Id_producto = vi.id_producto" +
+                    " inner join venta v on v.Id_venta = vi.id_venta" +
+                    " inner join cliente c on c.id_cliente = v.Id_cliente" +
+                    " where vi.id_venta = " + int.Parse(cual);
             else
                 orden = "select * from producto_venta;";
 
